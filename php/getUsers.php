@@ -11,7 +11,6 @@
         array_push($user, $users['name'][$i]);
         array_push($user, $users['username'][$i]);
         array_push($user, $users['email'][$i]);
-        array_push($user, $users['password'][$i]);
 
         array_push($data, $user);
     }
