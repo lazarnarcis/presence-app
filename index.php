@@ -87,7 +87,6 @@
     <script src="js/parallaxie.js"></script>
     <script src="js/headline.js"></script>
     <script src="js/jqBootstrapValidation.js"></script>
-    <script src="js/contact_me.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
 
