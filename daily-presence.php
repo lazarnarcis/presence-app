@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Presence - v1.0</title>  
+    <title>Daily Presence - v1.0</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -13,7 +13,13 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/custom.css">
-    <script src="js/modernizr.js"></script>
+	  <script src="js/modernizr.js"></script>
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/bootstrap.js"></script>
+    <script src="./assets/js/popper.js"></script>
+    <script src="./assets/js/script.js"></script>
+    <link rel="stylesheet" href="./assets/css/datatables.css">
+    <link rel="stylesheet" href="css/nav.css">
 </head>
 <body id="page-top" class="politics_version">
 
@@ -24,7 +30,7 @@
 		</div>
     </div><!-- end loader -->
     <!-- END LOADER -->
-	
+    
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
@@ -38,32 +44,36 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
+                <a class="nav-link js-scroll-trigger" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="daily-presence.php">Daily Presence</a>
+                <a class="nav-link js-scroll-trigger active-btn" href="daily-presence.php">Daily Presence</a>
 			        </li>
           </ul>
         </div>
       </div>
     </nav>
-	
-	<section id="home" class="main-banner parallaxie" style="background: url('uploads/banner-01.jpg')">
-		<div class="heading">
-			<h1>Welcome to presence</h1>			
-			<h3 class="cd-headline clip is-full-width">
-				<span>Here you can see your </span>
-				<span class="cd-words-wrapper">
-					<b class="is-visible">daily presence.</b>
-					<b>monthly presence.</b>
-					<b>annual presence.</b>
-				</span>
-				<div class="btn-ber">
-					<a class="get_btn hvr-bounce-to-top" href="daily-presence.php">See the presence</a>
-				</div>
-			</h3>
-		</div>
-	</section>
+
+    <div id="services" class="section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Daily Presence</h3>
+                <p>Here you can see your daily presence in the job!</p>
+            </div><!-- end title -->
+            <div>
+              <table id="example" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+              </table>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
 
     <div class="copyrights">
         <div class="container">
@@ -90,6 +100,7 @@
     <script src="js/contact_me.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
+    <script src="./assets/js/datatables.js"></script>
 
 </body>
 </html>
