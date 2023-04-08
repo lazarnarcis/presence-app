@@ -3,7 +3,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Daily Presence - v1.0</title>  
+    <title>Montlhy Presence - v1.0</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -13,11 +13,11 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/custom.css">
-	  <script src="js/modernizr.js"></script>
+    <script src="js/modernizr.js"></script>
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
     <script src="./assets/js/popper.js"></script>
-    <script src="./assets/js/daily-presence.js"></script>
+    <script src="./assets/js/monthly-presence.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
 </head>
@@ -47,11 +47,11 @@
                 <a class="nav-link js-scroll-trigger" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger active-btn" href="daily-presence.php">Daily Presence</a>
+                <a class="nav-link js-scroll-trigger" href="daily-presence.php">Daily Presence</a>
 			        </li>
               <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="monthly-presence.php">Monthly Presence</a>
-			        </li>
+                <a class="nav-link js-scroll-trigger active-btn" href="monthly-presence.php">Monthly Presence</a>
+              </li>
           </ul>
         </div>
       </div>
@@ -60,21 +60,11 @@
     <div id="services" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Daily Presence</h3>
-                <p>Here you can see your daily presence in the job!</p>
+                <h3>Monthly Presence</h3>
+                <p>Here you can see your monthly presence in the job!</p>
             </div><!-- end title -->
             <div>
-              <!-- <table id="users" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-              </table> -->
-              <table id="daily-presence" class="table table-striped" style="width:100%">
+              <table id="monthly-presence" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>Name</th>

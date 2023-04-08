@@ -43,6 +43,9 @@
               <li class="nav-item">
                 <a class="nav-link js-scroll-trigger" href="daily-presence.php">Daily Presence</a>
 			        </li>
+              <li class="nav-item">
+                <a class="nav-link js-scroll-trigger" href="monthly-presence.php">Monthly Presence</a>
+			        </li>
           </ul>
         </div>
       </div>
@@ -73,6 +76,7 @@
                     <p class="footer-links">
                         <a href="index.php">Home</a>
                         <a href="daily-presence.php">Daily Presence</a>
+                        <a href="monthly-presence.php">Monthly Presence</a>
                     </p>
                     <p class="footer-company-name">All Rights Reserved. &copy; 2023 - Presence v1.0</p>
                 </div>

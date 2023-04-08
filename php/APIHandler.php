@@ -14,8 +14,22 @@
             return $this->API_Request("goPresence", $postfields);
         }
 
+        function getMonthlyPresence() {
+            $postfields = array(
+                "goAction" => "goGetMonthlyPresence.php"
+            );
+            return $this->API_Request("goPresence", $postfields);
+        }
+
+        function siteURL() {
+            $protocol = 'http://';
+            $domainName = $_SERVER['HTTP_HOST'].'/';
+            return $protocol.$domainName;
+        }
+
         function API_Request($folder = NULL, $postfields = NULL) {
-            $url = "http://localhost/presence-app/goAPI";
+            $url = $this->siteURL()."presence-app/goAPI";
+            error_log($url);
             foreach ($postfields as $key => $value) {
                 if ($key == "goAction") {
                     $url .= "/".$folder."/".$value;

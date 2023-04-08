@@ -2,8 +2,8 @@
     require("../config.php");
     $db = new Database();
 
-    $current_date = date("Y-m-d");
-    $query = "SELECT presence.user_id, presence.date, users.name, presence.seconds FROM presence LEFT JOIN users ON users.id=presence.user_id WHERE presence.date = '$current_date' GROUP BY users.id";
+    $current_month = date("Y-m");
+    $query = "SELECT SUM(presence.seconds) AS seconds, presence.user_id, users.name FROM presence LEFT JOIN users ON users.id=presence.user_id WHERE presence.date LIKE '%$current_month%' GROUP BY users.id;";
     $presence = $db->query($query);
 
     $dataID = [];
@@ -13,7 +13,7 @@
     
     foreach ($presence as $user) {
         $dataID[] = $user['user_id'];
-        $dataDate[] = $user['date'];
+        $dataDate[] = $current_month;
         $dataName[] = $user['name'];
         $dataPresence[] = $user['seconds'];
     }
