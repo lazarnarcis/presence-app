@@ -7,6 +7,13 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function getDailyPresence() {
+            $postfields = array(
+                "goAction" => "goGetDailyPresence.php"
+            );
+            return $this->API_Request("goPresence", $postfields);
+        }
+
         function API_Request($folder = NULL, $postfields = NULL) {
             $url = "http://localhost/presence-app/goAPI";
             foreach ($postfields as $key => $value) {

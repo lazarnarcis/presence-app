@@ -17,7 +17,7 @@
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
     <script src="./assets/js/popper.js"></script>
-    <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/daily-presence.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
 </head>
@@ -61,13 +61,22 @@
                 <p>Here you can see your daily presence in the job!</p>
             </div><!-- end title -->
             <div>
-              <table id="example" class="table table-striped" style="width:100%">
+              <!-- <table id="users" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
                         <th>Username</th>
                         <th>Email</th>
+                    </tr>
+                </thead>
+              </table> -->
+              <table id="daily-presence" class="table table-striped" style="width:100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Date</th>
+                        <th>Presence</th>
                     </tr>
                 </thead>
               </table>

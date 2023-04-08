@@ -1,9 +1,9 @@
 $(document).ready(function() {
     $.ajax({
-        url: "./php/getUsers.php",
+        url: "./php/getDailyPresence.php",
         success: function (data) {
             data = JSON.parse(data);
-            $('#users').DataTable({
+            $('#daily-presence').DataTable({
                 pagingType: 'full_numbers',
                 data: data
             });
