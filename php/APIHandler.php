@@ -14,6 +14,13 @@
             return $this->API_Request("goPresence", $postfields);
         }
 
+        function getNews() {
+            $postfields = array(
+                "goAction" => "goGetNews"
+            );
+            return $this->API_Request("goNews", $postfields);
+        }
+
         function getMonthlyPresence() {
             $postfields = array(
                 "goAction" => "goGetMonthlyPresence"

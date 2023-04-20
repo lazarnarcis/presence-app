@@ -7,7 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Daily Presence - Presence v1.0</title>  
+    <title>News - Presence v1.0</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -21,7 +21,7 @@
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
     <script src="./assets/js/popper.js"></script>
-    <script src="./assets/js/daily-presence.js"></script>
+    <script src="./assets/js/news.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
 </head>
@@ -40,20 +40,8 @@
     <div id="services" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Daily Presence</h3>
-                <p>Here you can see your daily presence in the job!</p>
-            </div><!-- end title -->
-            <div>
-              <table id="daily-presence" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Presence</th>
-                    </tr>
-                </thead>
-              </table>
-            </div>
+                <h3>News</h3>
+                <p id="text-news"></p>
         </div><!-- end container -->
     </div><!-- end section -->
 

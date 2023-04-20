@@ -1,9 +1,13 @@
+<?php
+  require("./php/UIHandler.php");
+  $ui = new UIHandler();
+?>
 <!DOCTYPE html>
 <html lang="en">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Presence - v1.0</title>  
+    <title>Home - Presence v1.0</title>  
     <meta name="keywords" content="">
     <meta name="description" content="">
     <meta name="author" content="">
@@ -25,31 +29,7 @@
     </div><!-- end loader -->
     <!-- END LOADER -->
 	
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">
-			<img class="img-fluid" src="images/logo.png" alt="" />
-		</a>
-        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          Menu
-          <i class="fa fa-bars"></i>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav text-uppercase ml-auto">
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger active" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="daily-presence.php">Daily Presence</a>
-			        </li>
-              <li class="nav-item">
-                <a class="nav-link js-scroll-trigger" href="monthly-presence.php">Monthly Presence</a>
-			        </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+    <?php echo $ui->getNav(); ?>
 	
 	<section id="home" class="main-banner parallaxie" style="background: url('uploads/banner-01.jpg')">
 		<div class="heading">
@@ -68,21 +48,7 @@
 		</div>
 	</section>
 
-    <div class="copyrights">
-        <div class="container">
-            <div class="footer-distributed">
-				<a href="index.php"><img src="images/logo-1.png" alt="" /></a>
-                <div class="footer-center">
-                    <p class="footer-links">
-                        <a href="index.php">Home</a>
-                        <a href="daily-presence.php">Daily Presence</a>
-                        <a href="monthly-presence.php">Monthly Presence</a>
-                    </p>
-                    <p class="footer-company-name">All Rights Reserved. &copy; 2023 - Presence v1.0</p>
-                </div>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end copyrights -->
+  <?php echo $ui->getFooter(); ?>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
