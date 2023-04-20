@@ -1,13 +1,44 @@
 <?php
+    $current_dir = __DIR__;
+
+    while ($current_dir != '/' && !file_exists($current_dir . '/index.php')) {
+        $current_dir = dirname($current_dir);
+    }
+    require_once $current_dir . '/vendor/autoload.php';
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable($current_dir);
+    $dotenv->load();
+
+    $whitelist = array('127.0.0.1', '::1');
+    if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+        $username = $_ENV['DB_USER'];
+        $password = $_ENV['DB_PASSWORD'];
+        $database = $_ENV['DB_NAME'];
+        $server = $_ENV['DB_SERVER'];
+    } else {
+        $username = "root";
+        $password = "";
+        $database = "presence";
+        $server = "localhost";
+    }
+
     class Database {
-        public $host = "localhost";
-        public $password = "";
-        public $username = "root";
-        public $database = "presence";
+        public $server;
+        public $password;
+        public $username;
+        public $database;
         public $string_where = "";
+
+        public function __construct() {
+            $this->password = $GLOBALS['password'];
+            $this->username = $GLOBALS['username'];
+            $this->database = $GLOBALS['database'];
+            $this->server = $GLOBALS['server'];
+        }
         
         function connect() {
-            return mysqli_connect($this->host, $this->username, $this->password, $this->database);
+            return mysqli_connect($this->server, $this->username, $this->password, $this->database);
         }
 
         function disconnect($db) {

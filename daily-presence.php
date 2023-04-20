@@ -64,16 +64,6 @@
                 <p>Here you can see your daily presence in the job!</p>
             </div><!-- end title -->
             <div>
-              <!-- <table id="users" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Email</th>
-                    </tr>
-                </thead>
-              </table> -->
               <table id="daily-presence" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>

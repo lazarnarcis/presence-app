@@ -11,7 +11,7 @@
         $presence = [];
         array_push($presence, $daily_presence['name'][$i]);
         array_push($presence, $functions->dateName($daily_presence['date'][$i]));
-        array_push($presence, $functions->transformSeconds($daily_presence['presence'][$i]));
+        array_push($presence, $functions->transformSeconds($daily_presence['seconds'][$i]));
 
         array_push($data, $presence);
     }

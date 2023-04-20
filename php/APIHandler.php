@@ -2,37 +2,43 @@
     class APIHandler {
         function getUsers() {
             $postfields = array(
-                "goAction" => "goGetAllUsers.php"
+                "goAction" => "goGetAllUsers"
             );
             return $this->API_Request("goUsers", $postfields);
         }
 
         function getDailyPresence() {
             $postfields = array(
-                "goAction" => "goGetDailyPresence.php"
+                "goAction" => "goGetDailyPresence"
             );
             return $this->API_Request("goPresence", $postfields);
         }
 
         function getMonthlyPresence() {
             $postfields = array(
-                "goAction" => "goGetMonthlyPresence.php"
+                "goAction" => "goGetMonthlyPresence"
             );
             return $this->API_Request("goPresence", $postfields);
         }
 
         function siteURL() {
-            $protocol = 'http://';
+            $protocol = isset($_SERVER["HTTPS"]) ? 'https://' : 'http://';
             $domainName = $_SERVER['HTTP_HOST'].'/';
             return $protocol.$domainName;
         }
 
         function API_Request($folder = NULL, $postfields = NULL) {
-            $url = $this->siteURL()."presence-app/goAPI";
-            error_log($url);
+            $url = $this->siteURL();
+            $whitelist = array('127.0.0.1', '::1');
+
+            if(in_array($_SERVER['REMOTE_ADDR'], $whitelist)){
+                $url .= "presence-app/";
+            }
+            $url .= "goAPI";
+
             foreach ($postfields as $key => $value) {
                 if ($key == "goAction") {
-                    $url .= "/".$folder."/".$value;
+                    $url .= "/".$folder."/".$value.".php";
                 } else {
                     $url .= "?".$key."=".$value;
                 }

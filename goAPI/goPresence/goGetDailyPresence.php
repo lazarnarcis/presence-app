@@ -9,20 +9,20 @@
     $dataID = [];
     $dataDate = [];
     $dataName = [];
-    $dataPresence = [];
+    $dataSeconds = [];
     
     foreach ($presence as $user) {
         $dataID[] = $user['user_id'];
         $dataDate[] = $user['date'];
         $dataName[] = $user['name'];
-        $dataPresence[] = $user['seconds'];
+        $dataSeconds[] = $user['seconds'];
     }
 
     $data = array(
         "id" => $dataID,
         "name" => $dataName,
         "date" => $dataDate,
-        "presence" => $dataPresence,
+        "seconds" => $dataSeconds,
     );
 
     echo json_encode($data);
