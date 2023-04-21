@@ -13,20 +13,15 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login - Presence v1.0</title>  
-    <meta name="keywords" content="">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Login - Presence v1.0</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
-    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/custom.css">
-    <link rel="stylesheet" href="assets/css/login.css">
-    <script src="js/modernizr.js"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.css">
-	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.6/dist/sweetalert2.min.js"></script>
+    <link rel="stylesheet" href="assets/css/login.css?v=<?php echo time(); ?>">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<script src="js/sweetalert.js"></script>
 </head>
 <body id="page-top" class="politics_version">
     <div class="container">
@@ -56,6 +51,6 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
-    <script src="assets/js/login.js"></script>
+    <script src="assets/js/login.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

@@ -8,6 +8,7 @@ $(document).ready(function() {
                 if (data == 1) {
                     window.location.href = "index.php";
                 } else {
+                    data = data.replace(/"/g, '');
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',

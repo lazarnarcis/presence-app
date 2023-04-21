@@ -4,32 +4,32 @@
             $curr_file = basename($_SERVER["SCRIPT_FILENAME"], '.php');
             echo '<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div class="container">
-                <a class="navbar-brand js-scroll-trigger" href="#page-top">
-                    <img class="img-fluid" src="images/logo.png" alt="" />
-                </a>
-                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                    Menu
-                    <i class="fa fa-bars"></i>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav text-uppercase ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger '.(($curr_file == "index") ? "active-btn" : "").'" href="index.php">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger '.(($curr_file == "daily-presence") ? "active-btn" : "").'" href="daily-presence.php">Daily Presence</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger '.(($curr_file == "monthly-presence") ? "active-btn" : "").'" href="monthly-presence.php">Monthly Presence</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger '.(($curr_file == "news") ? "active-btn" : "").'" href="news.php">News</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger '.(($curr_file == "logout") ? "active-btn" : "").'" href="logout.php">Logout</a>
-                        </li>
-                    </ul>
-                </div>
+                    <a class="navbar-brand js-scroll-trigger" href="#page-top">
+                        <img class="img-fluid" src="images/logo.png" alt="" />
+                    </a>
+                    <button class="navbar-toggler navbar-toggler-right" style="color: black; border: 1px solid black;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                        Menu
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarResponsive">
+                        <ul class="navbar-nav text-uppercase ml-auto">
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "index") ? "active-btn" : "").'" href="index.php">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "daily-presence") ? "active-btn" : "").'" href="daily-presence.php">Daily Presence</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "monthly-presence") ? "active-btn" : "").'" href="monthly-presence.php">Monthly Presence</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "news") ? "active-btn" : "").'" href="news.php">News</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "logout") ? "active-btn" : "").'" href="logout.php">Logout</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </nav>';
         }
