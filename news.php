@@ -1,6 +1,12 @@
 <?php
-  require("./php/UIHandler.php");
-  $ui = new UIHandler();
+    session_start();
+    if (!isset($_SESSION['logged']) || $_SESSION['logged'] != true) {
+        header("location: login.php");
+        exit();
+    }
+
+    require("./php/UIHandler.php");
+    $ui = new UIHandler();
 ?>
 <!DOCTYPE html>
 <html lang="en">

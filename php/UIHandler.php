@@ -25,6 +25,9 @@
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger '.(($curr_file == "news") ? "active-btn" : "").'" href="news.php">News</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link js-scroll-trigger '.(($curr_file == "logout") ? "active-btn" : "").'" href="logout.php">Logout</a>
+                        </li>
                     </ul>
                 </div>
                 </div>
@@ -40,6 +43,8 @@
                                     <a href="index.php">Home</a>
                                     <a href="daily-presence.php">Daily Presence</a>
                                     <a href="monthly-presence.php">Monthly Presence</a>
+                                    <a href="news.php">News</a>
+                                    <a href="logout.php">Logout</a>
                                 </p>
                                 <p class="footer-company-name">All Rights Reserved. &copy; 2023 - Presence v1.0</p>
                             </div>

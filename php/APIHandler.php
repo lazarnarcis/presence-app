@@ -21,6 +21,15 @@
             return $this->API_Request("goNews", $postfields);
         }
 
+        function loginUser($name = NULL, $password = NULL) {
+            $postfields = array(
+                "goAction" => "goLoginUser",
+                "name" => $name,
+                "password" => $password
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getMonthlyPresence() {
             $postfields = array(
                 "goAction" => "goGetMonthlyPresence"
@@ -43,11 +52,17 @@
             }
             $url .= "goAPI";
 
+            $limit = 0;
             foreach ($postfields as $key => $value) {
                 if ($key == "goAction") {
                     $url .= "/".$folder."/".$value.".php";
                 } else {
-                    $url .= "?".$key."=".$value;
+                    if ($limit == 0) {
+                        $url .= "?".$key."=".$value;
+                    } else {
+                        $url .= "&".$key."=".$value;
+                    }
+                    $limit = 1;
                 }
             }
 
