@@ -11,7 +11,7 @@
     $dotenv->load();
 
     $whitelist = array('127.0.0.1', '::1');
-    if (in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
+    if (!in_array($_SERVER['REMOTE_ADDR'], $whitelist)) {
         $username = $_ENV['DB_USER'];
         $password = $_ENV['DB_PASSWORD'];
         $database = $_ENV['DB_NAME'];

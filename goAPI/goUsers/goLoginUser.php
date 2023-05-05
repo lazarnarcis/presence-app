@@ -5,7 +5,6 @@
 
     $name = $_REQUEST['name'];
     $password = $_REQUEST['password'];
-
     $db->where("username", $name);
     $result = $db->select("users");
 

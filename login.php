@@ -32,10 +32,10 @@
                         <form class="card" id="login_form">
                             <div class="form-data">
                                 <h1 class="mb-3">Login - Presence v1.0</h1>
-                                <div class="forms-inputs mb-4"> <span>Email or username</span> <input type="text" name="name" class="form-control"></div>
-                                <div class="forms-inputs mb-4"> <span>Password</span> <input type="password" name="password" class="form-control"></div>
+                                <div class="forms-inputs mb-4"> <span>Email or username</span> <input type="text" name="name" id="name" class="form-control"></div>
+                                <div class="forms-inputs mb-4"> <span>Password</span> <input type="password" name="password" id="password" class="form-control"></div>
                                 <div class="mb-3"> <button type="button" class="btn btn-dark w-100 btn_login">Login</button> </div>
-                                <div class="mb-3"> <button type="button" class="btn w-100">Register</button> </div>
+                                <div class="mb-3"> <button type="button" class="btn w-100 btn_register">Register</button> </div>
                             </div>
                         </form>
                     </div>
