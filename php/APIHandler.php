@@ -30,6 +30,17 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function registerUser($name = NULL, $username = NULL, $email, $password = NULL) {
+            $postfields = array(
+                "goAction" => "goRegisterUser",
+                "name" => $name,
+                "email" => $email,
+                "password" => $password,
+                "username" => $username
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getMonthlyPresence() {
             $postfields = array(
                 "goAction" => "goGetMonthlyPresence"

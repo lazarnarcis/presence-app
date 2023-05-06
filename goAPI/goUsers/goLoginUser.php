@@ -5,8 +5,9 @@
 
     $name = $_REQUEST['name'];
     $password = $_REQUEST['password'];
-    $db->where("username", $name);
-    $result = $db->select("users");
+    
+    $query = "SELECT * FROM users WHERE username='".$name."' OR email='".$name."'";
+    $result = $db->query($query);
 
     $err_message = "This account doesn't exists!";
     if (is_array($result) && count($result)){ 

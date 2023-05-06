@@ -163,6 +163,11 @@
             $db = self::connect();
             $data = mysqli_query($db, $query);
 
+            if (!$data) {
+                $error = mysqli_error($conn);
+                die("SQL error: $error");
+            }
+
             $returndata = array();
             while($row = mysqli_fetch_assoc($data)) {
                 $returndata[] = $row;
