@@ -30,6 +30,14 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function getUserInfo($user_id = NULL) {
+            $postfields = array(
+                "goAction" => "goGetUserInfo",
+                "user_id" => $user_id
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function registerUser($name = NULL, $username = NULL, $email, $password = NULL) {
             $postfields = array(
                 "goAction" => "goRegisterUser",

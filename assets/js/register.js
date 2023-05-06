@@ -62,16 +62,9 @@ $(document).ready(function() {
             }
         });
     });
-    $('#name, #email, #password').keypress(function(event) {
+    $('#name, #username, #email, #password').keypress(function(event) {
         if (event.which == 13) {
             $(".btn_register").click();
-
-            $('#name, #email, #password').each(function() {
-                if ($(this).val() == '') {
-                    $(this).focus();
-                    return false;
-                }
-            });
         }
     });
     $(".btn_login").click(function() {

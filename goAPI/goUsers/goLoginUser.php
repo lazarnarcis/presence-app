@@ -9,12 +9,12 @@
     $query = "SELECT * FROM users WHERE username='".$name."' OR email='".$name."'";
     $result = $db->query($query);
 
-    $err_message = "This account doesn't exists!";
+    $err_message = 1;
     if (is_array($result) && count($result)){ 
-        if ($password != $result[0]['password']) {
-            $err_message = "Incorrect password!";
-        } else {
+        if (password_verify($password, $result[0]['password'])) {
             $err_message = $result;
+        } else {
+            $err_message = "Incorrect password!";
         }
     } else {
         $err_message = "This account doesn't exists!";

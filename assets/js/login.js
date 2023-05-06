@@ -21,13 +21,6 @@ $(document).ready(function() {
     $('#name, #password').keypress(function(event) {
         if (event.which == 13) {
             $(".btn_login").click();
-
-            $('#name, #password').each(function() {
-                if ($(this).val() == '') {
-                    $(this).focus();
-                    return false;
-                }
-            });
         }
     });
     $(".btn_register").click(function() {

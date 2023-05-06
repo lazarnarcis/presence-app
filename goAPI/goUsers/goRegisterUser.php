@@ -24,7 +24,7 @@
             $data = array(
                 "username" => $username,
                 "email" => $email,
-                "password" => $password,
+                "password" => password_hash($password, PASSWORD_DEFAULT),
                 "name" => $name
             );
             $data = $db->insert("users", $data);

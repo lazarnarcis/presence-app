@@ -2,6 +2,7 @@
     class UIHandler {
         function getNav() {
             $curr_file = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+            $my_user_id = $_SESSION['user_id'];
             echo '<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div class="container">
                     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -23,6 +24,9 @@
                                 <a class="nav-link js-scroll-trigger '.(($curr_file == "monthly-presence") ? "active-btn" : "").'" href="monthly-presence.php">Monthly Presence</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "profile") ? "active-btn" : "").'" href="profile.php?id='.$my_user_id.'">Profile</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link js-scroll-trigger '.(($curr_file == "news") ? "active-btn" : "").'" href="news.php">News</a>
                             </li>
                             <li class="nav-item">
@@ -34,6 +38,7 @@
             </nav>';
         }
         function getFooter() {
+            $my_user_id = $_SESSION['user_id'];
             echo '<div class="copyrights">
                     <div class="container">
                         <div class="footer-distributed">
@@ -43,6 +48,7 @@
                                     <a href="index.php">Home</a>
                                     <a href="daily-presence.php">Daily Presence</a>
                                     <a href="monthly-presence.php">Monthly Presence</a>
+                                    <a href="profile.php?id='.$my_user_id.'">Profile</a>
                                     <a href="news.php">News</a>
                                     <a href="logout.php">Logout</a>
                                 </p>
