@@ -30,6 +30,17 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL) {
+            $postfields = array(
+                "goAction" => "goEditUser",
+                "user_id" => $user_id,
+                "username" => $username,
+                "name" => $name,
+                "email" => $email
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getUserInfo($user_id = NULL) {
             $postfields = array(
                 "goAction" => "goGetUserInfo",
@@ -77,9 +88,9 @@
                     $url .= "/".$folder."/".$value.".php";
                 } else {
                     if ($limit == 0) {
-                        $url .= "?".$key."=".$value;
+                        $url .= "?".$key."=".urlencode($value);
                     } else {
-                        $url .= "&".$key."=".$value;
+                        $url .= "&".$key."=".urlencode($value);
                     }
                     $limit = 1;
                 }

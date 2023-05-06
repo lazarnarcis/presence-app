@@ -6,6 +6,7 @@
     }
     if (!isset($_GET['id']) || empty($_GET['id'])) {
         header("location: index.php");
+        exit();
     }
 
     require("./php/UIHandler.php");
@@ -13,6 +14,10 @@
     require("./php/APIHandler.php");
     $api = new APIHandler();
     $user_info = $api->getUserInfo($_GET['id']);
+    if ($user_info == 1) {
+        header("location: index.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -27,7 +32,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
-    <script src="./assets/js/daily-presence.js"></script>
+    <script src="./assets/js/profile.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
 </head>
@@ -46,11 +51,26 @@
     <div id="services" class="section lb">
         <div class="container">
             <div class="section-title text-center">
-                <h3>Profile</h3>
+                <h3>Edit Profile</h3>
                 <p><?php echo $user_info['name']; ?>'s profile</p>
             </div><!-- end title -->
             <div>
-              Profile Content HERE
+            <form id="form_edit_user">
+                <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>">
+                <div class="form-group">
+                    <label for="name">Username</label>
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="<?php echo $user_info['username']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" value="<?php echo $user_info['name']; ?>">
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $user_info['email']; ?>">
+                </div>
+                <button type="button" class="btn btn-primary" id="save_info">Save Changes</button>
+            </form>
             </div>
         </div><!-- end container -->
     </div><!-- end section -->
