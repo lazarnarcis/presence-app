@@ -7,8 +7,9 @@
     $username = $_POST['username'];
     $name = $_POST['name'];
     $email = $_POST['email'];
+    $admin = $_POST['admin'];
 
-    $result = $api->editUser($user_id, $username, $name, $email);
+    $result = $api->editUser($user_id, $username, $name, $email, $admin);
 
     $err_message = 1;
 

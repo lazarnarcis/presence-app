@@ -30,13 +30,14 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL) {
+        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL, $admin = NULL) {
             $postfields = array(
                 "goAction" => "goEditUser",
                 "user_id" => $user_id,
                 "username" => $username,
                 "name" => $name,
-                "email" => $email
+                "email" => $email,
+                "admin" => $admin
             );
             return $this->API_Request("goUsers", $postfields);
         }

@@ -14,6 +14,7 @@
     require("./php/APIHandler.php");
     $api = new APIHandler();
     $user_info = $api->getUserInfo($_GET['id']);
+    $session_user_info = $api->getUserInfo($_SESSION['user_id']);
     if ($user_info == 1) {
         header("location: index.php");
         exit();
@@ -59,17 +60,26 @@
                 <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>">
                 <div class="form-group">
                     <label for="name">Username</label>
-                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="<?php echo $user_info['username']; ?>">
+                    <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="<?php echo $user_info['username']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
                 </div>
                 <div class="form-group">
                     <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" value="<?php echo $user_info['name']; ?>">
+                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" value="<?php echo $user_info['name']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
-                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $user_info['email']; ?>">
+                    <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $user_info['email']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
                 </div>
-                <button type="button" class="btn btn-primary" id="save_info">Save Changes</button>
+                <?php if ($session_user_info['admin'] == 1) { ?>
+                <div class="form-group">
+                    <label for="admin">Admin</label>
+                    <select type="admin" class="form-control" name="admin" id="admin">
+                        <option value="0" <?php if ($user_info['admin'] == 0) echo "selected"; ?>>No</option>
+                        <option value="1" <?php if ($user_info['admin'] == 1) echo "selected"; ?>>Yes</option>
+                    </select>
+                </div>
+                <?php } ?>
+                <button type="button" class="btn btn-primary" id="save_info" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>Save Changes</button>
             </form>
             </div>
         </div><!-- end container -->

@@ -7,11 +7,13 @@
     $username = $_REQUEST['username'];
     $name = $_REQUEST['name'];
     $email = $_REQUEST['email'];
+    $admin = $_REQUEST['admin'];
     
     $data = array(
         "username" => $username,
         "name" => $name,
-        "email" => $email
+        "email" => $email,
+        "admin" => $admin
     );
 
     $db->where("id", $user_id);
