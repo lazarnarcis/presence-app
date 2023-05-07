@@ -8,8 +8,13 @@
     $name = $_POST['name'];
     $email = $_POST['email'];
     $admin = $_POST['admin'];
+    $change_password = $_POST['change_password'];
+    $change_password_input = NULL;
+    if ($change_password == "1") {
+        $change_password_input = $_POST['change_password_input'];
+    }
 
-    $result = $api->editUser($user_id, $username, $name, $email, $admin);
+    $result = $api->editUser($user_id, $username, $name, $email, $admin, $change_password_input);
 
     $err_message = 1;
 

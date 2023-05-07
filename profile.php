@@ -79,6 +79,19 @@
                     </select>
                 </div>
                 <?php } ?>
+                <?php if ($session_user_info['admin'] == 1 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                <div class="form-group">
+                    <label for="change_password">Change Password</label>
+                    <select type="change_password" class="form-control" name="change_password" id="change_password">
+                        <option value="0">No</option>
+                        <option value="1">Yes</option>
+                    </select>
+                </div>
+                <div class="form-group div_form_password" style="display: none;">
+                    <label for="change_password_input">Type your new password</label>
+                    <input type="password" class="form-control" name="change_password_input" id="change_password_input" placeholder="Enter password">
+                </div>
+                <?php } ?>
                 <button type="button" class="btn btn-primary" id="save_info" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>Save Changes</button>
             </form>
             </div>

@@ -8,6 +8,7 @@
     $name = $_REQUEST['name'];
     $email = $_REQUEST['email'];
     $admin = $_REQUEST['admin'];
+    $password = $_REQUEST['password'];
     
     $data = array(
         "username" => $username,
@@ -15,6 +16,9 @@
         "email" => $email,
         "admin" => $admin
     );
+    if ($password != NULL) {
+        $data['password'] = password_hash($password, PASSWORD_DEFAULT);
+    }
 
     $db->where("id", $user_id);
     $result = $db->update("users", $data);

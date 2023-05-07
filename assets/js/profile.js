@@ -11,4 +11,9 @@ $(document).ready(function() {
             }
         });
     });
+    $(document).on("change", "#change_password", function() {
+        if ($(this).val() == "1") {
+            $(".div_form_password").show();
+        }
+    });
 });
