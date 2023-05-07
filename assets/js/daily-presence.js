@@ -1,4 +1,4 @@
-$(document).ready(function() {
+jQuery(document).ready(function($) {
     function getDailyPresence() {
         $.ajax({
             url: "./php/getDailyPresence.php",
@@ -20,10 +20,7 @@ $(document).ready(function() {
         getDailyPresence();
     });
     $(function() {
-        setTimeout(()=>{
-            jQuery("#presence_users").select2();
-
-        }, 0)
+        $("#presence_users").select2();
         getDailyPresence();
     });
 });

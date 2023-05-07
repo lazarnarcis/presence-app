@@ -24,17 +24,12 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
+    <script src="./assets/js/datatables.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
-    <!-- Include jQuery library -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Include Select2 library -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
-
-<script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
-
+    <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
+    <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
+    <script src="./assets/js/daily-presence.js"></script>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -91,7 +86,5 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
-    <script src="./assets/js/datatables.js"></script>
-
 </body>
 </html>
