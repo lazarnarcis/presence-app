@@ -7,9 +7,10 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function getDailyPresence() {
+        function getDailyPresence($user_id = NULL) {
             $postfields = array(
-                "goAction" => "goGetDailyPresence"
+                "goAction" => "goGetDailyPresence",
+                "user_id" => $user_id
             );
             return $this->API_Request("goPresence", $postfields);
         }

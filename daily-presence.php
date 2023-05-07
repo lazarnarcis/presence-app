@@ -6,7 +6,10 @@
     }
 
     require("./php/UIHandler.php");
+    require("./php/APIHandler.php");
     $ui = new UIHandler();
+    $api = new APIHandler();
+    $users = $api->getUsers();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,9 +24,17 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
-    <script src="./assets/js/daily-presence.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
+    <!-- Include jQuery library -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Include Select2 library -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/3.5.4/select2.min.js"></script>
+
+<script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
+
 </head>
 <body id="page-top" class="politics_version">
 
@@ -44,6 +55,18 @@
                 <p>Here you can see your daily presence in the job!</p>
             </div><!-- end title -->
             <div>
+            <select name="presence_users" id="presence_users" style="width:100%;">
+                <option value="" selected>--- ALL ---</option>
+                <?php 
+                    $option_users = NULL;
+                    for ($i = 0; $i < count($users['id']); $i++) {
+                        $username = $users['username'][$i];
+                        $user_id = $users['id'][$i];
+                        $option_users .= "<option value=$user_id>$username</option>";
+                    } 
+                    echo $option_users;
+                ?>
+            </select>
               <table id="daily-presence" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
