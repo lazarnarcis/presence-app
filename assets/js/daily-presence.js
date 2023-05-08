@@ -4,23 +4,28 @@ jQuery(document).ready(function($) {
             url: "./php/getDailyPresence.php",
             type: "POST",
             data: {
-                user_id: $("#presence_users").val()
+                username: $("#search_user").val()
             },
             success: function (data) {
                 data = JSON.parse(data);
                 $('#daily-presence').DataTable().destroy();
                 $('#daily-presence').DataTable({
                     pagingType: 'full_numbers',
+                    processing: true,
                     data: data
                 });
             }
         });
     }
-    $(document).on("change", "#presence_users", function() {
+    $(document).on("click", "#search_button", function() {
         getDailyPresence();
     });
     $(function() {
-        $("#presence_users").select2();
         getDailyPresence();
+    });
+    $("#search_user").keypress(function(event) {
+        if (event.keyCode === 13) {
+            $("#search_button").click();
+        }
     });
 });

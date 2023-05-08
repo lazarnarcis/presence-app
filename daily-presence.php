@@ -29,7 +29,7 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
     <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
-    <script src="./assets/js/daily-presence.js"></script>
+    <script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -50,18 +50,10 @@
                 <p>Here you can see your daily presence in the job!</p>
             </div><!-- end title -->
             <div>
-            <select name="presence_users" id="presence_users" style="width:100%;">
-                <option value="" selected>--- ALL ---</option>
-                <?php 
-                    $option_users = NULL;
-                    for ($i = 0; $i < count($users['id']); $i++) {
-                        $username = $users['username'][$i];
-                        $user_id = $users['id'][$i];
-                        $option_users .= "<option value=$user_id>$username</option>";
-                    } 
-                    echo $option_users;
-                ?>
-            </select>
+            <div class="d-flex mb-3">
+                <input type="text" class="form-control flex-grow-1" id="search_user" placeholder="Name here">
+                <button type="search_button" class="btn btn-default btn-info ms-2" id="search_button">Search</button>
+            </div>
               <table id="daily-presence" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>

@@ -4,8 +4,8 @@
     $api = new APIHandler();
     $functions = new Functions();
 
-    $user_id = $_POST['user_id'];
-    $daily_presence = $api->getDailyPresence($user_id);
+    $username = $_POST['username'];
+    $daily_presence = $api->getDailyPresence($username);
 
     $data = [];
     for ($i = 0; $i < count($daily_presence['id']); $i++) {
