@@ -57,6 +57,7 @@
               <table id="daily-presence" class="table table-striped" style="width:100%">
                 <thead>
                     <tr>
+                        <th>User ID</th>
                         <th>Name</th>
                         <th>Date</th>
                         <th>Presence</th>
