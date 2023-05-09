@@ -4,12 +4,14 @@
 
     $username = $_REQUEST['username'];
 
-    $current_date = date("Y-m-d");
+    $start_date = $_REQUEST['start_date'];
+    $end_date = $_REQUEST['end_date'];
+
     $where_string = NULL;
     if ($username != "") {
         $where_string .= " AND users.name LIKE '%$username%' ";
     }
-    $query = "SELECT presence.user_id, presence.date, users.name, presence.seconds FROM presence LEFT JOIN users ON users.id=presence.user_id WHERE presence.date = '$current_date' $where_string GROUP BY users.id";
+    $query = "SELECT presence.user_id, presence.date, users.name, presence.seconds FROM presence LEFT JOIN users ON users.id=presence.user_id WHERE presence.date BETWEEN '$start_date' AND '$end_date' $where_string GROUP BY users.id, presence.date ORDER BY presence.date";
     $presence = $db->query($query);
 
     $dataID = [];

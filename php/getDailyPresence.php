@@ -5,7 +5,9 @@
     $functions = new Functions();
 
     $username = $_POST['username'];
-    $daily_presence = $api->getDailyPresence($username);
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $daily_presence = $api->getDailyPresence($username, $start_date, $end_date);
 
     $data = [];
     for ($i = 0; $i < count($daily_presence['id']); $i++) {

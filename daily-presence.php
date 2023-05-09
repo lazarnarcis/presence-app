@@ -49,21 +49,48 @@
                 <h3>Daily Presence</h3>
                 <p>Here you can see your daily presence in the job!</p>
             </div><!-- end title -->
-            <div>
-            <div class="d-flex mb-3">
-                <input type="text" class="form-control flex-grow-1" id="search_user" placeholder="Name here">
-                <button type="search_button" class="btn btn-default btn-info ms-2" id="search_button">Search</button>
-            </div>
-              <table id="daily-presence" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>User ID</th>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Presence</th>
-                    </tr>
-                </thead>
-              </table>
+            <div class="row">
+                <div class="col-lg-9" id="myTable">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="contacts_div">
+                                <div class="d-flex mb-3">
+                                    <input type="text" class="form-control flex-grow-1" id="search_user" placeholder="Name here">
+                                    <button type="search_button" class="btn btn-default btn-info ms-2" id="search_button">Search</button>
+                                </div>
+                                <div style="overflow-x: auto;">
+                                    <table id="daily-presence" class="table table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>User ID</th>
+                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Presence</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!-- /.body -->
+                    </div><!-- /.panel -->
+                </div><!-- /.col-lg-9 -->
+                <div class="col-lg-3" id="myFilters">
+                    <h3 class="m0 pb-lg">Filters</h3>
+                    <form id="search_form">
+                        <div class="all_callbacks_filters">
+                            <div class="list_filter_div">
+                                <div class="form-group">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" class="form-control" id="end_date" name="end_date">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div><!-- end container -->
     </div><!-- end section -->
