@@ -9,7 +9,6 @@
     require("./php/APIHandler.php");
     $ui = new UIHandler();
     $api = new APIHandler();
-    $users = $api->getUsers();
 ?>
 <!DOCTYPE html>
 <html lang="en">

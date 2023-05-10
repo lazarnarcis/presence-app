@@ -65,9 +65,12 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function getMonthlyPresence() {
+        function getMonthlyPresence($username = NULL, $start_date = NULL, $end_date = NULL) {
             $postfields = array(
-                "goAction" => "goGetMonthlyPresence"
+                "goAction" => "goGetMonthlyPresence",
+                "username" => $username,
+                "start_date" => $start_date,
+                "end_date" => $end_date,
             );
             return $this->API_Request("goPresence", $postfields);
         }

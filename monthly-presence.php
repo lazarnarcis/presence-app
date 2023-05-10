@@ -13,7 +13,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Montlhy Presence - Presence v1.0</title>
+    <title>Monthly Presence - Presence v1.0</title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -21,9 +21,12 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
-    <script src="./assets/js/monthly-presence.js"></script>
+    <script src="./assets/js/datatables.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
+    <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
+    <script src="./assets/js/monthly-presence.js?v=<?php echo time(); ?>"></script>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -43,16 +46,48 @@
                 <h3>Monthly Presence</h3>
                 <p>Here you can see your monthly presence in the job!</p>
             </div><!-- end title -->
-            <div>
-              <table id="monthly-presence" class="table table-striped" style="width:100%">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Date</th>
-                        <th>Presence</th>
-                    </tr>
-                </thead>
-              </table>
+            <div class="row">
+                <div class="col-lg-9" id="myTable">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="contacts_div">
+                                <div class="d-flex mb-3">
+                                    <input type="text" class="form-control flex-grow-1" id="search_user" placeholder="Name here">
+                                    <button type="search_button" class="btn btn-default btn-info ms-2" id="search_button">Search</button>
+                                </div>
+                                <div style="overflow-x: auto;">
+                                    <table id="monthly-presence" class="table table-striped" style="width:100%">
+                                        <thead>
+                                            <tr>
+                                                <th>User ID</th>
+                                                <th>Name</th>
+                                                <th>Date</th>
+                                                <th>Presence</th>
+                                            </tr>
+                                        </thead>
+                                    </table>
+                                </div>
+                            </div>
+                        </div><!-- /.body -->
+                    </div><!-- /.panel -->
+                </div><!-- /.col-lg-9 -->
+                <div class="col-lg-3" id="myFilters">
+                    <h3 class="m0 pb-lg">Filters</h3>
+                    <form id="search_form">
+                        <div class="all_callbacks_filters">
+                            <div class="list_filter_div">
+                                <div class="form-group">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" class="form-control" id="end_date" name="end_date">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div><!-- end container -->
     </div><!-- end section -->
@@ -68,7 +103,5 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
-    <script src="./assets/js/datatables.js"></script>
-
 </body>
 </html>

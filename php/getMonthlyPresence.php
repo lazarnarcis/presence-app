@@ -4,12 +4,15 @@
     $api = new APIHandler();
     $functions = new Functions();
 
-    $monthly_presence = $api->getMonthlyPresence();
+    $username = $_POST['username'];
+    $start_date = $_POST['start_date'];
+    $end_date = $_POST['end_date'];
+    $monthly_presence = $api->getMonthlyPresence($username, $start_date, $end_date);
 
     $data = [];
     for ($i = 0; $i < count($monthly_presence['id']); $i++) {
         $presence = [];
-
+        array_push($presence, $monthly_presence['id'][$i]);
         array_push($presence, "<a href='profile.php?id=".$monthly_presence['id'][$i]."'>".$monthly_presence['name'][$i]."</a>");
         array_push($presence, $functions->transformDate($monthly_presence['date'][$i]));
         array_push($presence, $functions->transformSeconds($monthly_presence['seconds'][$i]));
