@@ -36,6 +36,8 @@
     <script src="./assets/js/profile.js?v=<?php echo time(); ?>"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<script src="js/sweetalert.js"></script>
 </head>
 <body id="page-top" class="politics_version">
 
