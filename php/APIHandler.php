@@ -24,6 +24,14 @@
             return $this->API_Request("goNews", $postfields);
         }
 
+        function updateNews($news = NULL) {
+            $postfields = array(
+                "goAction" => "goUpdateNews",
+                "news" => $news
+            );
+            return $this->API_Request("goNews", $postfields);
+        }
+
         function loginUser($name = NULL, $password = NULL) {
             $postfields = array(
                 "goAction" => "goLoginUser",

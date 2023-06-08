@@ -72,7 +72,7 @@
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $user_info['email']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
                 </div>
-                <?php if ($session_user_info['admin'] == 1) { ?>
+                <?php if ($session_user_info['admin'] == 1 && $_GET['id'] != $_SESSION['user_id']) { ?>
                 <div class="form-group">
                     <label for="admin">Admin</label>
                     <select type="admin" class="form-control" name="admin" id="admin">

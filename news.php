@@ -7,6 +7,9 @@
 
     require("./php/UIHandler.php");
     $ui = new UIHandler();
+    require("./php/APIHandler.php");
+    $api = new APIHandler();
+    $session_user_info = $api->getUserInfo($_SESSION['user_id']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,6 +27,8 @@
     <script src="./assets/js/news.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<script src="js/sweetalert.js"></script>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -42,6 +47,12 @@
             <div class="section-title text-center">
                 <h3>News</h3>
                 <p id="text-news"></p>
+                <?php if ($session_user_info['admin'] == 1) { ?>
+                    <div class="form-group">
+                        <textarea class="form-control" id="edit-news-input" id="exampleFormControlTextarea1" rows="3"><?php echo "test"; ?></textarea>
+                        <input type="button" class="btn btn-success" id="save-news-data" value="Save">
+                    </div>
+                <?php } ?>
         </div><!-- end container -->
     </div><!-- end section -->
 
