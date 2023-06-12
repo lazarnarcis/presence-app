@@ -1,4 +1,4 @@
-# Configuration on local server
+# Configuration on local serversssss
 
 ## Create .env file in main project
 
