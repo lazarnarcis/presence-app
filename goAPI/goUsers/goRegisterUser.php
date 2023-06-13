@@ -25,7 +25,8 @@
                 "username" => $username,
                 "email" => $email,
                 "password" => password_hash($password, PASSWORD_DEFAULT),
-                "name" => $name
+                "name" => $name,
+                "admin" => 0
             );
             $data = $db->insert("users", $data);
             if ($data) {
