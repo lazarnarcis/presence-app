@@ -13,6 +13,13 @@
     if (is_array($result) && count($result)){ 
         if (password_verify($password, $result[0]['password'])) {
             $err_message = $result;
+            $data = array(
+                "user" => $name,
+                "type" => "LOGIN",
+                "date" => date("Y-m-d H:i:s"),
+                "address_ip" => $_SERVER['REMOTE_ADDR']
+            );
+            $db->insert("activity", $data);
         } else {
             $err_message = "Incorrect password!";
         }

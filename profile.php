@@ -82,6 +82,9 @@
                 </div>
                 <?php } ?>
                 <?php if ($session_user_info['admin'] == 1 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                    <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
+                <?php } ?>
+                <?php if ($session_user_info['admin'] == 1 || $_GET['id'] == $_SESSION['user_id']) { ?>
                 <div class="form-group">
                     <label for="change_password">Change Password</label>
                     <select type="change_password" class="form-control" name="change_password" id="change_password">
@@ -101,6 +104,23 @@
     </div><!-- end section -->
 
     <?php echo $ui->getFooter(); ?>
+    <!-- Modal -->
+
+    <div class="modal fade bd-example-modal-lg" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content" style="padding: 30px;">
+        <table id="user-activity" class="table table-striped" style="width:100%">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Type</th>
+                    <th>IP</th>
+                </tr>
+            </thead>
+        </table>
+        </div>
+    </div>
+    </div>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 

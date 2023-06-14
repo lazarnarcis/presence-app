@@ -17,6 +17,14 @@
             return $this->API_Request("goPresence", $postfields);
         }
 
+        function getUserActivity($user = NULL) {
+            $postfields = array(
+                "goAction" => "goGetUserActivity",
+                "user" => $user
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getNews() {
             $postfields = array(
                 "goAction" => "goGetNews"

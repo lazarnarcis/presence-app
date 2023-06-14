@@ -1,4 +1,24 @@
 $(document).ready(function() {
+    $(document).on("click", ".open_user_modal", function() {
+        $("#activityModal").modal("show");
+        let user = $(this).data("user-name");
+        $.ajax({
+            url: "./php/getUserActivity.php",
+            type: "POST",
+            data: {
+                user: user
+            },
+            success: function (data) {
+                data = JSON.parse(data);
+                $('#user-activity').DataTable().destroy();
+                $('#user-activity').DataTable({
+                    pagingType: 'full_numbers',
+                    processing: true,
+                    data: data
+                });
+            }
+        });
+    });
     $("#save_info").click(function() {
         $.ajax({
             url: "./php/editUser.php",
