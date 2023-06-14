@@ -9,20 +9,23 @@
     $dataType = [];
     $dataDate = [];
     $dataIP = [];
+    $dataID = [];
+    $data = [];
+    if (count($activity)) {
+        foreach ($activity as $my_activity) {
+            $dataType[] = $my_activity['type'];
+            $dataDate[] = $my_activity['date'];
+            $dataIP[] = $my_activity['address_ip'];
+            $dataID[] = $my_activity['id'];
+        }
     
-    foreach ($activity as $my_activity) {
-        $dataType[] = $my_activity['type'];
-        $dataDate[] = $my_activity['date'];
-        $dataIP[] = $my_activity['address_ip'];
-        $dataID[] = $my_activity['id'];
+        $data = array(
+            "type" => $dataType,
+            "ip" => $dataIP,
+            "date" => $dataDate,
+            "id" => $dataID,
+        );
     }
-
-    $data = array(
-        "type" => $dataType,
-        "ip" => $dataIP,
-        "date" => $dataDate,
-        "id" => $dataID,
-    );
 
     echo json_encode($data);
 ?>

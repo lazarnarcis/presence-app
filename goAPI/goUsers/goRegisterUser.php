@@ -22,6 +22,14 @@
             $err_message = "There is already an account with this email!";
         } else {
             $data = array(
+                "user" => $username,
+                "type" => "REGISTER",
+                "date" => date("Y-m-d H:i:s"),
+                "address_ip" => $_SERVER['REMOTE_ADDR']
+            );
+            $db->insert("activity", $data);
+
+            $data = array(
                 "username" => $username,
                 "email" => $email,
                 "password" => password_hash($password, PASSWORD_DEFAULT),
