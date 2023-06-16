@@ -7,7 +7,10 @@
     $username = $_POST['username'];
     $name = $_POST['name'];
     $email = $_POST['email'];
-    $admin = $_POST['admin'];
+    $admin = NULL;
+    if (isset($_POST['admin'])) {
+        $admin = $_POST['admin'];
+    }
     $change_password = $_POST['change_password'];
     $change_password_input = NULL;
     if ($change_password == "1") {

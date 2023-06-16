@@ -9,6 +9,12 @@
     $email = $_REQUEST['email'];
     $admin = $_REQUEST['admin'];
     $password = $_REQUEST['password'];
+
+    $query = "SELECT admin FROM users WHERE id='$user_id'";
+    $result = $db->query($query);
+    if (!$admin) {
+        $admin = $result[0]['admin'];
+    }
     
     $data = array(
         "username" => $username,
