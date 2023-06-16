@@ -1,8 +1,19 @@
 <?php
     class UIHandler {
         function getNav() {
+            $admin_links = NULL;
+            $user_info = $GLOBALS['api']->getUserInfo($_SESSION['user_id']);
+            $admin = $user_info['admin'];
             $curr_file = basename($_SERVER["SCRIPT_FILENAME"], '.php');
             $my_user_id = $_SESSION['user_id'];
+
+            if ($admin == 1) {
+                $admin_links .= '
+                    <li class="nav-item">
+                        <a class="nav-link js-scroll-trigger '.(($curr_file == "admin") ? "active-btn" : "").'" href="admin.php">Admin</a>
+                    </li>
+                ';
+            }
             echo '<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div class="container">
                     <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -26,6 +37,7 @@
                             <li class="nav-item">
                                 <a class="nav-link js-scroll-trigger '.(($curr_file == "profile") ? "active-btn" : "").'" href="profile.php?id='.$my_user_id.'">Profile</a>
                             </li>
+                            '.$admin_links.'
                             <li class="nav-item">
                                 <a class="nav-link js-scroll-trigger '.(($curr_file == "news") ? "active-btn" : "").'" href="news.php">News</a>
                             </li>

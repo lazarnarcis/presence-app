@@ -7,6 +7,8 @@
 
     require("./php/UIHandler.php");
     $ui = new UIHandler();
+    require("./php/APIHandler.php");
+    $api = new APIHandler();
 ?>
 <!DOCTYPE html>
 <html lang="en">

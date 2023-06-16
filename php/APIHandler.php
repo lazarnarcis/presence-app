@@ -17,6 +17,21 @@
             return $this->API_Request("goPresence", $postfields);
         }
 
+        function getUnauthorizedAccounts() {
+            $postfields = array(
+                "goAction" => "goGetUnauthorizedAccounts"
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
+        function authorizeUser($user_id = NULL) {
+            $postfields = array(
+                "goAction" => "goAuthorizeUser",
+                "user_id" => $user_id
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getUserActivity($user = NULL) {
             $postfields = array(
                 "goAction" => "goGetUserActivity",

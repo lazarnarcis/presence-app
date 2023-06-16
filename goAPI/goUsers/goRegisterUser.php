@@ -34,7 +34,8 @@
                 "email" => $email,
                 "password" => password_hash($password, PASSWORD_DEFAULT),
                 "name" => $name,
-                "admin" => 0
+                "admin" => 0,
+                "account_confirm" => 0
             );
             $data = $db->insert("users", $data);
             if ($data) {
