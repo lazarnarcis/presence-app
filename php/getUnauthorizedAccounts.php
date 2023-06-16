@@ -1,20 +1,29 @@
 <?php
+    session_start();
     require("APIHandler.php");
     require("functions.php");
     $api = new APIHandler();
+    $session_user_info = $api->getUserInfo($_SESSION['user_id']);
     $functions = new Functions();
 
     $unauthorized_accounts = $api->getUnauthorizedAccounts();
-    
     $data = [];
     if (count($unauthorized_accounts)) {
         for ($i = 0; $i < count($unauthorized_accounts['id']); $i++) {
             $user_id = $unauthorized_accounts['id'][$i];
             $button_authorize = NULL;
             if ($unauthorized_accounts['account_confirm'][$i] == 1) {
-                $button_authorize = "<button type='button' class='btn btn-success' disabled>Authorized</button>";
+                if ($session_user_info['admin'] == 2) {
+                    $button_authorize = "<button type='button' class='btn btn-danger unauthorize_user' data-user-id='$user_id'>Unauthorize</button>";
+                } else {
+                    $button_authorize = "<button type='button' class='btn btn-danger disabled'>Authorized</button>";
+                }
             } else {
-                $button_authorize = "<button class='btn btn-danger authorize_user' data-user-id='$user_id'>Authorize</button>";
+                if ($session_user_info['admin'] == 2) {
+                    $button_authorize = "<button class='btn btn-success authorize_user' data-user-id='$user_id'>Authorize</button>";
+                } else {
+                    $button_authorize = "<button class='btn btn-success disabled'>Unauthorized</button>";
+                }
             }
             $name = [];
             $click_user = "<a href='profile.php?id=$user_id'>".$unauthorized_accounts['username'][$i]."</a>";

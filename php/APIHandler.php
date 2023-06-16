@@ -32,6 +32,14 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function unauthorizeUser($user_id = NULL) {
+            $postfields = array(
+                "goAction" => "goUnauthorizeUser",
+                "user_id" => $user_id
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getUserActivity($user = NULL) {
             $postfields = array(
                 "goAction" => "goGetUserActivity",
