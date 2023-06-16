@@ -17,8 +17,9 @@
                 $button_authorize = "<button class='btn btn-danger authorize_user' data-user-id='$user_id'>Authorize</button>";
             }
             $name = [];
+            $click_user = "<a href='profile.php?id=$user_id'>".$unauthorized_accounts['username'][$i]."</a>";
             array_push($name, $user_id);
-            array_push($name, $unauthorized_accounts['username'][$i]);
+            array_push($name, $click_user);
             array_push($name, $unauthorized_accounts['name'][$i]);
             array_push($name, $unauthorized_accounts['date'][$i]);
             array_push($name, $button_authorize);
