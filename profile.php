@@ -15,6 +15,10 @@
     $api = new APIHandler();
     $user_info = $api->getUserInfo($_GET['id']);
     $session_user_info = $api->getUserInfo($_SESSION['user_id']);
+    if ($session_user_info['account_confirm'] != 1) {
+        header("location: account_confirm.php");
+        exit();
+    }
     if ($user_info == 1) {
         header("location: index.php");
         exit();

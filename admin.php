@@ -10,6 +10,10 @@
     require("./php/APIHandler.php");
     $api = new APIHandler();
     $session_user_info = $api->getUserInfo($_SESSION['user_id']);
+    if ($session_user_info['account_confirm'] != 1) {
+        header("location: account_confirm.php");
+        exit();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
