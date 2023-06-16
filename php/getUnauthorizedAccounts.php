@@ -5,7 +5,7 @@
     $functions = new Functions();
 
     $unauthorized_accounts = $api->getUnauthorizedAccounts();
-
+    
     $data = [];
     if (count($unauthorized_accounts)) {
         for ($i = 0; $i < count($unauthorized_accounts['id']); $i++) {

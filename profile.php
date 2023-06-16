@@ -64,6 +64,9 @@
             <div>
             <form id="form_edit_user">
                 <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>">
+                <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                    <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
+                <?php } ?>
                 <div class="form-group">
                     <label for="name">Username</label>
                     <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="<?php echo $user_info['username']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
@@ -76,19 +79,17 @@
                     <label for="email">Email address</label>
                     <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $user_info['email']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
                 </div>
-                <?php if ($session_user_info['admin'] == 1 && $_GET['id'] != $_SESSION['user_id']) { ?>
+                <?php if ($session_user_info['admin'] == 2 && $_GET['id'] != $_SESSION['user_id']) { ?>
                 <div class="form-group">
                     <label for="admin">Admin</label>
                     <select type="admin" class="form-control" name="admin" id="admin">
-                        <option value="0" <?php if ($user_info['admin'] == 0) echo "selected"; ?>>No</option>
-                        <option value="1" <?php if ($user_info['admin'] == 1) echo "selected"; ?>>Yes</option>
+                        <option value="0" <?php if ($user_info['admin'] == 0) echo "selected"; ?>>User</option>
+                        <option value="1" <?php if ($user_info['admin'] == 1) echo "selected"; ?>>Admin</option>
+                        <option value="2" <?php if ($user_info['admin'] == 2) echo "selected"; ?>>Full Access</option>
                     </select>
                 </div>
                 <?php } ?>
-                <?php if ($session_user_info['admin'] == 1 || $_GET['id'] == $_SESSION['user_id']) { ?>
-                    <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
-                <?php } ?>
-                <?php if ($session_user_info['admin'] == 1 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
                 <div class="form-group">
                     <label for="change_password">Change Password</label>
                     <select type="change_password" class="form-control" name="change_password" id="change_password">

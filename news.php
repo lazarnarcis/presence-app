@@ -51,7 +51,7 @@
             <div class="section-title text-center">
                 <h3>News</h3>
                 <p id="text-news"></p>
-                <?php if ($session_user_info['admin'] == 1) { ?>
+                <?php if ($session_user_info['admin'] > 0) { ?>
                     <div class="form-group">
                         <textarea class="form-control" id="edit-news-input" id="exampleFormControlTextarea1" rows="3"><?php echo "test"; ?></textarea>
                         <input type="button" class="btn btn-success" id="save-news-data" value="Save">

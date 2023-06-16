@@ -7,7 +7,7 @@
             $curr_file = basename($_SERVER["SCRIPT_FILENAME"], '.php');
             $my_user_id = $_SESSION['user_id'];
 
-            if ($admin == 1) {
+            if ($admin > 0) {
                 $admin_links .= '
                     <li class="nav-item">
                         <a class="nav-link js-scroll-trigger '.(($curr_file == "admin") ? "active-btn" : "").'" href="admin.php">Admin</a>
