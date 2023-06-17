@@ -12,7 +12,7 @@
 
     $query = "SELECT admin FROM users WHERE id='$user_id'";
     $result = $db->query($query);
-    if (!$admin) {
+    if (!$admin && $admin != 0) {
         $admin = $result[0]['admin'];
     }
     
