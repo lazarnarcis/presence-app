@@ -33,7 +33,7 @@
         "user" => $username,
         "type" => "AUTHORIZE",
         "date" => date("Y-m-d H:i:s"),
-        "address_ip" => "Invalid",
+        "address_ip" => "Unknown",
         "text" => "$session_username authorized you!"
     );
     $db->insert("activity", $data);

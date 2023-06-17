@@ -33,7 +33,7 @@
         "user" => $username,
         "type" => "UNAUTHORIZE",
         "date" => date("Y-m-d H:i:s"),
-        "address_ip" => "Invalid",
+        "address_ip" => "Unknown",
         "text" => "$session_username unauthorized you!"
     );
     $db->insert("activity", $data);
