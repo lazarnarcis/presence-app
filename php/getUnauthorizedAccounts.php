@@ -13,7 +13,7 @@
             $user_id = $unauthorized_accounts['id'][$i];
             $button_authorize = NULL;
             if ($unauthorized_accounts['account_confirm'][$i] == 1) {
-                if ($session_user_info['admin'] == 2) {
+                if ($session_user_info['admin'] == 2 && $_SESSION['user_id'] != $user_id) {
                     $button_authorize = "<button type='button' class='btn btn-danger unauthorize_user' data-user-id='$user_id'>Unauthorize</button>";
                 } else {
                     $button_authorize = "<button type='button' class='btn btn-danger disabled'>Authorized</button>";

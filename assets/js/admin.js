@@ -4,7 +4,6 @@ $(document).ready(function() {
         type: "POST",
         success: function (data) {
             data = JSON.parse(data);
-            console.log(data);
             $('#unauthorized-accounts').DataTable().destroy();
             $('#unauthorized-accounts').DataTable({
                 data: data

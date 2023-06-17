@@ -10,7 +10,8 @@
         "user" => $session_user_info['username'],
         "type" => "LOGOUT",
         "date" => date("Y-m-d H:i:s"),
-        "address_ip" => $_SERVER['REMOTE_ADDR']
+        "address_ip" => $_SERVER['REMOTE_ADDR'],
+        "text" => "Just logged out!"
     );
     $db->insert("activity", $data);
     $_SESSION = array();

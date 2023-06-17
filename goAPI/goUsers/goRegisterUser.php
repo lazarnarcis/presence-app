@@ -25,7 +25,8 @@
                 "user" => $username,
                 "type" => "REGISTER",
                 "date" => date("Y-m-d H:i:s"),
-                "address_ip" => $_SERVER['REMOTE_ADDR']
+                "address_ip" => $_SERVER['REMOTE_ADDR'],
+                "text" => "Just register!"
             );
             $db->insert("activity", $data);
 
@@ -35,7 +36,8 @@
                 "password" => password_hash($password, PASSWORD_DEFAULT),
                 "name" => $name,
                 "admin" => 0,
-                "account_confirm" => 0
+                "account_confirm" => 0,
+                "date" => date("Y-m-d H:i:s")
             );
             $data = $db->insert("users", $data);
             if ($data) {

@@ -120,6 +120,7 @@
                     <th>Date</th>
                     <th>Type</th>
                     <th>IP</th>
+                    <th>Text</th>
                 </tr>
             </thead>
         </table>

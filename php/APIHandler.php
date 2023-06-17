@@ -24,18 +24,20 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function authorizeUser($user_id = NULL) {
+        function authorizeUser($user_id = NULL, $session_user_id = NULL) {
             $postfields = array(
                 "goAction" => "goAuthorizeUser",
-                "user_id" => $user_id
+                "user_id" => $user_id,
+                "session_user_id" => $session_user_id
             );
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function unauthorizeUser($user_id = NULL) {
+        function unauthorizeUser($user_id = NULL, $session_user_id = NULL) {
             $postfields = array(
                 "goAction" => "goUnauthorizeUser",
-                "user_id" => $user_id
+                "user_id" => $user_id,
+                "session_user_id" => $session_user_id
             );
             return $this->API_Request("goUsers", $postfields);
         }

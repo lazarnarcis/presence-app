@@ -17,7 +17,8 @@
                 "user" => $name,
                 "type" => "LOGIN",
                 "date" => date("Y-m-d H:i:s"),
-                "address_ip" => $_SERVER['REMOTE_ADDR']
+                "address_ip" => $_SERVER['REMOTE_ADDR'],
+                "text" => "Just logged in!"
             );
             $db->insert("activity", $data);
         } else {

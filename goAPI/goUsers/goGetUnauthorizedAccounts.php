@@ -6,17 +6,11 @@
                 users.id,
                 users.name,
                 users.username,
-                CONCAT(activity.date, ' (', activity.type, ')') AS date,
+                CONCAT(users.date, ' (REGISTER)') AS date,
                 users.account_confirm
             FROM
                 users
-            LEFT JOIN activity ON users.username = activity.user
-            WHERE
-                (activity.type IS NULL OR activity.type IN ('REGISTER', 'LOGIN'))
-            GROUP BY
-                users.username
-            ORDER BY
-                users.account_confirm ASC, activity.date DESC;";
+            ORDER BY users.date DESC;";
     $users = $db->query($query);
 
     $data = [];
