@@ -101,6 +101,33 @@
             return $returndata;
         }
 
+        function getOne($table, $columns = [], $limit = 1) {
+            $db = self::connect();
+            $limit_text = NULL;
+            if ($limit != NULL) {
+                $limit_text.=" LIMIT $limit";
+            }
+            $columns_text = "*";
+            if (count($columns)) {
+                $columns_text = "";
+                foreach ($columns as $key => $column) {
+                    if (count($columns) - 1 == $key) {
+                        $columns_text .= " $column ";
+                    } else {
+                        $columns_text .= " $column, ";
+                    }
+                }
+            }
+            $query = "SELECT $columns_text FROM $table".$this->string_where.$limit_text;
+            $data = mysqli_query($db, $query);
+            $returndata = array();
+            while ($row = mysqli_fetch_assoc($data)) {
+                $returndata[] = $row;
+            }
+            self::disconnect($db);
+            return $returndata[0];
+        }
+
         function update($table, $data) {
             $db = self::connect();
 
