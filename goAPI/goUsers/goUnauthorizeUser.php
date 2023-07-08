@@ -13,12 +13,12 @@
     $session_user_id = $_REQUEST['session_user_id'];
 
     $db->where('id', $user_id);
-    $result = $db->select("users", ['username']);
-    $username = $result[0]['username'];
+    $result = $db->getOne("users", ['username']);
+    $username = $result['username'];
 
     $db->where('id', $session_user_id);
-    $result = $db->select("users", ['username']);
-    $session_username = $result[0]['username'];
+    $result = $db->getOne("users", ['username']);
+    $session_username = $result['username'];
 
     $data = array(
         "user" => $session_username,

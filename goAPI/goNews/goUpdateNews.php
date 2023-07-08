@@ -10,8 +10,8 @@
     $db->update("options", $data);
 
     $db->where("name", "news");
-    $qnews = $db->select("options");
-    $news = $qnews[0]['text'];
+    $qnews = $db->getOne("options");
+    $news = $qnews['text'];
 
     $data = array(
         "news" => $news
