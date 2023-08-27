@@ -19,7 +19,5 @@
 
     $result = $api->editUser($user_id, $username, $name, $email, $admin, $change_password_input);
 
-    $err_message = 1;
-
-    echo json_encode($err_message);
+    echo json_encode($result);
 ?>

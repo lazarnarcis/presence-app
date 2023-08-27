@@ -25,6 +25,7 @@ $(document).ready(function() {
             type: "POST",
             data: $("#form_edit_user").serialize(),
             success: function (data) {
+                console.log(data);
                 if (data == 1) {
                     Swal.fire({
                         title: "Are you sure?",
@@ -52,6 +53,8 @@ $(document).ready(function() {
                           Swal.fire("Cancelled", "You gave up on the changes :)", "error");
                         }
                     });
+                } else {
+                    Swal.fire("Error", data, "error");
                 }
             }
         });
