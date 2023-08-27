@@ -1,14 +1,20 @@
 $(document).ready(function() {
-    $.ajax({
-        url: "./php/getNews.php",
-        success: function (data) {
-            var result = data.slice(1,-1);
-            updatefNews(result);
-        }
+    function callUpdateNews() {
+        $.ajax({
+            url: "./php/getNews.php",
+            success: function (data) {
+                var result = data.slice(1,-1);
+                updatefNews(result);
+            }
+        });
+    }
+    $(function() {
+        callUpdateNews();
     });
     function updatefNews (text) {
+        text = text.replace(/\\n/g, "<br>");
         $("#text-news").html(text);
-        $("#edit-news-input").html(text);
+        $("#edit-news-input").val(text);
     }
     $(document).on("click", "#save-news-data", function() {
         let val = $("#edit-news-input").val();
@@ -23,8 +29,16 @@ $(document).ready(function() {
                 if (data.news) {
                     Swal.fire("News Updated!", "The changes for the news section have been saved!", "success");
                     updatefNews(data.news);
+                    $("#editNewsModal").modal("hide");
                 }
             }
         });
+    });
+    $(document).on("click", ".edit_news", function() {
+        callUpdateNews();
+        $("#editNewsModal").modal("show");
+    });
+    $(document).on("click", ".cancel_edit_news_modal", function() {
+        $("#editNewsModal").modal("hide");
     });
 });

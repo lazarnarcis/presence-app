@@ -52,13 +52,24 @@
                 <h3>News</h3>
                 <p id="text-news"></p>
                 <?php if ($session_user_info['admin'] > 0) { ?>
-                    <div class="form-group">
-                        <textarea class="form-control" id="edit-news-input" id="exampleFormControlTextarea1" rows="3"><?php echo "test"; ?></textarea>
-                        <input type="button" class="btn btn-success" id="save-news-data" value="Save">
-                    </div>
+                    <button type="button" class="btn btn-warning edit_news">Edit News</button>
+                    
                 <?php } ?>
         </div><!-- end container -->
     </div><!-- end section -->
+    
+    <div class="modal fade bd-example-modal-lg" id="editNewsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding: 30px;">
+                <h1 style="text-align: center;">News section</h1>
+                    <div class="form-group">
+                        <textarea class="form-control" id="edit-news-input" id="exampleFormControlTextarea1" rows="3"><?php echo "test"; ?></textarea>
+                        <input type="button" class="btn btn-success pull-right mt-2" id="save-news-data" value="Save">
+                        <input type="button" class="btn btn-danger pull-right mt-2 mr-2 cancel_edit_news_modal" value="Cancel">
+                    </div>
+            </div>
+        </div>
+    </div>
 
     <?php echo $ui->getFooter(); ?>
 

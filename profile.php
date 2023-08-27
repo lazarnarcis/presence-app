@@ -112,20 +112,21 @@
     <!-- Modal -->
 
     <div class="modal fade bd-example-modal-lg" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content" style="padding: 30px;">
-        <table id="user-activity" class="table table-striped" style="width:100%">
-            <thead>
-                <tr>
-                    <th>Date</th>
-                    <th>Type</th>
-                    <th>IP</th>
-                    <th>Text</th>
-                </tr>
-            </thead>
-        </table>
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding: 30px;">
+                <h1 style="text-align: center;"><?php echo $user_info['username']; ?>'s logs</h1>
+                <table id="user-activity" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>IP</th>
+                            <th>Text</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
         </div>
-    </div>
     </div>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
