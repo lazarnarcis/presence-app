@@ -29,7 +29,7 @@ jQuery(document).ready(function($) {
         let startDateString = `${year}-${month}-01`;
         $("#start_date").val(startDateString);
 
-        currentDate = new Date(year, currentDate.getMonth() + 1, 0); // Ultima zi a lunii curente
+        currentDate = new Date(year, currentDate.getMonth() + 1, 0);
         let endDay = String(currentDate.getDate()).padStart(2, '0');
         let endDateString = `${year}-${month}-${endDay}`;
         $("#end_date").val(endDateString);
