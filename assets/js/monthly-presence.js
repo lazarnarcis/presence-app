@@ -26,15 +26,12 @@ jQuery(document).ready(function($) {
         let currentDate = new Date();
         let year = currentDate.getFullYear();
         let month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        let day = String(currentDate.getDate()).padStart(2, '0');
-        let startDateString = `${year}-${month}-${day}`;
+        let startDateString = `${year}-${month}-01`;
         $("#start_date").val(startDateString);
 
-        currentDate = new Date();
-        year = currentDate.getFullYear();
-        month = String(currentDate.getMonth() + 1).padStart(2, '0');
-        day = String(currentDate.getDate()).padStart(2, '0');
-        endDateString = `${year}-${month}-${day}`;
+        currentDate = new Date(year, currentDate.getMonth() + 1, 0); // Ultima zi a lunii curente
+        let endDay = String(currentDate.getDate()).padStart(2, '0');
+        let endDateString = `${year}-${month}-${endDay}`;
         $("#end_date").val(endDateString);
 
         getMonthlyPresence();
