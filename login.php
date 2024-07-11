@@ -29,7 +29,7 @@
             <div class="col-md-6 mx-auto">
                 <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
                     <div class="text-center">
-                        <form class="card" id="login_form">
+                        <form class="card" id="login_form" style="max-width: 100vw !important;">
                             <div class="form-data">
                                 <h1 class="mb-3">Login - Presence v1.0</h1>
                                 <div class="forms-inputs mb-4"> <span>Email or username</span> <input type="text" name="name" id="name" class="form-control"></div>
