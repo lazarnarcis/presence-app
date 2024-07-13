@@ -9,7 +9,7 @@
 
     $where_string = NULL;
     if ($username != "") {
-        $where_string .= " AND users.name LIKE '%$username%' ";
+        $where_string .= " AND vp.username LIKE '%$username%' ";
     }
 
     $query = "SELECT 
