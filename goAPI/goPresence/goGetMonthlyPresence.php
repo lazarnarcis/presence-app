@@ -12,13 +12,9 @@
         $where_string .= " AND users.name LIKE '%$username%' ";
     }
 
-    $start_date_sec = strtotime($start_date);
-    $end_date_sec = strtotime($end_date);
-    $end_date_sec += 86399;
-
     $query = "SELECT 
         vp.user_id,
-        DATE_FORMAT(FROM_UNIXTIME(vp.join_time), '%Y-%m') AS month,
+        DATE_FORMAT(vp.date, '%Y-%m') AS month,
         vp.username AS name,
         SUM(vp.total_time) AS seconds
     FROM 
@@ -26,8 +22,8 @@
     LEFT JOIN 
         users u ON u.id = vp.user_id 
     WHERE 
-        vp.join_time >= $start_date_sec
-        AND (vp.leave_time <= $end_date_sec or vp.leave_time is null)
+        vp.date >= '$start_date'
+        AND vp.date <= '$end_date'
         $where_string
     GROUP BY 
         vp.user_id, month
