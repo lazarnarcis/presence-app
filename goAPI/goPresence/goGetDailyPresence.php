@@ -18,7 +18,7 @@
     
     $query = "SELECT 
         vp.user_id,
-        DATE(FROM_UNIXTIME(vp.leave_time)) AS date,
+        DATE(FROM_UNIXTIME(vp.join_time)) AS date,
         vp.username AS name,
         SUM(vp.total_time) AS seconds
     FROM 
@@ -27,12 +27,12 @@
         users u ON u.id = vp.user_id 
     WHERE 
         vp.join_time >= $start_date_sec
-        AND vp.leave_time <= $end_date_sec 
+        AND (vp.leave_time <= $end_date_sec or vp.leave_time is null)
         $where_string
     GROUP BY 
-        vp.user_id, DATE(FROM_UNIXTIME(vp.leave_time))
+        vp.user_id, DATE(FROM_UNIXTIME(vp.join_time))
     ORDER BY 
-        DATE(FROM_UNIXTIME(vp.leave_time));
+        DATE(FROM_UNIXTIME(vp.join_time));
     ";
     $presence = $db->query($query);
 
