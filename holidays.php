@@ -204,20 +204,26 @@
                 Swal.close();
             });
 
+            function padZero(value) {
+                return value < 10 ? `0${value}` : value;
+            }
+
             $(document).on("click", ".click-pending-day", function() {
                 let user_id = $(this).data("user-id");
                 let user = $(this).data("user");
                 let year = $(this).data("year");
-                let month = $(this).data("month");
-                let day = $(this).data("day");
+                let month = padZero($(this).data("month"));
+                let day = padZero($(this).data("day"));
+                let type = $(this).data("type");
+                let reason = $(this).data("reason");
 
-                const date = new Date(`${year}-${month}-${day}`);
-                const options = { day: 'numeric', month: 'long', year: 'numeric' };
-                const formattedDate = date.toLocaleDateString('en-GB', options);
+                let date = new Date(`${year}-${month}-${day}`);
+                let options = { day: 'numeric', month: 'long', year: 'numeric' };
+                let formattedDate = date.toLocaleDateString('en-GB', options);
 
                 Swal.fire({
                     title: `Manage ${user}'s holiday`,
-                    text: `Please select a status for the selected day (${formattedDate})`,
+                    html: `Type: ${type}<br>Reason: ${reason}<br>Date: ${formattedDate}`,
                     showCancelButton: true,
                     confirmButtonText: 'Accept',
                     cancelButtonText: 'Reject',
@@ -332,7 +338,10 @@
                         dayElement.data("day", i);
                         dayElement.data("user-id", preSelectedDay.user_id);
                         dayElement.data("user", preSelectedDay.user);
+                        dayElement.data("type", preSelectedDay.type);
+                        dayElement.data("reason", preSelectedDay.reason);
                         dayElement.addClass("click-pending-day");
+                        dayElement.attr('data-tippy-content', `Click to manage`); 
                     } else {
                         if ($("#name").val() != "<?=$session_user_info['id'];?>" && $("#name").val()) {
                             dayElement.addClass('disabled'); 
@@ -342,9 +351,11 @@
                         switch (preSelectedDay.status) {
                             case 'accepted':
                                 dayElement.addClass('pre-selected-accepted');
+                                dayElement.attr('data-tippy-content', `Type: ${preSelectedDay.type}<br>Reason: ${preSelectedDay.reason}`); 
                                 break;
                             case 'rejected':
                                 dayElement.addClass('pre-selected-rejected');
+                                dayElement.attr('data-tippy-content', `Type: ${preSelectedDay.type}<br>Reason: ${preSelectedDay.reason}`); 
                                 break;
                             case 'pending':
                                 dayElement.addClass('pre-selected-pending');
