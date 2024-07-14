@@ -176,6 +176,10 @@
                         generateCalendar(currentDate);
                         $("#holidays_left").text(data.holidays_left);
                         holidays_left = data.holidays_left;
+
+                        tippy('[data-tippy-content]', {
+                            allowHTML: true
+                        });
                     }
                 });
             }
