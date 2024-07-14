@@ -223,7 +223,7 @@
 
                 Swal.fire({
                     title: `Manage ${user}'s holiday`,
-                    html: `Type: ${type}<br>Reason: ${reason}<br>Date: ${formattedDate}`,
+                    html: `Type: ${type}<br>Reason: ${reason}<br>Date: <b>${formattedDate}</b>`,
                     showCancelButton: true,
                     confirmButtonText: 'Accept',
                     cancelButtonText: 'Reject',
