@@ -1,0 +1,91 @@
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+}
+.day {
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+.day:hover {
+    background-color: #f0f0f0;
+}
+.day.selected {
+    background-color: #007bff; 
+    color: white;
+}
+
+.day.pre-selected-accepted {
+    background-color: #28a745; 
+    color: white;
+}
+
+.day.pre-selected-rejected {
+    background-color: #dc3545; 
+    color: white;
+}
+
+.day.pre-selected-pending {
+    background-color: #ffc107; 
+    color: white;
+}
+
+.day.current {
+    background-color: #6c757d; 
+    color: white;
+}
+
+.day.disabled {
+    color: #ccc;
+    cursor: not-allowed;
+}
+.month-display {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+.legend {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+.day.selected:hover {
+    background-color: #0056b3; 
+}
+.day.selected::after {
+    content: '✖';
+    color: white;
+    font-weight: bold;
+    position: absolute; 
+    top: 0; 
+    right: 5px;  
+    font-size: 0.9rem; 
+    cursor: pointer;  
+}
+.day.pre-selected-holiday {
+    background-color: purple;  
+    color: white;
+    position: relative; 
+}
+
+.tooltip {
+    display: none; 
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.8); 
+    color: white;
+    padding: 8px;  
+    border-radius: 4px; 
+    z-index: 1000; 
+    top: 25px; 
+    left: 50%;  
+    transform: translateX(-50%);  
+    white-space: nowrap;  
+}
+.btn-reject {
+    background-color: red !important;
+    color: white !important;
+}

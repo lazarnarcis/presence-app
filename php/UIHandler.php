@@ -35,6 +35,9 @@
                                 <a class="nav-link js-scroll-trigger '.(($curr_file == "monthly-presence") ? "active-btn" : "").'" href="monthly-presence.php">Monthly Presence</a>
                             </li>
                             <li class="nav-item">
+                                <a class="nav-link js-scroll-trigger '.(($curr_file == "holidays") ? "active-btn" : "").'" href="holidays.php">Holidays</a>
+                            </li>
+                            <li class="nav-item">
                                 <a class="nav-link js-scroll-trigger '.(($curr_file == "profile") ? "active-btn" : "").'" href="profile.php?id='.$my_user_id.'">Profile</a>
                             </li>
                             '.$admin_links.'
@@ -60,6 +63,7 @@
                                     <a href="index.php">Home</a>
                                     <a href="daily-presence.php">Daily Presence</a>
                                     <a href="monthly-presence.php">Monthly Presence</a>
+                                    <a href="holidays.php">Holidays</a>
                                     <a href="profile.php?id='.$my_user_id.'">Profile</a>
                                     <a href="news.php">News</a>
                                     <a href="logout.php">Logout</a>

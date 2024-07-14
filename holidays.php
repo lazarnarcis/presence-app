@@ -1,0 +1,413 @@
+<?php
+    session_start();
+    if (!isset($_SESSION['logged']) || $_SESSION['logged'] != true) {
+        header("location: login.php");
+        exit();
+    }
+
+    require("./php/UIHandler.php");
+    require("./php/APIHandler.php");
+    $ui = new UIHandler();
+    $api = new APIHandler();
+    $session_user_info = $api->getUserInfo($_SESSION['user_id']);
+    if ($session_user_info['account_confirm'] != 1) {
+        header("location: account_confirm.php");
+        exit();
+    }
+?>
+<!DOCTYPE html>
+<html lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Holidays - Presence v1.0</title>
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <script src="./assets/js/jquery.js"></script>
+    <script src="./assets/js/bootstrap.js"></script>
+    <script src="./assets/js/datatables.js"></script>
+    <link rel="stylesheet" href="./assets/css/datatables.css">
+    <link rel="stylesheet" href="css/nav.css">
+    <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
+    <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
+    <script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
+	<script src="js/sweetalert.js"></script>
+    <link rel="stylesheet" href="./assets/css/holidays.css">
+    <link rel="stylesheet" href="./assets/css/tippy.css">
+</head>
+<body id="page-top" class="politics_version">
+
+    <div id="preloader">
+        <div id="main-ld">
+			<div id="loader"></div>  
+		</div>
+    </div> 
+    
+    <?php echo $ui->getNav(); ?>
+
+    <div id="services" class="section lb">
+        <div class="container">
+            <div class="section-title text-center" style="padding: 0; margin: 0;">
+                <h3 style="padding:0 ;">Holidays</h3>
+            </div> 
+            <div class="row">
+                <div class="col-lg-9">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="contacts_div">
+                                <div class="container mt-2">
+                                    <div class="text-center mb-3">
+                                        <button id="prevMonthBtn" class="btn btn-secondary">
+                                            <i class="fas fa-chevron-left"></i>
+                                        </button>
+                                        <span id="monthDisplay" class="month-display mx-3"></span>
+                                        <button id="nextMonthBtn" class="btn btn-secondary">
+                                            <i class="fas fa-chevron-right"></i>
+                                        </button>
+                                    </div>
+                                    <div id="calendar" class="calendar">
+                                    </div>
+                                    <div class="text-center mt-4">
+                                        <input type="text" id="reasonInput" class="form-control mb-2 w-50" placeholder="Enter reason for approval (optional)" style="display: inline-block; width: auto;">
+                                        <button id="getSelectedDaysBtn" class="btn btn-success">Request Approval</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> 
+                    </div> 
+                </div> 
+                <div class="col-lg-3">
+                    <?php if ($session_user_info['admin'] > 0 ) { ?>
+                        <div class="form-group">
+                            <label for="end_date">Name:</label>
+                            <select class="form-control" id="name" name="name">
+                                <option value=""></option>
+                            </select>
+                        </div>
+                    <?php } ?>
+                    <div class="legend">
+                        <h5>Legend</h5>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #007bff; border-radius: 3px; margin-right: 5px;"></span>
+                            Selected Days
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #28a745; border-radius: 3px; margin-right: 5px;"></span>
+                            Accepted
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #dc3545; border-radius: 3px; margin-right: 5px;"></span>
+                            Rejected
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #ffc107; border-radius: 3px; margin-right: 5px;"></span>
+                            Pending
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: purple; border-radius: 3px; margin-right: 5px;"></span>
+                            Holiday
+                        </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #6c757d; border-radius: 3px; margin-right: 5px;"></span>
+                            Current Day
+                        </div>
+                    </div>
+                    <div>
+                        <p class="text-center mt-2"><b><span id="holidays_left"></span> days</b> of vacation left</p>
+                    </div>
+                </div><!-- /.col-lg-3 -->
+            </div><!-- /.row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <?php echo $ui->getFooter(); ?>
+
+    <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+    <script src="js/all.js"></script>
+    <script src="js/jquery.easing.1.3.js"></script> 
+    <script src="js/parallaxie.js"></script>
+    <script src="js/headline.js"></script>
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/custom.js"></script>
+    <script src="js/jquery.vide.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+    <script src="https://unpkg.com/tippy.js@6"></script>
+    <script>
+        $(document).ready(function() {
+            const calendar = $('#calendar');
+            const selectedDays = new Set();
+            let preSelectedDays = {};
+            let currentDate = new Date();
+            let holidays_left = 0;
+
+            function getHolidays() {
+                let name = $("#name").val();
+                $.ajax({
+                    url: "./php/getRequestHolidays.php",
+                    dataType: "json",
+                    type: "POST",
+                    data: {
+                        name: name
+                    },
+                    success: function (data) {
+                        preSelectedDays = data.data;
+                        generateCalendar(currentDate);
+                        $("#holidays_left").text(data.holidays_left);
+                        holidays_left = data.holidays_left;
+                    }
+                });
+            }
+
+            getHolidays();
+
+            $(document).on("change", "#name", getHolidays);
+
+            $.ajax({
+                url: "./php/getUsers.php",
+                success: function (data) {
+                    data = JSON.parse(data);
+                    if (data.length) {
+                        for (let i = 0; i < data.length; i++) {
+                            $("#name").append("<option value='"+data[i][0]+"'>"+data[i][1]+"</option>");
+                        }
+                    }
+                }
+            });
+
+            $(document).on("click", "#cancelButton", function(){
+                Swal.close();
+            });
+
+            $(document).on("click", ".click-pending-day", function() {
+                let user_id = $(this).data("user-id");
+                let user = $(this).data("user");
+                let year = $(this).data("year");
+                let month = $(this).data("month");
+                let day = $(this).data("day");
+
+                const date = new Date(`${year}-${month}-${day}`);
+                const options = { day: 'numeric', month: 'long', year: 'numeric' };
+                const formattedDate = date.toLocaleDateString('en-GB', options);
+
+                Swal.fire({
+                    title: `Manage ${user}'s holiday`,
+                    text: `Please select a status for the selected day (${formattedDate})`,
+                    showCancelButton: true,
+                    confirmButtonText: 'Accept',
+                    cancelButtonText: 'Reject',
+                    footer: '<button id="cancelButton" class="swal2-cancel swal2-styled">Cancel</button>',
+                    allowOutsideClick: false,
+                    customClass: {
+                        cancelButton: 'btn-reject'
+                    }
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        $.ajax({
+                            url: "./php/acceptDeclineHoliday.php",
+                            type: "POST",
+                            data: {
+                                user_id: user_id,
+                                year: year,
+                                month: month,
+                                day: day,
+                                status: "accepted"
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                                Swal.fire({
+                                    title: "Success!",
+                                    text: "You have just confirmed the holiday!",
+                                    icon: "success"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            }
+                        });
+                    } else if (result.dismiss === Swal.DismissReason.cancel) {
+                        $.ajax({
+                            url: "./php/acceptDeclineHoliday.php",
+                            type: "POST",
+                            data: {
+                                user_id: user_id,
+                                year: year,
+                                month: month,
+                                day: day,
+                                status: "rejected"
+                            },
+                            dataType: "json",
+                            success: function (data) {
+                                Swal.fire({
+                                    title: "Warning!",
+                                    text: "You have just rejected the holiday!",
+                                    icon: "warning"
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+            });
+
+            $(window).on('load', function() {
+                var tippy_interval = setInterval(function() {
+                    tippy('[data-tippy-content]', {
+                        allowHTML: true
+                    });
+                    clearInterval(tippy_interval);
+                }, 1000); 
+            });
+
+            function generateCalendar(date) {
+                calendar.empty();
+                const year = date.getFullYear();
+                const month = date.getMonth() + 1; 
+                const firstDay = new Date(year, month - 1, 1);
+                const lastDay = new Date(year, month, 0);
+                const today = new Date();
+                const daysInMonth = lastDay.getDate();
+
+                $('#monthDisplay').text(date.toLocaleString('default', { month: 'long', year: 'numeric' }));
+
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dayElement = $('<div class="day" style="position: relative;"></div>').text(i);
+                    const dayDate = new Date(year, month - 1, i);
+                    const dayKey = `${year}-${month}-${i}`;
+
+                    if (dayDate.toDateString() === today.toDateString()) {
+                        dayElement.addClass('current');
+                    }
+
+                    if (dayDate < today) {
+                        dayElement.addClass('disabled');
+                    } else {
+                        const preSelectedDay = preSelectedDays[dayKey];
+                        if (preSelectedDay && preSelectedDay.status === 'holiday') {
+                            dayElement.attr('data-tippy-content', preSelectedDay.description); 
+                        }
+                        let permission = "<?=$session_user_info['admin']?>" > 0 ? true : false;
+                        if (preSelectedDay && preSelectedDay.status === 'pending' && permission) {
+                            dayElement.data("year", year);
+                            dayElement.data("month", month);
+                            dayElement.data("day", i);
+                            dayElement.data("user-id", preSelectedDay.user_id);
+                            dayElement.data("user", preSelectedDay.user);
+                            dayElement.addClass("click-pending-day");
+                        } else {
+                            if ($("#name").val() != "<?=$session_user_info['id'];?>" && $("#name").val()) {
+                                dayElement.addClass('disabled'); 
+                            }
+                        }
+                        if (preSelectedDay) {
+                            switch (preSelectedDay.status) {
+                                case 'accepted':
+                                    dayElement.addClass('pre-selected-accepted');
+                                    break;
+                                case 'rejected':
+                                    dayElement.addClass('pre-selected-rejected');
+                                    break;
+                                case 'pending':
+                                    dayElement.addClass('pre-selected-pending');
+                                    break;
+                                case 'holiday':
+                                    dayElement.addClass('pre-selected-holiday');
+                                    break;
+                            }
+                        } else {
+                            dayElement.on('click', function() {
+                                if (!dayElement.hasClass('pre-selected-holiday')) { 
+                                    toggleDaySelection(dayKey, dayElement);
+                                }
+                            });
+                        }
+                    }
+
+                    if (selectedDays.has(dayKey)) {
+                        dayElement.addClass('selected');
+                    }
+
+                    calendar.append(dayElement);
+                }
+            }
+
+            function toggleDaySelection(day, element) {
+                if (element.hasClass('disabled')) {
+                    return;
+                }
+                if (selectedDays.has(day)) {
+                    selectedDays.delete(day);
+                    element.removeClass('selected');
+                    element.css('position', ''); 
+                } else {
+                    selectedDays.add(day);
+                    element.addClass('selected');
+                    element.css('position', 'relative'); 
+                }
+            }
+
+            $('#getSelectedDaysBtn').on('click', function() {
+                const selectedDaysArray = Array.from(selectedDays);
+                let reason_holidays = $("#reasonInput").val();
+                if (selectedDaysArray.length == 0) {
+                    Swal.fire("Error", "Please select at least one day!", "error");
+                } else if (selectedDaysArray.length > holidays_left) {
+                    Swal.fire("Error", "Sorry but you doesn't have vacation left!", "error");
+                } else {
+                    $("#getSelectedDaysBtn").attr('disabled', true);
+                    $.ajax({
+                    url: "./php/requestHolidays.php",
+                    type: "POST",
+                    data: {
+                        reason: reason_holidays,
+                        holidays: JSON.stringify(selectedDaysArray)
+                    },
+                    dataType: "json",
+                    success: function (data) {
+                            if (data.response == "success") {
+                                Swal.fire({
+                                    title: "Success!",
+                                    text: "You have just made a leave request. Thank you!",
+                                    icon: "success",
+                                    allowOutsideClick: false,
+                                }).then((result) => {
+                                    if (result.isConfirmed) {
+                                        location.reload();
+                                    }
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+
+            $('#prevMonthBtn').on('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                generateCalendar(currentDate);
+
+                tippy('[data-tippy-content]', {
+                    allowHTML: true
+                });
+            });
+
+            $('#nextMonthBtn').on('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                generateCalendar(currentDate);
+
+                tippy('[data-tippy-content]', {
+                    allowHTML: true
+                });
+            });
+        });
+    </script>
+</body>
+</html>

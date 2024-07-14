@@ -16,11 +16,23 @@
         $password = $_ENV['DB_PASSWORD'];
         $database = $_ENV['DB_NAME'];
         $server = $_ENV['DB_SERVER'];
+
+        $mail_smtp = $_ENV['MAIL_SMTP'];
+        $mail_host = $_ENV['MAIL_HOST'];
+        $mail_port = $_ENV['MAIL_PORT'];
+        $gemail = $_ENV['GMAIL_EMAIL'];
+        $gpassword = $_ENV['GMAIL_PASSWORD'];
     } else {
         $username = "root";
         $password = "";
         $database = "presence";
         $server = "localhost";
+
+        $mail_smtp = "tls";
+        $mail_host = "example.host.com";
+        $mail_port = "597";
+        $gemail = "example@contact.com";
+        $gpassword = "myPassword123";
     }
 
     class Database {
@@ -189,18 +201,24 @@
         function query($query) {
             $db = self::connect();
             $data = mysqli_query($db, $query);
-
+        
             if (!$data) {
-                $error = mysqli_error($conn);
-                die("SQL error: $error");
+                $error = mysqli_error($db);  
+                error_log("SQL error: $error");
             }
-
-            $returndata = array();
-            while($row = mysqli_fetch_assoc($data)) {
-                $returndata[] = $row;
+        
+            if (stripos(trim($query), 'select') === 0) {
+                $returndata = array();
+                while ($row = mysqli_fetch_assoc($data)) {
+                    $returndata[] = $row;
+                }
+                self::disconnect($db);
+                return $returndata;
+            } else {
+                $affectedRows = mysqli_affected_rows($db);
+                self::disconnect($db);
+                return $affectedRows;
             }
-            self::disconnect($db);
-            return $returndata;
         }
     }
 ?>

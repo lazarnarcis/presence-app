@@ -95,6 +95,41 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function requestHolidays($reason = NULL, $holidays = [], $session_user_id = null, $session_user_name = null) {
+            $postfields = array(
+                "goAction" => "goRequestHolidays",
+                "reason" => $reason,
+                "holidays" => json_encode($holidays),
+                "session_user_id" => $session_user_id,
+                "session_user_name" => $session_user_name,
+            );
+            return $this->API_Request("goPresence", $postfields);
+        }
+
+        function acceptDeclineHoliday($user_id = null, $year = null, $month = null, $day = null, $status = null, $session_user_id = null, $session_user_name = null) {
+            $postfields = array(
+                "goAction" => "goAcceptDeclineHoliday",
+                "user_id" => $user_id,
+                "year" => $year,
+                "month" => $month,
+                "day" => $day,
+                "status" => $status,
+                "session_user_id" => $session_user_id,
+                "session_user_name" => $session_user_name,
+            );
+            return $this->API_Request("goPresence", $postfields);
+        }
+
+        function getRequestHolidays($session_user_id = null, $admin = 0, $name = null) {
+            $postfields = array(
+                "goAction" => "goGetRequestHolidays",
+                "session_user_id" => $session_user_id,
+                "admin" => $admin,
+                "name" => $name,
+            );
+            return $this->API_Request("goPresence", $postfields);
+        }
+
         function registerUser($name = NULL, $username = NULL, $email, $password = NULL) {
             $postfields = array(
                 "goAction" => "goRegisterUser",
