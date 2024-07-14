@@ -17,27 +17,24 @@
     background-color: #007bff; 
     color: white;
 }
-
 .day.pre-selected-accepted {
     background-color: #28a745; 
     color: white;
+    cursor: not-allowed;
 }
-
 .day.pre-selected-rejected {
     background-color: #dc3545; 
     color: white;
+    cursor: not-allowed;
 }
-
 .day.pre-selected-pending {
     background-color: #ffc107; 
     color: white;
 }
-
 .day.current {
     background-color: #6c757d; 
     color: white;
 }
-
 .day.disabled {
     color: #ccc;
     cursor: not-allowed;
@@ -71,7 +68,6 @@
     color: white;
     position: relative; 
 }
-
 .tooltip {
     display: none; 
     position: absolute;
@@ -88,4 +84,21 @@
 .btn-reject {
     background-color: red !important;
     color: white !important;
+}
+.week-days {
+    display: flex;
+    justify-content: space-between;
+}
+.day-name {
+    width: 100%;
+    text-align: center;
+    font-weight: bold;
+    padding: 10px 0;
+    padding: 15px;
+    text-align: center;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.day.empty {
+    visibility: hidden;
 }

@@ -95,13 +95,14 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function requestHolidays($reason = NULL, $holidays = [], $session_user_id = null, $session_user_name = null) {
+        function requestHolidays($reason = NULL, $holidays = [], $session_user_id = null, $session_user_name = null, $type = null) {
             $postfields = array(
                 "goAction" => "goRequestHolidays",
                 "reason" => $reason,
                 "holidays" => json_encode($holidays),
                 "session_user_id" => $session_user_id,
                 "session_user_name" => $session_user_name,
+                "type" => $type,
             );
             return $this->API_Request("goPresence", $postfields);
         }

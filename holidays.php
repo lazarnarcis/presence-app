@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<script src="js/sweetalert.js"></script>
-    <link rel="stylesheet" href="./assets/css/holidays.css">
+    <link rel="stylesheet" href="./assets/css/holidays.css?v=<?=time();?>">
     <link rel="stylesheet" href="./assets/css/tippy.css">
 </head>
 <body id="page-top" class="politics_version">
@@ -73,8 +73,24 @@
                                     <div id="calendar" class="calendar">
                                     </div>
                                     <div class="text-center mt-4">
-                                        <input type="text" id="reasonInput" class="form-control mb-2 w-50" placeholder="Enter reason for approval (optional)" style="display: inline-block; width: auto;">
-                                        <button id="getSelectedDaysBtn" class="btn btn-success">Request Approval</button>
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-md-3 pr-0">
+                                                <select id="typeRequest" class="form-control">
+                                                    <option value="Vacation">Vacation</option>
+                                                    <option value="Unpaid Leave">Unpaid Leave</option>
+                                                    <option value="Paid Leave">Paid Leave</option>
+                                                    <option value="Death Vacantion">(Special) Death Vacantion</option>
+                                                    <option value="Birth Vacantion">(Special) Vacantion</option>
+                                                    <option value="Medical Leave">Medical Leave</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-5 pl-1 pr-1">
+                                                <input type="text" id="reasonInput" class="form-control" placeholder="Enter reason for approval (optional)">
+                                            </div>
+                                            <div class="col-md-3 pl-0">
+                                                <button id="getSelectedDaysBtn" class="btn btn-success w-100">Request Approval</button>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -270,14 +286,24 @@
 
             function generateCalendar(date) {
                 calendar.empty();
+                const daysOfWeek = ['Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sa', 'Du'];
+                daysOfWeek.forEach(day => {
+                    calendar.append(`<div class="day-name">${day}</div>`);
+                });
+
                 const year = date.getFullYear();
-                const month = date.getMonth() + 1; 
+                const month = date.getMonth() + 1;
                 const firstDay = new Date(year, month - 1, 1);
                 const lastDay = new Date(year, month, 0);
                 const today = new Date();
                 const daysInMonth = lastDay.getDate();
 
                 $('#monthDisplay').text(date.toLocaleString('default', { month: 'long', year: 'numeric' }));
+
+                const firstDayOfWeek = (firstDay.getDay() + 6) % 7;
+                for (let i = 0; i < firstDayOfWeek; i++) {
+                    calendar.append('<div class="day empty"></div>');
+                }
 
                 for (let i = 1; i <= daysInMonth; i++) {
                     const dayElement = $('<div class="day" style="position: relative;"></div>').text(i);
@@ -290,46 +316,45 @@
 
                     if (dayDate < today) {
                         dayElement.addClass('disabled');
+                    }
+                    const preSelectedDay = preSelectedDays[dayKey];
+                    if (preSelectedDay && preSelectedDay.status === 'holiday') {
+                        dayElement.attr('data-tippy-content', preSelectedDay.description); 
+                    }
+                    let permission = "<?=$session_user_info['admin']?>" > 0 ? true : false;
+                    if (preSelectedDay && preSelectedDay.status === 'pending' && permission) {
+                        dayElement.data("year", year);
+                        dayElement.data("month", month);
+                        dayElement.data("day", i);
+                        dayElement.data("user-id", preSelectedDay.user_id);
+                        dayElement.data("user", preSelectedDay.user);
+                        dayElement.addClass("click-pending-day");
                     } else {
-                        const preSelectedDay = preSelectedDays[dayKey];
-                        if (preSelectedDay && preSelectedDay.status === 'holiday') {
-                            dayElement.attr('data-tippy-content', preSelectedDay.description); 
+                        if ($("#name").val() != "<?=$session_user_info['id'];?>" && $("#name").val()) {
+                            dayElement.addClass('disabled'); 
                         }
-                        let permission = "<?=$session_user_info['admin']?>" > 0 ? true : false;
-                        if (preSelectedDay && preSelectedDay.status === 'pending' && permission) {
-                            dayElement.data("year", year);
-                            dayElement.data("month", month);
-                            dayElement.data("day", i);
-                            dayElement.data("user-id", preSelectedDay.user_id);
-                            dayElement.data("user", preSelectedDay.user);
-                            dayElement.addClass("click-pending-day");
-                        } else {
-                            if ($("#name").val() != "<?=$session_user_info['id'];?>" && $("#name").val()) {
-                                dayElement.addClass('disabled'); 
+                    }
+                    if (preSelectedDay) {
+                        switch (preSelectedDay.status) {
+                            case 'accepted':
+                                dayElement.addClass('pre-selected-accepted');
+                                break;
+                            case 'rejected':
+                                dayElement.addClass('pre-selected-rejected');
+                                break;
+                            case 'pending':
+                                dayElement.addClass('pre-selected-pending');
+                                break;
+                            case 'holiday':
+                                dayElement.addClass('pre-selected-holiday');
+                                break;
+                        }
+                    } else {
+                        dayElement.on('click', function() {
+                            if (!dayElement.hasClass('pre-selected-holiday')) { 
+                                toggleDaySelection(dayKey, dayElement);
                             }
-                        }
-                        if (preSelectedDay) {
-                            switch (preSelectedDay.status) {
-                                case 'accepted':
-                                    dayElement.addClass('pre-selected-accepted');
-                                    break;
-                                case 'rejected':
-                                    dayElement.addClass('pre-selected-rejected');
-                                    break;
-                                case 'pending':
-                                    dayElement.addClass('pre-selected-pending');
-                                    break;
-                                case 'holiday':
-                                    dayElement.addClass('pre-selected-holiday');
-                                    break;
-                            }
-                        } else {
-                            dayElement.on('click', function() {
-                                if (!dayElement.hasClass('pre-selected-holiday')) { 
-                                    toggleDaySelection(dayKey, dayElement);
-                                }
-                            });
-                        }
+                        });
                     }
 
                     if (selectedDays.has(dayKey)) {
@@ -358,10 +383,11 @@
             $('#getSelectedDaysBtn').on('click', function() {
                 const selectedDaysArray = Array.from(selectedDays);
                 let reason_holidays = $("#reasonInput").val();
+                let typeRequest = $("#typeRequest").val();
                 if (selectedDaysArray.length == 0) {
                     Swal.fire("Error", "Please select at least one day!", "error");
                 } else if (selectedDaysArray.length > holidays_left) {
-                    Swal.fire("Error", "Sorry but you doesn't have vacation left!", "error");
+                    Swal.fire("Error", `Sorry but you doesn't have vacation left! (selected days: ${selectedDaysArray.length}, holidays left: ${holidays_left})`, "error");
                 } else {
                     $("#getSelectedDaysBtn").attr('disabled', true);
                     $.ajax({
@@ -369,6 +395,7 @@
                     type: "POST",
                     data: {
                         reason: reason_holidays,
+                        type: typeRequest,
                         holidays: JSON.stringify(selectedDaysArray)
                     },
                     dataType: "json",
