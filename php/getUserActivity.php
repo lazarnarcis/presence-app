@@ -1,4 +1,6 @@
 <?php
+    session_start();
+    
     require("APIHandler.php");
     require("functions.php");
     $api = new APIHandler();

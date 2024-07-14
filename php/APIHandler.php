@@ -158,6 +158,11 @@
         }
 
         function API_Request($folder = NULL, $postfields = NULL) {
+            if ((is_null($_SESSION) || count($_SESSION) == 0) && $postfields['goAction'] != "goLoginUser" && $postfields['goAction'] != "goRegisterUser") {
+                $response = ['message' => "Please login to continue!"];
+                echo json_encode($response);
+                return;
+            }
             $url = $this->siteURL();
             $whitelist = array('127.0.0.1', '::1');
 
