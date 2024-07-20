@@ -6,7 +6,8 @@
 
     $news = $_POST['news'];
     $api = new APIHandler();
-    $data = $api->updateNews($news);
+    $session_user_info = $api->getUserInfo($_SESSION['user_id']);
+    $data = $api->updateNews($news, $session_user_info['name']);
 
     echo json_encode($data);
 ?>

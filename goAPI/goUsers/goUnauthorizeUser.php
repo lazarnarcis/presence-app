@@ -1,5 +1,6 @@
 <?php
     require("../config.php");
+    require("../goFunctions.php");
     $db = new Database();
 
     $user_id = $_REQUEST['user_id'];
@@ -13,8 +14,8 @@
     $session_user_id = $_REQUEST['session_user_id'];
 
     $db->where('id', $user_id);
-    $result = $db->getOne("users", ['username']);
-    $username = $result['username'];
+    $result2 = $db->getOne("users", ['username', 'email']);
+    $username = $result2['username'];
 
     $db->where('id', $session_user_id);
     $result = $db->getOne("users", ['username']);
@@ -37,6 +38,12 @@
         "text" => "$session_username unauthorized you!"
     );
     $db->insert("activity", $data);
+
+    $subjcet_header = "Human Resources Team";
+    $subject = "Human Resources Team";
+    $message = "<b>Account Authorize</b><br><br><b>$session_username</b> was unauthorized your account <i>$username</i>!<br><br>Welcome!";
+    $send_to_email = $result2['email'];
+    sendMail($subject_header, $send_to_email, $subject, $message);
 
     echo json_encode($result1);
 ?>
