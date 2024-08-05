@@ -105,7 +105,11 @@
                                         <?php
                                             $discord_channels = explode(",",$_ENV['DISCORD_CHANNELS']);
                                             foreach ($discord_channels as $dc) {
-                                                echo "<option value='$dc'>$dc</option>";
+                                                $disabled = NULL;
+                                                if ($dc == "-") {
+                                                    $disabled = " disabled ";
+                                                }
+                                                echo "<option value='$dc' $disabled>$dc</option>";
                                             }
                                         ?>
                                     </select>
