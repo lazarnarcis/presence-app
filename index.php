@@ -47,7 +47,6 @@
 				<span class="cd-words-wrapper">
 					<b class="is-visible">daily presence.</b>
 					<b>monthly presence.</b>
-					<b>annual presence.</b>
 				</span>
 				<div class="btn-ber">
 					<a class="get_btn hvr-bounce-to-top" href="daily-presence.php">See the presence</a>

@@ -1,12 +1,7 @@
 <?php
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require '../../PHPMailer-master/src/Exception.php';
-    require '../../PHPMailer-master/src/PHPMailer.php';
-    require '../../PHPMailer-master/src/SMTP.php';
-
     require("../config.php");
+    require("../goFunctions.php");
+
     $db = new Database();
 
     $user_id = $_REQUEST['user_id'];
@@ -32,42 +27,21 @@
         $uemail = $user_holiday[0]['email'];
         $uname = $user_holiday[0]['name'];
 
-        $mail = new PHPMailer(true);
-        try {
-            $mail->isSMTP();
-            $mail->SMTPAuth = true;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  
-            $mail->Host = $mail_host;  
-            $mail->Port = $mail_port; 
-            $mail->Username = $gemail; 
-            $mail->Password = $gpassword; 
-            
-            $mail->setFrom($gemail, "Human Resources Team");
-            $mail->addAddress($uemail);
-    
-            $mail->isHTML(true); 
-            $mail->Subject = "Leave request for $uname";
-            $details_status = null;
-            if ($status == "accepted") {
-                $details_status = "<span style='color: green;'>$status</span>";
-            } else {
-                $details_status = "<span style='color: red;'>$status</span>";
-            }
+        $subject_header = "Human Resources Team";
+        $subject = "Leave request for $uname";
 
-            $dateString = "$year-$month-$day";
-            $date = DateTime::createFromFormat('Y-n-j', $dateString);
-            $formattedDate = $date->format('d F Y');
-
-            $mail->Body    = "Dear <b>$uname</b>,<br><br>[HR Team]: $session_user_name just $details_status request on $formattedDate!<br><br>Thank You!";
-    
-            if ($mail->send()) {
-                error_log("MAIL SEND!");
-            } else {
-                error_log("Error mail send: " . $mail->ErrorInfo);
-            }
-        } catch (Exception $e) {
-            error_log("Error mail send: {$mail->ErrorInfo}");
+        $details_status = null;
+        if ($status == "accepted") {
+            $details_status = "<span style='color: green;'>$status</span>";
+        } else {
+            $details_status = "<span style='color: red;'>$status</span>";
         }
+        $dateString = "$year-$month-$day";
+        $date = DateTime::createFromFormat('Y-n-j', $dateString);
+        $formattedDate = $date->format('d F Y');
+
+        $message = "Dear <b>$uname</b>,<br><br>[HR Team]: $session_user_name just $details_status request on $formattedDate!<br><br>Thank You!";
+        sendMail($subject_header, $uemail, $subject, $message);
     }
     
     $data = array(

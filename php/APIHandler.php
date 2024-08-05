@@ -7,12 +7,12 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function getDailyPresence($username = NULL, $start_date = NULL, $end_date = NULL) {
+        function getDailyPresence($start_date = NULL, $end_date = NULL, $channel = NULL) {
             $postfields = array(
                 "goAction" => "goGetDailyPresence",
-                "username" => $username,
                 "start_date" => $start_date,
                 "end_date" => $end_date,
+                "channel" => $channel,
             );
             return $this->API_Request("goPresence", $postfields);
         }
@@ -57,10 +57,11 @@
             return $this->API_Request("goNews", $postfields);
         }
 
-        function updateNews($news = NULL) {
+        function updateNews($news = NULL, $session_user_name = null) {
             $postfields = array(
                 "goAction" => "goUpdateNews",
-                "news" => $news
+                "news" => $news,
+                "session_user_name" => $session_user_name,
             );
             return $this->API_Request("goNews", $postfields);
         }
@@ -142,12 +143,12 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function getMonthlyPresence($username = NULL, $start_date = NULL, $end_date = NULL) {
+        function getMonthlyPresence($start_date = NULL, $end_date = NULL, $channel = NULL) {
             $postfields = array(
                 "goAction" => "goGetMonthlyPresence",
-                "username" => $username,
                 "start_date" => $start_date,
                 "end_date" => $end_date,
+                "channel" => $channel,
             );
             return $this->API_Request("goPresence", $postfields);
         }

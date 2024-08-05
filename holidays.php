@@ -80,7 +80,7 @@
                                                     <option value="Unpaid Leave">Unpaid Leave</option>
                                                     <option value="Paid Leave">Paid Leave</option>
                                                     <option value="Death Vacantion">(Special) Death Vacantion</option>
-                                                    <option value="Birth Vacantion">(Special) Vacantion</option>
+                                                    <option value="Birth Vacantion">(Special) Birth Vacantion</option>
                                                     <option value="Medical Leave">Medical Leave</option>
                                                 </select>
                                             </div>
