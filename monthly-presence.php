@@ -1,4 +1,15 @@
 <?php
+    $current_dir = __DIR__;
+
+    while ($current_dir != '/' && !file_exists($current_dir . '/index.php')) {
+        $current_dir = dirname($current_dir);
+    }
+    require_once $current_dir . '/vendor/autoload.php';
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable($current_dir);
+    $dotenv->load();
+
     session_start();
     if (!isset($_SESSION['logged']) || $_SESSION['logged'] != true) {
         header("location: login.php");
@@ -58,10 +69,6 @@
                     <div class="panel panel-default">
                         <div class="panel-body">
                             <div class="contacts_div">
-                                <div class="d-flex mb-3">
-                                    <input type="text" class="form-control flex-grow-1" id="search_user" placeholder="Name here">
-                                    <button type="search_button" class="btn btn-default btn-info ms-2" id="search_button">Search</button>
-                                </div>
                                 <div style="overflow-x: auto;">
                                     <table id="monthly-presence" class="table table-striped" style="width:100%">
                                         <thead>
@@ -90,6 +97,18 @@
                                 <div class="form-group">
                                     <label for="end_date">End Date:</label>
                                     <input type="date" class="form-control" id="end_date" name="end_date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="channel">Discord Channel:</label>
+                                    <select class="form-control" id="channel" name="channel">
+                                        <option value="">Select a channel</option>
+                                        <?php
+                                            $discord_channels = explode(",",$_ENV['DISCORD_CHANNELS']);
+                                            foreach ($discord_channels as $dc) {
+                                                echo "<option value='$dc'>$dc</option>";
+                                            }
+                                        ?>
+                                    </select>
                                 </div>
                             </div>
                         </div>

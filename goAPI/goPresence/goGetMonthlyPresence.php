@@ -2,14 +2,15 @@
     require("../config.php");
     $db = new Database();
 
-    $username = $_REQUEST['username'];
-
     $start_date = $_REQUEST['start_date'];
     $end_date = $_REQUEST['end_date'];
 
+    $channel = $_REQUEST['channel'];
+
     $where_string = NULL;
-    if ($username != "") {
-        $where_string .= " AND vp.username LIKE '%$username%' ";
+
+    if (!empty($channel)) {
+        $where_string .= " AND vp.channel_name = '$channel' ";
     }
 
     $query = "SELECT 

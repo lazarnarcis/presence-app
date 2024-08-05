@@ -4,9 +4,9 @@ jQuery(document).ready(function($) {
             url: "./php/getMonthlyPresence.php",
             type: "POST",
             data: {
-                username: $("#search_user").val(),
                 start_date: $("#start_date").val(),
-                end_date: $("#end_date").val()
+                end_date: $("#end_date").val(),
+                channel: $("#channel").val(),
             },
             success: function (data) {
                 data = JSON.parse(data);
@@ -19,9 +19,6 @@ jQuery(document).ready(function($) {
             }
         });
     }
-    $(document).on("click", "#search_button", function() {
-        getMonthlyPresence();
-    });
     $(function() {
         let currentDate = new Date();
         let year = currentDate.getFullYear();
@@ -36,15 +33,7 @@ jQuery(document).ready(function($) {
 
         getMonthlyPresence();
     });
-    $("#end_date").change(function() {
+    $("#end_date, #start_date, #channel").change(function() {
         getMonthlyPresence();
-    });
-    $("#start_date").change(function() {
-        getMonthlyPresence();
-    });
-    $("#search_user").keypress(function(event) {
-        if (event.keyCode === 13) {
-            $("#search_button").click();
-        }
     });
 });

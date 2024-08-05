@@ -2,16 +2,16 @@
     require("../config.php");
     $db = new Database();
 
-    $username = $_REQUEST['username'];
-
     $start_date = $_REQUEST['start_date'];
     $end_date = $_REQUEST['end_date'];
 
-    $where_string = NULL;
-    if ($username != "") {
-        $where_string .= " AND vp.username LIKE '%$username%' ";
-    }
+    $channel = $_REQUEST['channel'];
 
+    $where_string = NULL;
+
+    if (!empty($channel)) {
+        $where_string .= " AND vp.channel_name = '$channel' ";
+    }
 
     $query = "SELECT 
         vp.user_id,
@@ -23,8 +23,8 @@
     LEFT JOIN 
         users u ON u.id = vp.user_id 
     WHERE 
-        vp.date >= '$start_date'
-        AND vp.date <= '$end_date'
+        (vp.date >= '$start_date'
+        AND vp.date <= '$end_date')
         $where_string
     GROUP BY 
         vp.user_id, vp.date
