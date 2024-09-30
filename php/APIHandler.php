@@ -75,6 +75,31 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function forgotUser($name = NULL) {
+            $postfields = array(
+                "goAction" => "goForgotUser",
+                "name" => $name,
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
+        function changePasswordUser($uniqueid = NULL, $password = NULL) {
+            $postfields = array(
+                "goAction" => "goChangePasswordUser",
+                "uniqueid" => $uniqueid,
+                "password" => $password,
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
+        function getPasswordReset($uniqueid = NULL) {
+            $postfields = array(
+                "goAction" => "goGetPasswordReset",
+                "uniqueid" => $uniqueid,
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL, $admin = NULL, $new_password = NULL) {
             $postfields = array(
                 "goAction" => "goEditUser",
@@ -160,7 +185,7 @@
         }
 
         function API_Request($folder = NULL, $postfields = NULL) {
-            if ((is_null($_SESSION) || count($_SESSION) == 0) && $postfields['goAction'] != "goLoginUser" && $postfields['goAction'] != "goRegisterUser") {
+            if ((is_null($_SESSION) || count($_SESSION) == 0) && $postfields['goAction'] != "goLoginUser" && $postfields['goAction'] != "goRegisterUser" && $postfields['goAction'] != "goForgotUser" && $postfields['goAction'] != "goChangePasswordUser" && $postfields['goAction'] != "goGetPasswordReset") {
                 $response = ['message' => "Please login to continue!"];
                 echo json_encode($response);
                 return;
