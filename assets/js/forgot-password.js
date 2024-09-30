@@ -28,6 +28,7 @@ $(document).ready(function() {
     });
     $('#name').keypress(function(event) {
         if (event.which == 13) {
+            event.preventDefault(); 
             $(".btn_recovery").click();
         }
     });
