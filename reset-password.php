@@ -18,13 +18,18 @@
 
     require("./php/UIHandler.php");
     $ui = new UIHandler();
+
+    require("./php/APIHandler.php");
+    $api = new APIHandler();
+
+    $get_password_reset = $api->getPasswordReset($_GET['uid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Register - Presence v<?=$_ENV["VERSION"];?></title>
+    <title>Reset Password - Presence v<?=$_ENV['VERSION'];?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -40,17 +45,25 @@
             <div class="col-md-6 mx-auto">
                 <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
                     <div class="text-center">
-                        <form class="card" id="register_form" style="max-width: 100vw !important;">
+                        <?php if ($get_password_reset == 1) { ?>
+                        <form class="card" id="change_form" style="max-width: 100vw !important;">
+                            <input type="hidden" name="uniqueid" value="<?=$_GET['uid'];?>">
                             <div class="form-data">
-                                <h1 class="mb-3">Register - Presence v<?=$_ENV["VERSION"];?></h1>
-                                <div class="forms-inputs mb-4"> <span>Username</span> <input type="text" name="username" id="username" class="form-control"></div>
-                                <div class="forms-inputs mb-4"> <span>Full Name</span> <input type="text" name="name" id="name" class="form-control"></div>
-                                <div class="forms-inputs mb-4"> <span>Email</span> <input type="text" name="email" id="email" class="form-control"></div>
+                                <h1 class="mb-3">Reset Password - Presence v<?=$_ENV["VERSION"];?></h1>
                                 <div class="forms-inputs mb-4"> <span>Password</span> <input type="password" name="password" id="password" class="form-control"></div>
-                                <div class="mb-3"> <button type="button" class="btn btn-dark w-100 btn_register">Register</button> </div>
-                                <div class="mb-3"> <button type="button" class="btn w-100 btn_login">Login</button> </div>
+                                <div class="forms-inputs mb-4"> <span>Confirm Password</span> <input type="password" name="confirm_password" id="confirm_password" class="form-control"></div>
+                                <div class="mb-3"> <button type="button" class="btn btn-dark w-100 btn_change">Change Password</button> </div>
                             </div>
                         </form>
+                        <?php } else { ?>
+                            <div class="card" style="max-width: 100vw !important;">
+                                <div>
+                                    <h3>Please use valid Unique ID</h3>
+                                    <?php echo $get_password_reset; ?> or <b>link expired</b>
+                                    <div class="mt-3"> <a href="login.php" class="btn btn-dark w-100">Back to login</a> </div>
+                                </div>
+                            </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
@@ -64,6 +77,6 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
-    <script src="assets/js/register.js?v=<?php echo time(); ?>"></script>
+    <script src="assets/js/change-password.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

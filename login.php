@@ -5,6 +5,17 @@
         exit;
     }
 
+    $current_dir = __DIR__;
+
+    while ($current_dir != '/' && !file_exists($current_dir . '/index.php')) {
+        $current_dir = dirname($current_dir);
+    }
+    require_once $current_dir . '/vendor/autoload.php';
+    use Dotenv\Dotenv;
+
+    $dotenv = Dotenv::createImmutable($current_dir);
+    $dotenv->load();
+
     require("./php/UIHandler.php");
     $ui = new UIHandler();
 ?>
@@ -13,7 +24,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Login - Presence v1.0</title>
+    <title>Login - Presence v<?=$_ENV["VERSION"];?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -31,9 +42,10 @@
                     <div class="text-center">
                         <form class="card" id="login_form" style="max-width: 100vw !important;">
                             <div class="form-data">
-                                <h1 class="mb-3">Login - Presence v1.0</h1>
+                                <h1 class="mb-3">Login - Presence v<?=$_ENV["VERSION"];?></h1>
                                 <div class="forms-inputs mb-4"> <span>Email or username</span> <input type="text" name="name" id="name" class="form-control"></div>
                                 <div class="forms-inputs mb-4"> <span>Password</span> <input type="password" name="password" id="password" class="form-control"></div>
+                                <p style="text-align: right;"><a href="forgot-password.php">Forgot your password?</a></p>
                                 <div class="mb-3"> <button type="button" class="btn btn-dark w-100 btn_login">Login</button> </div>
                                 <div class="mb-3"> <button type="button" class="btn w-100 btn_register">Register</button> </div>
                             </div>

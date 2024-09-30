@@ -24,7 +24,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Register - Presence v<?=$_ENV["VERSION"];?></title>
+    <title>Forgot Password - Presence v<?=$_ENV['VERSION'];?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -40,15 +40,12 @@
             <div class="col-md-6 mx-auto">
                 <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
                     <div class="text-center">
-                        <form class="card" id="register_form" style="max-width: 100vw !important;">
+                        <form class="card" id="forgot_form" style="max-width: 100vw !important;">
                             <div class="form-data">
-                                <h1 class="mb-3">Register - Presence v<?=$_ENV["VERSION"];?></h1>
-                                <div class="forms-inputs mb-4"> <span>Username</span> <input type="text" name="username" id="username" class="form-control"></div>
-                                <div class="forms-inputs mb-4"> <span>Full Name</span> <input type="text" name="name" id="name" class="form-control"></div>
-                                <div class="forms-inputs mb-4"> <span>Email</span> <input type="text" name="email" id="email" class="form-control"></div>
-                                <div class="forms-inputs mb-4"> <span>Password</span> <input type="password" name="password" id="password" class="form-control"></div>
-                                <div class="mb-3"> <button type="button" class="btn btn-dark w-100 btn_register">Register</button> </div>
-                                <div class="mb-3"> <button type="button" class="btn w-100 btn_login">Login</button> </div>
+                                <h1 class="mb-3">Forgot Password - Presence v<?=$_ENV["VERSION"];?></h1>
+                                <div class="forms-inputs mb-4"> <span>Email</span> <input type="email" name="name" id="name" class="form-control"></div>
+                                <p style="text-align: right;"><a href="login.php">Did you remember your password?</a></p>
+                                <div class="mb-3"> <button type="button" class="btn btn-dark w-100 btn_recovery">Send email for recovery</button> </div>
                             </div>
                         </form>
                     </div>
@@ -64,6 +61,6 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
-    <script src="assets/js/register.js?v=<?php echo time(); ?>"></script>
+    <script src="assets/js/forgot-password.js?v=<?php echo time(); ?>"></script>
 </body>
 </html>

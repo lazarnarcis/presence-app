@@ -68,7 +68,7 @@
                                     <a href="news.php">News</a>
                                     <a href="logout.php">Logout</a>
                                 </p>
-                                <p class="footer-company-name">All Rights Reserved. &copy; 2023 - Presence v1.0</p>
+                                <p class="footer-company-name">All Rights Reserved. &copy; 2023 - Presence v<?=$_ENV["VERSION"];?></p>
                             </div>
                         </div>
                     </div><!-- end container -->
