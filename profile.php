@@ -99,16 +99,14 @@ if ($user_info == 1) {
     <div id="services" class="section lb">
         <div class="container profile-container">
             <div class="profile-card">
-                <div class="profile-header">
-                    <h1><?php echo $user_info['name']; ?></h1>
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <h2 style="margin: 0; display: flex; align-items: center; margin-top: 20px;"><b><?php echo $user_info['name']; ?></b></h2>
+                    <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                        <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>" style="margin-left: 10px; font-size: 1rem; display: flex; align-items: center;">Show Activity</button>
+                    <?php } ?>
                 </div>
                 <form id="form_edit_user" class="form-horizontal">
-                    <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>">
-                    <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
-                        <div class="form-group text-center">
-                            <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
-                        </div>
-                    <?php } ?>
+                    <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>"> 
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="<?php echo $user_info['username']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
@@ -139,9 +137,15 @@ if ($user_info == 1) {
                             <option value="1">Yes</option>
                         </select>
                     </div>
-                    <div class="form-group div_form_password" style="display: none;">
-                        <label for="change_password_input">Type your new password</label>
-                        <input type="password" class="form-control" name="change_password_input" id="change_password_input" placeholder="Enter password">
+                    <div class="div_form_password" style="display: none;">
+                        <div class="form-group">
+                            <label for="change_password_input">Type your new password</label>
+                            <input type="password" class="form-control" name="change_password_input" id="change_password_input" placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm_password">Confirm password</label>
+                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm password">
+                        </div>
                     </div>
                     <?php } ?>
                     <div class="form-group text-center">

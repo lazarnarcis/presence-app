@@ -50,6 +50,57 @@
 	<script src="js/sweetalert.js"></script>
     <link rel="stylesheet" href="./assets/css/holidays.css?v=<?=time();?>">
     <link rel="stylesheet" href="./assets/css/tippy.css">
+    <style>
+        @media (max-width: 768px) {
+            #calendar {
+                display: grid;
+                grid-template-columns: repeat(7, 1fr);
+                gap: 5px;
+            }
+
+            #calendar .day-name, #calendar .day {
+                font-size: 12px;
+                padding: 5px;
+            }
+
+            #calendar .day {
+                height: 40px;  
+            }
+
+            .month-display {
+                font-size: 18px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .text-center.mt-4 .row {
+                display: flex;
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .text-center.mt-4 .col-md-3, .text-center.mt-4 .col-md-5 {
+                margin-bottom: 10px;
+                width: 100%;
+                padding: 0 5px;
+            }
+
+            .text-center.mt-4 .col-md-3 .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .panel {
+                width: 100%;
+                margin: 0;
+            }
+            
+            .contacts_div {
+                padding: 10px;
+            }
+        }
+    </style>
 </head>
 <body id="page-top" class="politics_version">
 

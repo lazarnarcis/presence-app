@@ -6,7 +6,8 @@ $(document).ready(function() {
             data = JSON.parse(data);
             $('#unauthorized-accounts').DataTable().destroy();
             $('#unauthorized-accounts').DataTable({
-                data: data
+                data: data,
+                order: []
             });
         }
     });
