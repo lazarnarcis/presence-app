@@ -21,6 +21,14 @@ $(document).ready(function() {
         });
     });
     $("#save_info").click(function() {
+        if ($("#change_password").val() == "1" && ($("#confirm_password").val() == "" || $("#change_password_input").val() == "")) {
+            Swal.fire("Error", "Please enter your new password!", "error");
+            return;
+        }
+        if ($("#confirm_password").val() != $("#change_password_input").val()) {
+            Swal.fire("Error", "The passwords are not identical. Be more careful!", "error");
+            return;
+        }
         $.ajax({
             url: "./php/editUser.php",
             type: "POST",

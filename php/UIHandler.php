@@ -54,6 +54,7 @@
         }
         function getFooter() {
             $my_user_id = $_SESSION['user_id'];
+            $version = $_ENV["VERSION"];
             echo '<div class="copyrights">
                     <div class="container">
                         <div class="footer-distributed">
@@ -68,7 +69,7 @@
                                     <a href="news.php">News</a>
                                     <a href="logout.php">Logout</a>
                                 </p>
-                                <p class="footer-company-name">All Rights Reserved. &copy; 2023 - Presence v<?=$_ENV["VERSION"];?></p>
+                                <p class="footer-company-name">All Rights Reserved. &copy; '.date("Y").' - Presence v'.$version.'</p>
                             </div>
                         </div>
                     </div><!-- end container -->

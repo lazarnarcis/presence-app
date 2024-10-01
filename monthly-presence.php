@@ -45,6 +45,15 @@
     <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
     <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
     <script src="./assets/js/monthly-presence.js?v=<?php echo time(); ?>"></script>
+    <style>
+        #start_date, #end_date {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 40px;
+        }
+    </style>
 </head>
 <body id="page-top" class="politics_version">
 
