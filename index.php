@@ -52,13 +52,8 @@
 	
 	<section id="home" class="main-banner parallaxie" style="background: url('uploads/banner-01.jpg')">
 		<div class="heading">
-			<h1>Welcome to presence</h1>			
+			<h1 id="text-news"></h1>			
 			<h3 class="cd-headline clip is-full-width">
-				<span>Here you can see your </span>
-				<span class="cd-words-wrapper">
-					<b class="is-visible">daily presence.</b>
-					<b>monthly presence.</b>
-				</span>
 				<div class="btn-ber">
 					<a class="get_btn hvr-bounce-to-top" href="daily-presence.php">See the presence</a>
 				</div>
@@ -77,6 +72,7 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
+    <script src="./assets/js/index.js"></script>
 
 </body>
 </html>

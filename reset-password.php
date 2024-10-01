@@ -58,8 +58,9 @@
                         <?php } else { ?>
                             <div class="card" style="max-width: 100vw !important;">
                                 <div>
-                                    <h3>Please use valid Unique ID</h3>
-                                    <?php echo $get_password_reset; ?> or <b>link expired</b>
+                                    <h1>Link Expired</h1>
+                                    <hr>
+                                    <h3><?php echo $get_password_reset; ?> or <b>link expired</b></h3>
                                     <div class="mt-3"> <a href="login.php" class="btn btn-dark w-100">Back to login</a> </div>
                                 </div>
                             </div>

@@ -14,10 +14,14 @@
                     </li>
                 ';
             }
+            $logo_name = "logo-1.png";
+            if ($curr_file != "index") {
+                $logo_name = "logo.png";
+            }
             echo '<nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
                 <div class="container">
                     <a class="navbar-brand js-scroll-trigger" href="/">
-                        <img class="img-fluid" src="images/logo.png" alt="" />
+                        <img class="img-fluid" src="images/'.$logo_name.'" alt="" />
                     </a>
                     <button class="navbar-toggler navbar-toggler-right" style="color: black; border: 1px solid black;" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                         Menu
