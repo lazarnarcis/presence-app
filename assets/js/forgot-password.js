@@ -1,5 +1,6 @@
 $(document).ready(function() {
     $(document).on("click", ".btn_recovery", function() {
+        $(this).attr("disabled", true);
         $.ajax({
             url: "./php/forgot-password.php",
             type: "POST",
@@ -10,7 +11,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'success',
                         title: 'Success',
-                        text: "The email for reset password was sent!",
+                        text: "The email for reset password was sent! The link is valid for 15 minuntes :>",
                     }).then((result) => {
                         if (result.isConfirmed) {
                             window.location.href = "index.php";
