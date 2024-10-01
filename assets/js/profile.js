@@ -14,7 +14,8 @@ $(document).ready(function() {
                 $('#user-activity').DataTable({
                     pagingType: 'full_numbers',
                     processing: true,
-                    data: data
+                    data: data,
+                    order: []
                 });
             }
         });
