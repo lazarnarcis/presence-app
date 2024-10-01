@@ -42,6 +42,7 @@
                                     <h1>Contact site Administrator</h1>
                                     <hr>
                                     <h3>Please contact site Administrator to authorize your account :></h3>
+                                    <div class="mt-3"> <a href="index.php" class="btn btn-dark w-100">Reload page</a> </div>
                                 </div>
                             </div>
                     </div>
