@@ -166,7 +166,7 @@
                         <div class="form-group">
                             <label for="end_date">Name:</label>
                             <select id="name" name="name">
-                                <option value=""></option>
+                                <option value="" selected>Select a channel</option>
                             </select>
                         </div>
                     <?php } ?>

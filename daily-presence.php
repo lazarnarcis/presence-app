@@ -45,6 +45,8 @@
     <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
     <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
     <script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
     <style>
         #start_date, #end_date {
             -webkit-appearance: none;
@@ -109,7 +111,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="channel">Discord Channel:</label>
-                                    <select class="form-control" id="channel" name="channel">
+                                    <select id="channel" name="channel">
                                         <option value="">Select a channel</option>
                                         <?php
                                             $discord_channels = explode(",",$_ENV['DISCORD_CHANNELS']);

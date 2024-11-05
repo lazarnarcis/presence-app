@@ -36,4 +36,7 @@ jQuery(document).ready(function($) {
     $("#end_date, #start_date, #channel").change(function() {
         getMonthlyPresence();
     });
+    new SlimSelect({
+        select: '#channel'
+    });
 });

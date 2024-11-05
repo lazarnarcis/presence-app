@@ -39,4 +39,7 @@ jQuery(document).ready(function($) {
     $("#end_date, #start_date, #channel").change(function() {
         getDailyPresence();
     });
+    new SlimSelect({
+        select: '#channel'
+    });
 });
