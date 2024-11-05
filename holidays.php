@@ -50,6 +50,8 @@
 	<script src="js/sweetalert.js"></script>
     <link rel="stylesheet" href="./assets/css/holidays.css?v=<?=time();?>">
     <link rel="stylesheet" href="./assets/css/tippy.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
     <style>
         @media (max-width: 768px) {
             #calendar {
@@ -163,7 +165,7 @@
                     <?php if ($session_user_info['admin'] > 0 ) { ?>
                         <div class="form-group">
                             <label for="end_date">Name:</label>
-                            <select class="form-control" id="name" name="name">
+                            <select id="name" name="name">
                                 <option value=""></option>
                             </select>
                         </div>
@@ -247,6 +249,10 @@
             }
 
             getHolidays();
+
+            new SlimSelect({
+                select: '#name'
+            });
 
             $(document).on("change", "#name", getHolidays);
 
