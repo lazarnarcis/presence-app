@@ -39,7 +39,6 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
-    <script src="./assets/js/datatables.js"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
@@ -200,12 +199,36 @@
                     <div>
                         <p class="text-center mt-2"><b><span id="holidays_left"></span> days</b> of vacation left</p>
                     </div>
+                    <?php if ($session_user_info['admin'] > 0) { ?>
+                        <div style="display: flex; align-items: center; justify-content: center;">
+                            <button type="button" class="btn btn-primary open_holidays_history" style="margin-left: 10px; font-size: 1rem; display: flex; align-items: center;">Show Holidays History</button>
+                        </div>
+                    <?php } ?>
                 </div><!-- /.col-lg-3 -->
             </div><!-- /.row -->
         </div><!-- end container -->
     </div><!-- end section -->
 
     <?php echo $ui->getFooter(); ?>
+
+    <div class="modal fade bd-example-modal-lg" id="holidaysHistoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding: 30px;">
+                <h1 style="text-align: center;">Holidays history</h1>
+                <table id="holidays-history" class="table table-striped" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>Type</th>
+                            <th>Status</th>
+                            <th>Request Date</th>
+                            <th>Reason</th>
+                            <th>Request At</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
 
     <a href="#" id="scroll-to-top" class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
 
@@ -248,11 +271,34 @@
                 });
             }
 
+            $(document).on("click", ".open_holidays_history", function() {
+                $("#holidaysHistoryModal").modal("show");
+                $.ajax({
+                    url: "./php/getHolidaysHistory.php",
+                    type: "POST",
+                    data: {
+                        user: $("#name").val()
+                    },
+                    success: function (data) {
+                        data = JSON.parse(data);
+                        $('#holidays-history').DataTable().destroy();
+                        $('#holidays-history').DataTable({
+                            pagingType: 'full_numbers',
+                            processing: true,
+                            data: data,
+                            order: []
+                        });
+                    }
+                });
+            });
+
             getHolidays();
 
-            new SlimSelect({
-                select: '#name'
-            });
+            if ($("#name").length) {
+                new SlimSelect({
+                    select: '#name'
+                });
+            }
 
             $(document).on("change", "#name", getHolidays);
 
@@ -261,7 +307,6 @@
                 success: function (data) {
                     data = JSON.parse(data);
                     if (data.length) {
-                        console.log(data);
                         for (let i = 0; i < data.length; i++) {
                             $("#name").append("<option value='"+data[i][0]+"'>"+data[i][1]+" - "+(data[i][4] ? data[i][4] : "without job")+"</option>");
                         }
@@ -520,5 +565,7 @@
             });
         });
     </script>
+    <script src="./assets/js/datatables.js"></script>
+
 </body>
 </html>

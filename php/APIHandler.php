@@ -50,6 +50,15 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function getHolidaysHistory($user = NULL, $session_user_id = NULL) {
+            $postfields = array(
+                "goAction" => "goGetHolidaysHistory",
+                "user" => $user,
+                "session_user_id" => $session_user_id
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function getNews() {
             $postfields = array(
                 "goAction" => "goGetNews"
