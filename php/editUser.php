@@ -11,13 +11,17 @@
     if (isset($_POST['admin'])) {
         $admin = $_POST['admin'];
     }
+    $role = NULL;
+    if (isset($_POST['role'])) {
+        $role = $_POST['role'];
+    }
     $change_password = $_POST['change_password'];
     $change_password_input = NULL;
     if ($change_password == "1") {
         $change_password_input = $_POST['change_password_input'];
     }
 
-    $result = $api->editUser($user_id, $username, $name, $email, $admin, $change_password_input);
+    $result = $api->editUser($user_id, $username, $name, $email, $admin, $change_password_input, $role);
 
     echo json_encode($result);
 ?>

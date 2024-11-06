@@ -25,6 +25,7 @@ $ui = new UIHandler();
 require("./php/APIHandler.php");
 $api = new APIHandler();
 $user_info = $api->getUserInfo($_GET['id']);
+$discord_roles = $api->getDiscordRoles();
 $session_user_info = $api->getUserInfo($_SESSION['user_id']);
 if ($session_user_info['account_confirm'] != 1) {
     header("location: account_confirm.php");
@@ -100,7 +101,10 @@ if ($user_info == 1) {
         <div class="container profile-container">
             <div class="profile-card">
                 <div style="display: flex; align-items: center; justify-content: center;">
-                    <h2 style="margin: 0; display: flex; align-items: center; margin-top: 20px;"><b><?php echo $user_info['name']; ?></b></h2>
+                    <?php if (!empty($user_info['role'])) { ?>
+                        <button type="button" class="btn btn-primary disabled" style="margin-left: 10px; font-size: 1rem; display: flex; align-items: center;"><?=$user_info['role']?></button>
+                    <?php } ?>
+                    <h2 style="margin: 0; display: flex; align-items: center; margin-top: 25px; margin-left: 10px;"><b><?php echo $user_info['name']; ?></b></h2>
                     <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
                         <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>" style="margin-left: 10px; font-size: 1rem; display: flex; align-items: center;">Show Activity</button>
                     <?php } ?>
@@ -126,6 +130,26 @@ if ($user_info == 1) {
                             <option value="0" <?php if ($user_info['admin'] == 0) echo "selected"; ?>>User</option>
                             <option value="1" <?php if ($user_info['admin'] == 1) echo "selected"; ?>>Admin</option>
                             <option value="2" <?php if ($user_info['admin'] == 2) echo "selected"; ?>>Full Access</option>
+                        </select>
+                    </div>
+                    <?php } ?>
+                    <?php if ($session_user_info['admin'] == 2) { ?>
+                    <div class="form-group">
+                        <label for="role">Role</label>
+                        <select type="role" class="form-control" name="role" id="role">
+                            <option value="" disabled selected>Select Role</option>
+                            <?php
+                                if (count($discord_roles)) {
+                                    foreach ($discord_roles as $dr) {
+                                        $val = $dr['name'];
+                                        $selected = NULL;
+                                        if ($user_info['role'] == $dr['name']) {
+                                            $selected = "selected";
+                                        }
+                                        echo "<option value='".$val."' $selected>".$val."</option>";
+                                    }
+                                }
+                            ?>
                         </select>
                     </div>
                     <?php } ?>

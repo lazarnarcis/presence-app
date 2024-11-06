@@ -30,6 +30,7 @@
             array_push($name, $user_id);
             array_push($name, $click_user);
             array_push($name, $unauthorized_accounts['name'][$i]);
+            array_push($name, $unauthorized_accounts['role'][$i]);
             array_push($name, $unauthorized_accounts['date'][$i]);
             array_push($name, $button_authorize);
     

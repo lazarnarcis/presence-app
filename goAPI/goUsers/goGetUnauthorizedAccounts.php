@@ -7,7 +7,8 @@
                 users.name,
                 users.username,
                 CONCAT(users.date, ' (REGISTER)') AS date,
-                users.account_confirm
+                users.account_confirm,
+                users.role
             FROM
                 users
             ORDER BY users.date DESC;";
@@ -21,6 +22,7 @@
             $dataUsername[] = $user['username'];
             $dataDate[] = $user['date'];
             $dataAccountConfirmation[] = $user['account_confirm'];
+            $dataRole[] = $user['role'];
         }
 
         $data = array(
@@ -29,6 +31,7 @@
             "username" => $dataUsername,
             "date" => $dataDate,
             "account_confirm" => $dataAccountConfirmation,
+            "role" => $dataRole,
         );
     }
 

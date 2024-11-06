@@ -100,7 +100,7 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL, $admin = NULL, $new_password = NULL) {
+        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL, $admin = NULL, $new_password = NULL, $role = NULL) {
             $postfields = array(
                 "goAction" => "goEditUser",
                 "user_id" => $user_id,
@@ -108,7 +108,8 @@
                 "name" => $name,
                 "email" => $email,
                 "admin" => $admin,
-                "password" => $new_password
+                "password" => $new_password,
+                "role" => $role
             );
             return $this->API_Request("goUsers", $postfields);
         }
@@ -117,6 +118,13 @@
             $postfields = array(
                 "goAction" => "goGetUserInfo",
                 "user_id" => $user_id
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
+        function getDiscordRoles() {
+            $postfields = array(
+                "goAction" => "goGetUserRoles",
             );
             return $this->API_Request("goUsers", $postfields);
         }

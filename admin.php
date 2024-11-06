@@ -68,6 +68,7 @@
                                 <th>User ID</th>
                                 <th>Username</th>
                                 <th>Name</th>
+                                <th>Role</th>
                                 <th>Register Date</th>
                                 <th>Action</th>
                             </tr>

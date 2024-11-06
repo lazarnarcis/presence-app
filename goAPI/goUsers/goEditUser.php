@@ -16,6 +16,7 @@
     $name = $_REQUEST['name'];
     $email = $_REQUEST['email'];
     $admin = $_REQUEST['admin'];
+    $role = $_REQUEST['role'];
     $password = $_REQUEST['password'];
     $err_message = 1;
 
@@ -30,7 +31,8 @@
             "username" => $username,
             "name" => $name,
             "email" => $email,
-            "admin" => $admin
+            "admin" => $admin,
+            "role" => $role
         );
         if ($password != NULL) {
             $data['password'] = password_hash($password, PASSWORD_DEFAULT);

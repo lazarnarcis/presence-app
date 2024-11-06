@@ -261,8 +261,9 @@
                 success: function (data) {
                     data = JSON.parse(data);
                     if (data.length) {
+                        console.log(data);
                         for (let i = 0; i < data.length; i++) {
-                            $("#name").append("<option value='"+data[i][0]+"'>"+data[i][1]+"</option>");
+                            $("#name").append("<option value='"+data[i][0]+"'>"+data[i][1]+" - "+(data[i][4] ? data[i][4] : "without job")+"</option>");
                         }
                     }
                 }
