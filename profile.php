@@ -56,34 +56,83 @@ if ($user_info == 1) {
     <script src="./assets/js/bootstrap.js"></script>
     <script src="./assets/js/profile.js?v=<?php echo time(); ?>"></script>
     <style>
-        .profile-container {
-            max-width: 700px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .profile-card {
-            padding: 2rem;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            margin-bottom: 2rem;
-        }
-        .profile-header {
-            text-align: center;
-            margin-bottom: 1.5rem;
-        }
-        .form-group {
-            margin-bottom: 1.5rem;
-        }
-        .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
-            margin-top: 1rem;
-        }
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #004085;
-        }
-    </style>
+    .profile-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 2rem;
+    }
+    .profile-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 25px 40px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+        margin-bottom: 2rem;
+    }
+    .profile-header {
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+    .profile-header img {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 1rem;
+    }
+    .profile-header h2 {
+        margin: 0.5rem 0;
+        font-size: 1.8rem;
+        color: #333;
+    }
+    .profile-header p {
+        color: #777;
+    }
+    .profile-header .role-badge {
+        display: inline-block;
+        background-color: #007bff;
+        color: #fff;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        margin-top: 0.5rem;
+    }
+    .action-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-top: 1rem;
+    }
+    .action-buttons .btn {
+        display: flex;
+        align-items: center;
+        padding: 0.7rem 1.5rem;
+        font-size: 1rem;
+    }
+    .form-group label {
+        font-weight: bold;
+        color: #555;
+    }
+    .form-group input, 
+    .form-group select {
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        padding: 0.6rem;
+        font-size: 1rem;
+    }
+    .form-group input:disabled, 
+    .form-group select:disabled {
+        background-color: #f9f9f9;
+    }
+    .btn-primary {
+        background-color: #007bff;
+        border-color: #007bff;
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    .btn-primary:hover {
+        background-color: #0056b3;
+        border-color: #004085;
+    }
+</style>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -98,45 +147,49 @@ if ($user_info == 1) {
     <?php echo $ui->getNav(); ?>
 
     <div id="services" class="section lb">
-        <div class="container profile-container">
-            <div class="profile-card">
+    <div class="container profile-container">
+        <div class="profile-card">
+            <div class="profile-header">
+                <!-- Imagine utilizator -->
+                <h2><small><i><?php echo $user_info['name']; ?></i></small><br><?php echo $user_info['username']; ?></h2>
+                <p class="role-badge"><?php echo $user_info['role'] ?: 'No Role'; ?></p>
+                
+            </div>
+            <form id="form_edit_user" class="form-horizontal">
+                <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>">
                 <div style="display: flex; align-items: center; justify-content: center;">
-                    <?php if (!empty($user_info['role'])) { ?>
-                        <button type="button" class="btn btn-primary disabled" style="margin-left: 10px; font-size: 1rem; display: flex; align-items: center;"><?=$user_info['role']?></button>
-                    <?php } ?>
-                    <h2 style="margin: 0; display: flex; align-items: center; margin-top: 25px; margin-left: 10px;"><b><?php echo $user_info['name']; ?></b></h2>
-                    <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
-                        <button type="button" class="btn btn-primary open_user_modal" data-user-name="<?php echo $user_info['username']; ?>" style="margin-left: 10px; font-size: 1rem; display: flex; align-items: center;">Show Activity</button>
-                    <?php } ?>
-                </div>
-                <form id="form_edit_user" class="form-horizontal">
-                    <input type="hidden" name="user_id" value="<?php echo $user_info['id']; ?>"> 
-                    <div class="form-group">
+                    <div class="form-group" style="width: 100%; margin-right: 10px;">
                         <label for="username">Username</label>
-                        <input type="text" class="form-control" name="username" id="username" placeholder="Enter your username" value="<?php echo $user_info['username']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
+                        <input type="text" class="form-control" name="username" id="username" value="<?php echo $user_info['username']; ?>" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>
                     </div>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" placeholder="Enter your name" value="<?php echo $user_info['name']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
+                    <div class="action-buttons">
+                        <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                            <button type="button" class="btn btn-success open_user_modal" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
+                        <?php } ?>
                     </div>
-                    <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" name="email" id="email" aria-describedby="emailHelp" placeholder="Enter email" value="<?php echo $user_info['email']; ?>" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>
-                    </div>
-                    <?php if ($session_user_info['admin'] == 2 && $_GET['id'] != $_SESSION['user_id']) { ?>
+                </div>
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control" name="name" id="name" value="<?php echo $user_info['name']; ?>" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" id="email" value="<?php echo $user_info['email']; ?>" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>
+                </div>
+                <?php if ($session_user_info['admin'] == 2 && $_GET['id'] != $_SESSION['user_id']) { ?>
                     <div class="form-group">
                         <label for="admin">Admin</label>
-                        <select type="admin" class="form-control" name="admin" id="admin">
-                            <option value="0" <?php if ($user_info['admin'] == 0) echo "selected"; ?>>User</option>
-                            <option value="1" <?php if ($user_info['admin'] == 1) echo "selected"; ?>>Admin</option>
-                            <option value="2" <?php if ($user_info['admin'] == 2) echo "selected"; ?>>Full Access</option>
+                        <select class="form-control" name="admin" id="admin">
+                            <option value="0" <?php echo $user_info['admin'] == 0 ? 'selected' : ''; ?>>User</option>
+                            <option value="1" <?php echo $user_info['admin'] == 1 ? 'selected' : ''; ?>>Admin</option>
+                            <option value="2" <?php echo $user_info['admin'] == 2 ? 'selected' : ''; ?>>Full Access</option>
                         </select>
                     </div>
-                    <?php } ?>
-                    <?php if ($session_user_info['admin'] == 2) { ?>
+                <?php } ?>
+                <?php if ($session_user_info['admin'] == 2) { ?>
                     <div class="form-group">
                         <label for="role">Role</label>
-                        <select type="role" class="form-control" name="role" id="role">
+                        <select type="role" name="role" id="role">
                             <option value="" disabled selected>Select Role</option>
                             <?php
                                 if (count($discord_roles)) {
@@ -152,33 +205,31 @@ if ($user_info == 1) {
                             ?>
                         </select>
                     </div>
-                    <?php } ?>
-                    <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
+                <?php } ?>
+                <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
                     <div class="form-group">
                         <label for="change_password">Change Password</label>
-                        <select type="change_password" class="form-control" name="change_password" id="change_password">
+                        <select class="form-control" name="change_password" id="change_password">
                             <option value="0">No</option>
                             <option value="1">Yes</option>
                         </select>
                     </div>
-                    <div class="div_form_password" style="display: none;">
-                        <div class="form-group">
-                            <label for="change_password_input">Type your new password</label>
-                            <input type="password" class="form-control" name="change_password_input" id="change_password_input" placeholder="Enter password">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm_password">Confirm password</label>
-                            <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm password">
-                        </div>
+                    <div class="form-group div_form_password" style="display: none;">
+                        <label for="change_password_input">Type your new password</label>
+                        <input type="password" class="form-control" name="change_password_input" id="change_password_input" placeholder="Enter password">
                     </div>
-                    <?php } ?>
-                    <div class="form-group text-center">
-                        <button type="button" class="btn btn-primary" id="save_info" <?php if ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) echo 'disabled'; ?>>Save Changes</button>
+                    <div class="form-group div_form_password" style="display: none;">
+                        <label for="confirm_password">Confirm password</label>
+                        <input type="password" class="form-control" name="confirm_password" id="confirm_password" placeholder="Confirm password">
                     </div>
-                </form>
-            </div>
-        </div><!-- end container -->
-    </div><!-- end section -->
+                <?php } ?>
+                <div class="form-group text-center">
+                    <button type="button" class="btn btn-warning" style="color: white;" id="save_info" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 
     <?php echo $ui->getFooter(); ?>
 
@@ -212,5 +263,16 @@ if ($user_info == 1) {
     <script src="js/jquery.vide.js"></script>
     <script src="./assets/js/datatables.js"></script>
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
+
+    <script>
+        if ($("#role").length > 0)
+        {
+            new SlimSelect({
+                select: '#role'
+            });
+        }
+    </script>
 </body>
 </html>
