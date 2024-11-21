@@ -106,6 +106,7 @@ if ($user_info == 1) {
         align-items: center;
         padding: 0.7rem 1.5rem;
         font-size: 1rem;
+        border-radius: 12.5px;
     }
     .form-group label {
         font-weight: bold;
@@ -237,17 +238,24 @@ if ($user_info == 1) {
     <div class="modal fade bd-example-modal-lg" id="activityModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding: 30px;">
-                <h1 style="text-align: center;"><?php echo $user_info['username']; ?>'s logs</h1>
-                <table id="user-activity" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>IP</th>
-                            <th>Text</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="modal-header">
+                    <h1 style="text-align: center;"><?php echo $user_info['username']; ?>'s logs</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="user-activity" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Type</th>
+                                <th>IP</th>
+                                <th>Text</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
