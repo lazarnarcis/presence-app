@@ -214,18 +214,25 @@
     <div class="modal fade bd-example-modal-lg" id="holidaysHistoryModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content" style="padding: 30px;">
-                <h1 style="text-align: center;">Holidays history</h1>
-                <table id="holidays-history" class="table table-striped" style="width:100%">
-                    <thead>
-                        <tr>
-                            <th>Type</th>
-                            <th>Status</th>
-                            <th>Request Date</th>
-                            <th>Reason</th>
-                            <th>Request At</th>
-                        </tr>
-                    </thead>
-                </table>
+                <div class="modal-header">
+                    <h1 style="text-align: center;">Holidays history</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="holidays-history" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Status</th>
+                                <th>Request Date</th>
+                                <th>Reason</th>
+                                <th>Request At</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
             </div>
         </div>
     </div>

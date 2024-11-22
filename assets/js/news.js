@@ -18,6 +18,9 @@ $(document).ready(function() {
     }
     $(document).on("click", "#save-news-data", function() {
         let val = $("#edit-news-input").val();
+        let el = $(this);
+        el.attr("disabled", true);
+        el.val("Wait to send emails to all :>");
         $.ajax({
             url: "./php/updateNews.php",
             type: "POST",
@@ -29,6 +32,8 @@ $(document).ready(function() {
                 if (data.news) {
                     Swal.fire("News Updated!", "The changes for the news section have been saved!", "success");
                     updatefNews(data.news);
+                    el.attr("disabled", false);
+                    el.val("Save");
                     $("#editNewsModal").modal("hide");
                 }
             }

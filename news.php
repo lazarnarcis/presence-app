@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="css/custom.css">
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
-    <script src="./assets/js/news.js"></script>
+    <script src="./assets/js/news.js?v=<?=time();?>"></script>
     <link rel="stylesheet" href="./assets/css/datatables.css">
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">

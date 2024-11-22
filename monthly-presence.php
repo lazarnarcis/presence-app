@@ -102,14 +102,6 @@
                         <div class="all_callbacks_filters">
                             <div class="list_filter_div">
                                 <div class="form-group">
-                                    <label for="start_date">Start Date:</label>
-                                    <input type="date" class="form-control" id="start_date" name="start_date">
-                                </div>
-                                <div class="form-group">
-                                    <label for="end_date">End Date:</label>
-                                    <input type="date" class="form-control" id="end_date" name="end_date">
-                                </div>
-                                <div class="form-group">
                                     <label for="channel">Discord Channel:</label>
                                     <select id="channel" name="channel">
                                         <option value="">Select a channel</option>
@@ -124,6 +116,14 @@
                                             }
                                         ?>
                                     </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" class="form-control" id="start_date" name="start_date">
+                                </div>
+                                <div class="form-group">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" class="form-control" id="end_date" name="end_date">
                                 </div>
                             </div>
                         </div>
