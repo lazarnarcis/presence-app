@@ -13,10 +13,13 @@
     $data = [];
     for ($i = 0; $i < count($daily_presence['id']); $i++) {
         $presence = [];
+        $seconds_used = $functions->transformSeconds($daily_presence['seconds'][$i]);
+        list($hours, $minutes, $seconds) = explode(':', $seconds_used);
+        $seconds_used = "{$hours}h {$minutes}m {$seconds}s";
         array_push($presence, $daily_presence['id'][$i]);
         array_push($presence, $daily_presence['name'][$i]);
         array_push($presence, $functions->dateName($daily_presence['date'][$i]));
-        array_push($presence, $functions->transformSeconds($daily_presence['seconds'][$i]));
+        array_push($presence, $seconds_used);
 
         array_push($data, $presence);
     }
