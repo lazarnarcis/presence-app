@@ -10,10 +10,10 @@
     $admin = NULL;
     if (isset($_POST['admin'])) {
         $admin = $_POST['admin'];
-    }
-    $role = NULL;
-    if (isset($_POST['role'])) {
-        $role = $_POST['role'];
+    } 
+    $discord_member = NULL;
+    if (isset($_POST['discord_member'])) {
+        $discord_member = $_POST['discord_member'];
     }
     $change_password = $_POST['change_password'];
     $change_password_input = NULL;
@@ -21,7 +21,7 @@
         $change_password_input = $_POST['change_password_input'];
     }
 
-    $result = $api->editUser($user_id, $username, $name, $email, $admin, $change_password_input, $role);
+    $result = $api->editUser($user_id, $username, $name, $email, $admin, $change_password_input, $discord_member);
 
     echo json_encode($result);
 ?>

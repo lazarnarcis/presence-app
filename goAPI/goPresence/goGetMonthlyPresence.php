@@ -14,14 +14,14 @@
     }
 
     $query = "SELECT 
-        vp.user_id,
+        u.id as user_id,
         DATE_FORMAT(vp.date, '%Y-%m') AS month,
-        vp.username AS name,
+        u.name AS name,
         SUM(vp.total_time) AS seconds
     FROM 
         voice_presence vp
-    LEFT JOIN 
-        users u ON u.id = vp.user_id 
+    JOIN 
+        users u ON u.discord_user_id = vp.user_id 
     WHERE 
         vp.date >= '$start_date'
         AND vp.date <= '$end_date'

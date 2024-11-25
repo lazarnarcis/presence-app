@@ -16,7 +16,7 @@
     $name = $_REQUEST['name'];
     $email = $_REQUEST['email'];
     $admin = $_REQUEST['admin'];
-    $role = $_REQUEST['role'];
+    $discord_member = $_REQUEST['discord_member'];
     $password = $_REQUEST['password'];
     $err_message = 1;
 
@@ -32,7 +32,7 @@
             "name" => $name,
             "email" => $email,
             "admin" => $admin,
-            "role" => $role
+            "discord_user_id" => $discord_member
         );
         if ($password != NULL) {
             $data['password'] = password_hash($password, PASSWORD_DEFAULT);
@@ -40,6 +40,18 @@
     
         $db->where("id", $user_id);
         $result = $db->update("users", $data);
+
+        if ($discord_member) {
+            $db->where("user_id", $discord_member);
+            $role = $db->getOne("discord_members");
+            $roles = $role['roles'];
+
+            $data = array(
+                "roles" => json_encode(explode(",",$roles))
+            );
+            $db->where("discord_user_id", $discord_member);
+            $result = $db->update("users", $data);
+        }
     } else {
         $err_message = "This is not the actual format of an email!";
     }

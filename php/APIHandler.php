@@ -17,6 +17,13 @@
             return $this->API_Request("goPresence", $postfields);
         }
 
+        function getDiscordMembers() {
+            $postfields = array(
+                "goAction" => "goGetDiscordMembers",
+            );
+            return $this->API_Request("goDiscord", $postfields);
+        }
+
         function getUnauthorizedAccounts() {
             $postfields = array(
                 "goAction" => "goGetUnauthorizedAccounts"
@@ -24,11 +31,12 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function authorizeUser($user_id = NULL, $session_user_id = NULL) {
+        function authorizeUser($user_id = NULL, $session_user_id = NULL, $discord_user_id = NULL) {
             $postfields = array(
                 "goAction" => "goAuthorizeUser",
                 "user_id" => $user_id,
-                "session_user_id" => $session_user_id
+                "session_user_id" => $session_user_id,
+                "discord_user_id" => $discord_user_id,
             );
             return $this->API_Request("goUsers", $postfields);
         }
@@ -109,7 +117,7 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL, $admin = NULL, $new_password = NULL, $role = NULL) {
+        function editUser($user_id = NULL, $username = NULL, $name = NULL, $email = NULL, $admin = NULL, $new_password = NULL, $discord_member = NULL) {
             $postfields = array(
                 "goAction" => "goEditUser",
                 "user_id" => $user_id,
@@ -118,7 +126,7 @@
                 "email" => $email,
                 "admin" => $admin,
                 "password" => $new_password,
-                "role" => $role
+                "discord_member" => $discord_member
             );
             return $this->API_Request("goUsers", $postfields);
         }

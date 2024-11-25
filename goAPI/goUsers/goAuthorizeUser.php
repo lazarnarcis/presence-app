@@ -4,9 +4,11 @@
     $db = new Database();
 
     $user_id = $_REQUEST['user_id'];
+    $discord_user_id = $_REQUEST['discord_user_id'];
 
     $data = array(
-        "account_confirm" => 1
+        "account_confirm" => 1,
+        "discord_user_id" => $discord_user_id
     );
     $db->where("id", $user_id);
     $result1 = $db->update("users", $data);

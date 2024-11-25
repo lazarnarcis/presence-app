@@ -18,7 +18,8 @@
         list($hours, $minutes, $seconds) = explode(':', $seconds_used);
         $seconds_used = "{$hours}h {$minutes}m {$seconds}s";
         array_push($presence, $monthly_presence['id'][$i]);
-        array_push($presence, $monthly_presence['name'][$i]);
+        $click_user = "<a href='profile.php?id=".$monthly_presence['id'][$i]."'>".$monthly_presence['name'][$i]."</a>";
+        array_push($presence, $click_user);
         array_push($presence, $functions->transformDate($monthly_presence['date'][$i]));
         array_push($presence, $seconds_used);
 

@@ -61,6 +61,7 @@
             $db = self::connect();
             $query = "DELETE FROM $table".$this->string_where;
             mysqli_query($db, $query);
+            $this->string_where = "";
             self::disconnect($db);
             return true;
         }
@@ -109,6 +110,7 @@
             while ($row = mysqli_fetch_assoc($data)) {
                 $returndata[] = $row;
             }
+            $this->string_where = "";
             self::disconnect($db);
             return $returndata;
         }
@@ -136,6 +138,7 @@
             while ($row = mysqli_fetch_assoc($data)) {
                 $returndata[] = $row;
             }
+            $this->string_where = "";
             self::disconnect($db);
             return $returndata[0];
         }
@@ -157,6 +160,7 @@
 
             $query = "UPDATE $table SET $string_values".$this->string_where;
             mysqli_query($db, $query);
+            $this->string_where = "";
             self::disconnect($db);
             return true;
         }

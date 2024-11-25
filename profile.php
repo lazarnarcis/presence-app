@@ -25,6 +25,7 @@ $ui = new UIHandler();
 require("./php/APIHandler.php");
 $api = new APIHandler();
 $user_info = $api->getUserInfo($_GET['id']);
+$discord_members = $api->getDiscordMembers();
 $discord_roles = $api->getDiscordRoles();
 $session_user_info = $api->getUserInfo($_SESSION['user_id']);
 if ($session_user_info['account_confirm'] != 1) {
@@ -42,7 +43,7 @@ if ($user_info == 1) {
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">   
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Profile - Presence v<?=$_ENV["VERSION"];?></title>
+    <title><?=$user_info['name']?>'s profile - Presence v<?=$_ENV["VERSION"];?></title>
     <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
@@ -153,7 +154,23 @@ if ($user_info == 1) {
             <div class="profile-header">
                 <!-- Imagine utilizator -->
                 <h2><small><i><?php echo $user_info['name']; ?></i></small><br><?php echo $user_info['username']; ?></h2>
-                <p class="role-badge"><?php echo $user_info['role'] ?: 'No Role'; ?></p>
+                <?php 
+                if ($user_info['roles']) {
+                    $user_roles = json_decode($user_info['roles']);
+                    if (count($user_roles)) {
+                        foreach($user_roles as $ur) {
+                            $color = null;
+                            foreach ($discord_roles as $item) {
+                                if ($item['name'] === $ur) {
+                                    $color = $item['color'];
+                                    break;  
+                                }
+                            }
+
+                            echo '<p class="role-badge" style="margin-right: 5px;font-size: 10px;background-color: '.$color.' !important;">'.$ur ."</p>";
+                        }
+                    }
+                } ?>
                 
             </div>
             <form id="form_edit_user" class="form-horizontal">
@@ -187,20 +204,21 @@ if ($user_info == 1) {
                         </select>
                     </div>
                 <?php } ?>
-                <?php if ($session_user_info['admin'] == 2) { ?>
+                <?php if ($session_user_info['admin'] == 2) { ?> 
                     <div class="form-group">
-                        <label for="role">Role</label>
-                        <select type="role" name="role" id="role">
-                            <option value="" disabled selected>Select Role</option>
+                        <label for="discord_member">Discord Member</label>
+                        <select type="discord_member" name="discord_member" id="discord_member">
+                            <option value="" disabled selected>Select member</option>
                             <?php
-                                if (count($discord_roles)) {
-                                    foreach ($discord_roles as $dr) {
-                                        $val = $dr['name'];
+                                if (count($discord_members)) {
+                                    foreach ($discord_members as $dr) {
+                                        $val = $dr['user_id'];
                                         $selected = NULL;
-                                        if ($user_info['role'] == $dr['name']) {
+                                        $user = $dr['username'];
+                                        if ($user_info['discord_user_id'] == $dr['user_id']) {
                                             $selected = "selected";
                                         }
-                                        echo "<option value='".$val."' $selected>".$val."</option>";
+                                        echo "<option value='".$val."' $selected>".$user."</option>";
                                     }
                                 }
                             ?>
@@ -274,11 +292,11 @@ if ($user_info == 1) {
     <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
 
-    <script>
-        if ($("#role").length > 0)
+    <script> 
+        if ($("#discord_member").length > 0)
         {
             new SlimSelect({
-                select: '#role'
+                select: '#discord_member'
             });
         }
     </script>
