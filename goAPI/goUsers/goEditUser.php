@@ -26,14 +26,15 @@
         if (!$admin && $admin != 0) {
             $admin = $result[0]['admin'];
         }
-        
         $data = array(
             "username" => $username,
             "name" => $name,
             "email" => $email,
             "admin" => $admin,
-            "discord_user_id" => $discord_member
         );
+        if ($discord_member) {
+            $data['discord_user_id'] = $discord_member;
+        }
         if ($password != NULL) {
             $data['password'] = password_hash($password, PASSWORD_DEFAULT);
         }

@@ -44,6 +44,9 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<script src="js/sweetalert.js"></script>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
 </head>
 <body id="page-top" class="politics_version">
 

@@ -37,7 +37,7 @@ $(document).ready(function() {
                 <select id="discord-users" style="width: 100%; height: 35px;">
                   ${listOfDiscordUsers}
                 </select>
-                <p><small>Select the Discord user that matches.</small></p>
+                <p><small>Select the Discord user that matches.</small></p> 
               `,
               preConfirm: () => {
                 const selectedUser = document.getElementById('discord-users').value;

@@ -6,9 +6,13 @@
     $user_id = $_REQUEST['user_id'];
     $discord_user_id = $_REQUEST['discord_user_id'];
 
+    $db->where('user_id', $discord_user_id);
+    $result2 = $db->getOne("discord_members", ['roles']);
+    $roles = $result2['roles'];
     $data = array(
         "account_confirm" => 1,
-        "discord_user_id" => $discord_user_id
+        "discord_user_id" => $discord_user_id,
+        "roles" => json_encode(explode(",",$roles))
     );
     $db->where("id", $user_id);
     $result1 = $db->update("users", $data);

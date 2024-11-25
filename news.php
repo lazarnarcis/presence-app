@@ -63,8 +63,8 @@
                 <h3>News</h3>
                 <p id="text-news"></p>
                 <?php if ($session_user_info['admin'] > 0) { ?>
-                    <button type="button" class="btn btn-warning edit_news">Edit News</button>
-                    
+                    <button type="button" class="btn btn-warning edit_news" style="color: white;">Edit News</button>
+                    <button type="button" class="btn btn-info show_all_news">Show All News</button>
                 <?php } ?>
         </div><!-- end container -->
     </div><!-- end section -->
@@ -84,6 +84,31 @@
                         <input type="button" class="btn btn-success pull-right mt-2" id="save-news-data" value="Save">
                         <input type="button" class="btn btn-danger pull-right mt-2 mr-2 cancel_edit_news_modal" value="Cancel">
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade bd-example-modal-lg" id="lastNewsModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="padding: 30px;">
+                <div class="modal-header">
+                    <h1 style="text-align: center;">All News</h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <table id="last-news-table" class="table table-striped" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>User</th>
+                                <th>Created At</th>
+                                <th>Text</th>
+                            </tr>
+                        </thead>
+                    </table>
                 </div>
             </div>
         </div>

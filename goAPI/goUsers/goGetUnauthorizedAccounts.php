@@ -6,7 +6,7 @@
                 users.id,
                 users.name,
                 users.username,
-                CONCAT(users.date, ' (REGISTER)') AS date,
+                users.date AS date,
                 users.account_confirm,
                 users.roles
             FROM

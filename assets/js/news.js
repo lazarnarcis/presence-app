@@ -43,6 +43,21 @@ $(document).ready(function() {
         callUpdateNews();
         $("#editNewsModal").modal("show");
     });
+    $(document).on("click", ".show_all_news", function() {
+        $.ajax({
+            url: "./php/getAllNews.php",
+            success: function (data) {
+                data = JSON.parse(data);
+                console.log(data);
+                $('#last-news-table').DataTable().destroy();
+                $('#last-news-table').DataTable({
+                    data: data,
+                    order: []
+                });
+                $("#lastNewsModal").modal("show");
+            }
+        });
+    });
     $(document).on("click", ".cancel_edit_news_modal", function() {
         $("#editNewsModal").modal("hide");
     });

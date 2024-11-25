@@ -20,9 +20,9 @@
                 }
             } else {
                 if ($session_user_info['admin'] == 2) {
-                    $button_authorize = "<button class='btn btn-success authorize_user' data-user-id='$user_id'>Authorize</button>";
+                    $button_authorize = "<button type='button' class='btn btn-success authorize_user' data-user-id='$user_id'>Authorize</button>";
                 } else {
-                    $button_authorize = "<button class='btn btn-success disabled'>Unauthorized</button>";
+                    $button_authorize = "<button type='button' class='btn btn-success disabled'>Unauthorized</button>";
                 }
             }
             $name = [];
@@ -36,7 +36,11 @@
             array_push($name, $click_user);
             array_push($name, $unauthorized_accounts['name'][$i]);
             array_push($name, $first_role);
-            array_push($name, $unauthorized_accounts['date'][$i]);
+
+            $date = new DateTime($unauthorized_accounts['date'][$i]);
+            $new_date_format = $date->format('d M Y, H:i');
+
+            array_push($name, $new_date_format. " (REGISTER)");
             array_push($name, $button_authorize);
     
             array_push($data, $name);

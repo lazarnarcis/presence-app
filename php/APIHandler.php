@@ -74,11 +74,19 @@
             return $this->API_Request("goNews", $postfields);
         }
 
-        function updateNews($news = NULL, $session_user_name = null) {
+        function getAllNews() {
+            $postfields = array(
+                "goAction" => "goGetAllNews"
+            );
+            return $this->API_Request("goNews", $postfields);
+        }
+
+        function updateNews($news = NULL, $session_user_name = null, $session_user_id = null) {
             $postfields = array(
                 "goAction" => "goUpdateNews",
                 "news" => $news,
                 "session_user_name" => $session_user_name,
+                "session_user_id" => $session_user_id,
             );
             return $this->API_Request("goNews", $postfields);
         }

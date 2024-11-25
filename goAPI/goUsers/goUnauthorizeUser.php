@@ -6,7 +6,9 @@
     $user_id = $_REQUEST['user_id'];
 
     $data = array(
-        "account_confirm" => 0
+        "account_confirm" => 0,
+	    "discord_user_id" => 0,
+        "roles" => json_encode([])
     );
     $db->where("id", $user_id);
     $result1 = $db->update("users", $data);

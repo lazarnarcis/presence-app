@@ -5,11 +5,18 @@
 
     $news = $_REQUEST['news'];
     $session_user_name = $_REQUEST['session_user_name'];
+    $session_user_id = $_REQUEST['session_user_id'];
     $db->where("name", "news");
     $data = [
         "text" => $news
     ];
     $db->update("options", $data);
+
+    $data = [
+        'text' => $news,
+        "created_by_user_id" => $session_user_id,
+    ];
+    $db->insert("news", $data);
 
     $db->where("name", "news");
     $qnews = $db->getOne("options");

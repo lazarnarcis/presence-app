@@ -135,6 +135,16 @@ if ($user_info == 1) {
         border-color: #004085;
     }
 </style>
+<?php
+$button_authorize = NULL;
+if( $_SESSION['user_id'] != $user_info['id']) {
+     if ($user_info['account_confirm'] == 1) {
+         $button_authorize = "<button type='button' class='btn btn-danger unauthorize_user' data-user-id='".$user_info['id']."'>Unauthorize</button>";
+     } else {
+         $button_authorize = "<button type='button' class='btn btn-success authorize_user' data-user-id='".$user_info['id']."'>Authorize</button>";
+     }
+ }
+?>
 </head>
 <body id="page-top" class="politics_version">
 
@@ -182,13 +192,16 @@ if ($user_info == 1) {
                     </div>
                     <div class="action-buttons">
                         <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
-                            <button type="button" class="btn btn-success open_user_modal" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
+                            <button type="button" class="btn btn-warning open_user_modal" style="color: white;" data-user-name="<?php echo $user_info['username']; ?>">Show Activity</button>
                         <?php } ?>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="name">Name</label>
-                    <input type="text" class="form-control" name="name" id="name" value="<?php echo $user_info['name']; ?>" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>
+                <div class="form-group" style="display: flex; align-items: center; justify-content: center;">
+                    <div style="width:100%; margin-right: 10px;">
+                        <label for="name">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" value="<?php echo $user_info['name']; ?>" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>
+                    </div>
+                    <?php if ($session_user_info['admin'] == 2 && $_SESSION['user_id'] != $user_info['id']) { echo "<div class='actions-buttons'><label for='action'>Action</label>".$button_authorize."</div>"; } ?>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
@@ -223,7 +236,7 @@ if ($user_info == 1) {
                                 }
                             ?>
                         </select>
-                    </div>
+                    </div> 
                 <?php } ?>
                 <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>
                     <div class="form-group">
