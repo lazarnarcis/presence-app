@@ -7,7 +7,7 @@
         "id", 
         "username", 
         "email",
-        "role"
+        "roles"
     );
     $users = $db->select("users", $columns);
 
@@ -16,7 +16,7 @@
         $dataName[] = $user['name'];
         $dataUsername[] = $user['username'];
         $dataEmail[] = $user['email'];
-        $dataRole[] = $user['role'];
+        $dataRoles[] = $user['roles'];
     }
 
     $data = array(
@@ -24,7 +24,7 @@
         "name" => $dataName,
         "username" => $dataUsername,
         "email" => $dataEmail,
-        "role" => $dataRole,
+        "roles" => $dataRoles,
     );
 
     echo json_encode($data);

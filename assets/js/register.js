@@ -28,7 +28,7 @@ $(document).ready(function() {
             });
             return;
         }
-        if (isValidEmail($("#email").val()) == false) {
+        if (isValidEmail($("#email").val().trim()) == false) {
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',

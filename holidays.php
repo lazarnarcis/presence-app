@@ -165,7 +165,7 @@
                         <div class="form-group">
                             <label for="end_date">Name:</label>
                             <select id="name" name="name">
-                                <option value="" selected>Select a channel</option>
+                                <option value=""></option>
                             </select>
                         </div>
                     <?php } ?>
@@ -315,7 +315,8 @@
                     data = JSON.parse(data);
                     if (data.length) {
                         for (let i = 0; i < data.length; i++) {
-                            $("#name").append("<option value='"+data[i][0]+"'>"+data[i][1]+" - "+(data[i][4] ? data[i][4] : "without job")+"</option>");
+                            let roles = data[i][4] ? JSON.parse(data[i][4]) : [];
+                            $("#name").append("<option value='"+data[i][0]+"'>"+data[i][1]+" - "+(roles.length ? roles[0] : "without job")+"</option>");
                         }
                     }
                 }

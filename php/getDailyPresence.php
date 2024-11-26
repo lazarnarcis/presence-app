@@ -21,6 +21,16 @@
         array_push($presence, $click_user);
         array_push($presence, $functions->dateName($daily_presence['date'][$i]));
         array_push($presence, $seconds_used);
+        $total_seconds = 8 * 60 * 60;
+        $current_seconds = time();
+        $tc = $current_seconds + $total_seconds - $daily_presence['seconds'][$i];
+        $getDate = $daily_presence['date'][$i];
+        $currentDate = date('Y-m-d');
+        if ($getDate != $currentDate) {
+            array_push($presence, "you can only see for today");
+        } else {
+            array_push($presence, date("H:i:s", $tc));
+        }
 
         array_push($data, $presence);
     }

@@ -5,7 +5,6 @@
     $api = new APIHandler();
 
     $users = $api->getUsers();
-
     $data = [];
     for ($i = 0; $i < count($users['id']); $i++) {
         $user = [];
@@ -13,7 +12,7 @@
         array_push($user, $users['name'][$i]);
         array_push($user, $users['username'][$i]);
         array_push($user, $users['email'][$i]);
-        array_push($user, $users['role'][$i]);
+        array_push($user, $users['roles'][$i]);
 
         array_push($data, $user);
     }

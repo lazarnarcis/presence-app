@@ -87,7 +87,8 @@
                                                 <th>User ID</th>
                                                 <th>Name</th>
                                                 <th>Date</th>
-                                                <th>Presence</th>
+                                                <th>Worked Time</th>
+                                                <th>Estimate Leave</th>
                                             </tr>
                                         </thead>
                                     </table>

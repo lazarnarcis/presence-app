@@ -37,7 +37,8 @@
                 "name" => $name,
                 "admin" => 0,
                 "account_confirm" => 0,
-                "date" => date("Y-m-d H:i:s")
+                "date" => date("Y-m-d H:i:s"),
+                "roles" => json_encode([])
             );
             $data = $db->insert("users", $data);
             if ($data) {
