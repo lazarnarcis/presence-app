@@ -136,7 +136,7 @@
                                     <div id="calendar" class="calendar">
                                     </div>
                                     <div class="text-center mt-4">
-                                        <div class="row justify-content-center align-items-center">
+                                        <div class="row justify-content-center align-items-center div_get_presence" >
                                             <div class="col-md-3 pr-0">
                                                 <select id="typeRequest" class="form-control">
                                                     <option value="Vacation">Vacation</option>
@@ -165,7 +165,7 @@
                         <div class="form-group">
                             <label for="end_date">Name:</label>
                             <select id="name" name="name">
-                                <option value=""></option>
+                                <option value="">Me</option>
                             </select>
                         </div>
                     <?php } ?>
@@ -220,7 +220,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-x: auto;">
                     <table id="holidays-history" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
@@ -258,6 +258,7 @@
 
             function getHolidays() {
                 let name = $("#name").val();
+                let session_user_id = <?=$session_user_info['id'];?>;
                 $.ajax({
                     url: "./php/getRequestHolidays.php",
                     dataType: "json",
@@ -265,7 +266,12 @@
                     data: {
                         name: name
                     },
-                    success: function (data) {
+                    success: function (data) { 
+                        if (session_user_id == name || name == "" || !name) {
+                            $(".div_get_presence").show();
+                        } else {
+                            $(".div_get_presence").hide();
+                        }
                         preSelectedDays = data.data;
                         generateCalendar(currentDate);
                         $("#holidays_left").text(data.holidays_left);

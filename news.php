@@ -99,7 +99,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-x: auto;">
                     <table id="last-news-table" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>

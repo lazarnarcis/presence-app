@@ -196,12 +196,12 @@ if( $_SESSION['user_id'] != $user_info['id']) {
                         <?php } ?>
                     </div>
                 </div>
-                <div class="form-group" style="display: flex; align-items: center; justify-content: center;">
-                    <div style="width:100%; margin-right: 10px;">
+                <div style="display: flex; align-items: center; justify-content: center;">
+                    <div style="width:100%; margin-right: 10px;" class="form-group">
                         <label for="name">Name</label>
                         <input type="text" class="form-control" name="name" id="name" value="<?php echo $user_info['name']; ?>" <?php echo ($_GET['id'] != $_SESSION['user_id'] && $session_user_info['admin'] == 0) ? 'disabled' : ''; ?>>
                     </div>
-                    <?php if ($session_user_info['admin'] == 2 && $_SESSION['user_id'] != $user_info['id']) { echo "<div class='actions-buttons'><label for='action'>Action</label>".$button_authorize."</div>"; } ?>
+                    <?php if ($session_user_info['admin'] == 2 && $_SESSION['user_id'] != $user_info['id']) { echo "<div class='action-buttons'>".$button_authorize."</div>"; } ?>
                 </div>
                 <div class="form-group">
                     <label for="email">Email address</label>
@@ -275,7 +275,7 @@ if( $_SESSION['user_id'] != $user_info['id']) {
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" style="overflow-x: auto;">
                     <table id="user-activity" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
