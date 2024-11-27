@@ -35,7 +35,10 @@
                 $subject = "Leave request for $session_user_name";
                 $date = DateTime::createFromFormat('Y-n-j', $holiday);
                 $formattedDate = $date->format('d F Y');
-                $message = "Dear <b>$send_to_name</b>,<br><br>$session_user_name just want a leave request on $formattedDate [$type], reason: [$reason]<br><br>Thank You!";
+                $buttonAccept = '<a style="color: green;" type="button" href="https://presence.dev-hub.ro/php/acceptDeclineHoliday.php?user_id='.$session_user_id.'&year='.$parts[0].'&month='.$parts[1].'&day='.$parts[2].'&status=accepted">Accept Holiday</a>';
+                $buttonReject = '<a style="color: red;" type="button" href="https://presence.dev-hub.ro/php/acceptDeclineHoliday.php?user_id='.$session_user_id.'&year='.$parts[0].'&month='.$parts[1].'&day='.$parts[2].'&status=rejected">Reject Holiday</a>';
+                $contentAcceptReject = $buttonAccept." | ".$buttonReject;
+                $message = "Dear <b>$send_to_name</b>,<br><br>$session_user_name just want a leave request on $formattedDate [$type], reason: [$reason]<br><br>$contentAcceptReject<br><br>Thank You!";
                 sendMail($subject_header, $send_to_email, $subject, $message);
             }
         }
