@@ -39,7 +39,7 @@
         $link = "$currentUrl/reset-password.php?uid=".$uniqueid;
         $reset_link = "<a href='$link' target='_blank'>$link</a>";
 
-        $message = "Dear <b>$uname</b>,<br><br>[DevHub]: This is the link for reset password: $reset_link (valid for <b>15 minutes</b>)<br><br>If you did not make this request, you can easily ignore the e-mail!</b><br>Thank You!";
+        $message = "Dear <b>$uname</b>,<br><br>This is the link for reset password: $reset_link (valid for <b>15 minutes</b>)<br><span style='color: red;'>If you did not make this request, you can easily ignore the e-mail!</span><br><br>Thank You!";
         sendMail($subject_header, $name, $subject, $message);
     } else {
         $err_message = "User with this email doesn't exist!";

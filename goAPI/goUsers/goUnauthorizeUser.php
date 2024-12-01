@@ -43,7 +43,7 @@
 
     $subjcet_header = "Human Resources Team";
     $subject = "Human Resources Team";
-    $message = "<b>Account Authorize</b><br><br><b>$session_username</b> was unauthorized your account <i>$username</i>!<br><br>Welcome!";
+    $message = "<b>Account Unauthorize</b><br><br><b>$session_username</b> was unauthorized your account <i>$username</i>!<br><br>Bye, bye! :)";
     $send_to_email = $result2['email'];
     sendMail($subject_header, $send_to_email, $subject, $message);
 

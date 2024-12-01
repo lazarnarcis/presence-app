@@ -24,7 +24,7 @@
 
     $subjcet_header = "Human Resources Team";
     $subject = "Human Resources Team";
-    $message = "<b>News</b> was updated by <b>$session_user_name</b>: $news<br><br>King regards!";
+    $message = "<b>News</b> was updated by <b>$session_user_name</b>:<br>$news<br><br>King regards,<br>The Human Resources Team!";
 
     $query = 'select email from users where account_confirm = 1';
     $all_users = $db->query($query);
