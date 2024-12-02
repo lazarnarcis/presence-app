@@ -87,14 +87,29 @@ if ($user_info == 1) {
     .profile-header p {
         color: #777;
     }
-    .profile-header .role-badge {
-        display: inline-block;
-        background-color: #007bff;
+    .profile-header {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .roles-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+    }
+
+    .role-badge {
+        padding: 5px 10px;
+        border-radius: 15px;
         color: #fff;
-        font-size: 0.9rem;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        margin-top: 0.5rem;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+        display: inline-block;
+        white-space: nowrap;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     }
     .action-buttons {
         display: flex;
@@ -162,12 +177,12 @@ if( $_SESSION['user_id'] != $user_info['id']) {
     <div class="container profile-container">
         <div class="profile-card">
             <div class="profile-header">
-                <!-- Imagine utilizator -->
                 <h2><small><i><?php echo $user_info['name']; ?></i></small><br><?php echo $user_info['username']; ?></h2>
                 <?php 
                 if ($user_info['roles']) {
                     $user_roles = json_decode($user_info['roles']);
                     if (count($user_roles)) {
+                        echo '<div class="roles-container">';
                         foreach($user_roles as $ur) {
                             $color = null;
                             foreach ($discord_roles as $item) {
@@ -176,9 +191,9 @@ if( $_SESSION['user_id'] != $user_info['id']) {
                                     break;  
                                 }
                             }
-
-                            echo '<p class="role-badge" style="margin-right: 5px;font-size: 10px;background-color: '.$color.' !important;">'.$ur ."</p>";
+                            echo '<span class="role-badge" style="background-color: '.$color.';">'.$ur.'</span>';
                         }
+                        echo '</div>';
                     }
                 } ?>
                 
