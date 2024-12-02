@@ -20,6 +20,16 @@
     $password = $_REQUEST['password'];
     $err_message = 1;
 
+    if (empty($username)) {
+        $err_message = "Please fill your username!";
+        echo json_encode($err_message);
+        die();
+    } elseif (empty($name)) {
+        $err_message = "Please fill your name!";
+        echo json_encode($err_message);
+        die();
+    }
+
     if (isEmail($email)) {
         $query = "SELECT * FROM users WHERE username='".$username."' and id!='".$user_id."'";
         $result_user = $db->query($query);

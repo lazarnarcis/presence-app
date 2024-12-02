@@ -23,7 +23,7 @@ $(document).ready(function() {
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
-                        text: data,
+                        html: data,
                     });
                 }
             }
