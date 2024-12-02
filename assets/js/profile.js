@@ -133,51 +133,51 @@ $(document).ready(function() {
         });
     });
     $("#save_info").click(function() {
-        if ($("#change_password").val() == "1" && ($("#confirm_password").val() == "" || $("#change_password_input").val() == "")) {
-            Swal.fire("Error", "Please enter your new password!", "error");
-            return;
-        }
-        if ($("#confirm_password").val() != $("#change_password_input").val()) {
-            Swal.fire("Error", "The passwords are not identical. Be more careful!", "error");
-            return;
-        }
-        $.ajax({
+      if ($("#change_password").val() == "1" && ($("#confirm_password").val() == "" || $("#change_password_input").val() == "")) {
+          Swal.fire("Error", "Please enter your new password!", "error");
+          return;
+      }
+      if ($("#confirm_password").val() != $("#change_password_input").val()) {
+          Swal.fire("Error", "The passwords are not identical. Be more careful!", "error");
+          return;
+      }
+      Swal.fire({
+        title: "Are you sure?",
+        text: "Are you sure you want to make the changes?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          $.ajax({
             url: "./php/editUser.php",
             type: "POST",
             data: $("#form_edit_user").serialize(),
             success: function (data) {
                 if (data == 1) {
-                    Swal.fire({
-                        title: "Are you sure?",
-                        text: "Are you sure you want to make the changes?",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonColor: "#3085d6",
-                        cancelButtonColor: "#d33",
-                        confirmButtonText: "Yes!",
-                    }).then((result) => {
-                        if (result.isConfirmed) {
-                          Swal.fire({
-                            title: "Success",
-                            text: "Profile data has been changed!",
-                            icon: "success",
-                            showCancelButton: false,
-                            confirmButtonColor: "#33cc33",
-                            confirmButtonText: "OK!",
-                          }).then((result) => {
-                            if (result.isConfirmed) {
-                                window.location.reload();
-                            }
-                          });
-                        } else if (result.dismiss === Swal.DismissReason.cancel) {
-                          Swal.fire("Cancelled", "You gave up on the changes :)", "error");
-                        }
-                    });
+                  Swal.fire({
+                    title: "Success",
+                    text: "Profile data has been changed!",
+                    icon: "success",
+                    showCancelButton: false,
+                    confirmButtonColor: "#33cc33",
+                    confirmButtonText: "OK!",
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                        window.location.reload();
+                    }
+                  });
                 } else {
                     Swal.fire("Error", data, "error");
                 }
             }
-        });
+          });
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          Swal.fire("Cancelled", "You gave up on the changes :)", "error");
+        }
+      });
     });
     $(document).on("change", "#change_password", function() {
         if ($(this).val() == "1") {

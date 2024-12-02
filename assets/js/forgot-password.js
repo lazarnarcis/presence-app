@@ -1,6 +1,7 @@
 $(document).ready(function() {
     $(document).on("click", ".btn_recovery", function() {
-        $(this).attr("disabled", true);
+        let btn_this = this;
+        $(btn_this).attr("disabled", true);
         $.ajax({
             url: "./php/forgot-password.php",
             type: "POST",
@@ -18,6 +19,7 @@ $(document).ready(function() {
                         }
                     });
                 } else {
+                    $(btn_this).attr("disabled", false);
                     Swal.fire({
                         icon: 'error',
                         title: 'Oops...',
