@@ -137,7 +137,7 @@ $(document).ready(function() {
           Swal.fire("Error", "Please enter your new password!", "error");
           return;
       }
-      if ($("#confirm_password").val() != $("#change_password_input").val()) {
+      if ($("#confirm_password").val() != $("#change_password_input").val() && $("#change_password").val() == "1") {
           Swal.fire("Error", "The passwords are not identical. Be more careful!", "error");
           return;
       }
