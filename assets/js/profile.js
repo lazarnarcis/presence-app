@@ -21,7 +21,8 @@ $(document).ready(function() {
         });
     });
     $(document).on("click", ".authorize_user", function() {
-        let user_id = $(this).data("user-id");
+      var $button = $(this);
+      let user_id = $(this).data("user-id");
         $.ajax({
           url: "./php/getDiscordMembers.php",
           type: "POST",
@@ -57,6 +58,8 @@ $(document).ready(function() {
               }
             }).then((result) => {
                 if (result.isConfirmed) {
+                  $button.html('Authorizing...'); 
+                  $button.attr("disabled", true);
                   $.ajax({
                     url: "./php/authorizeUser.php",
                     type: "POST",
@@ -95,6 +98,7 @@ $(document).ready(function() {
         });
     });
     $(document).on("click", ".unauthorize_user", function() {
+      var $button = $(this);
         let user_id = $(this).data("user-id");
         Swal.fire({
             title: "Are you sure?",
@@ -106,6 +110,8 @@ $(document).ready(function() {
             confirmButtonText: "Yes!",
         }).then((result) => {
             if (result.isConfirmed) {
+              $button.html('Unauthorizing...'); 
+              $button.attr("disabled", true);
               $.ajax({
                 url: "./php/unauthorizeUser.php",
                 type: "POST",
