@@ -195,6 +195,10 @@
                             <span style="display: inline-block; width: 15px; height: 15px; background-color: #6c757d; border-radius: 3px; margin-right: 5px;"></span>
                             Current Day
                         </div>
+                        <div>
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #cdcdcd; border-radius: 3px; margin-right: 5px;"></span>
+                            Weekend
+                        </div>
                     </div>
                     <div>
                         <p class="text-center mt-2"><b><span id="holidays_left"></span> days</b> of vacation left</p>
@@ -422,6 +426,15 @@
                 }, 1000); 
             });
 
+            function checkWeekendDay(date_1) {
+                let date = new Date(date_1);
+                let dayOfWeek = date.getDay();
+                if (dayOfWeek === 0 || dayOfWeek === 6) {
+                    return true;
+                }
+                return false;
+            }
+
             function generateCalendar(date) {
                 calendar.empty();
                 const daysOfWeek = ['Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sa', 'Du'];
@@ -447,6 +460,10 @@
                     const dayElement = $('<div class="day" style="position: relative;"></div>').text(i);
                     const dayDate = new Date(year, month - 1, i);
                     const dayKey = `${year}-${month}-${i}`;
+                    if (checkWeekendDay(dayKey)) {
+                        dayElement.addClass('pre-selected-weekend');
+                        dayElement.addClass('disabled');
+                    }
 
                     if (dayDate.toDateString() === today.toDateString()) {
                         dayElement.addClass('current');

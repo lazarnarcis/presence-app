@@ -31,6 +31,10 @@
     background-color: #ffc107; 
     color: white;
 }
+.day.pre-selected-weekend {
+    background-color: #cdcdcd; 
+    color: white !important;
+}
 .day.current {
     background-color: #6c757d; 
     color: white;

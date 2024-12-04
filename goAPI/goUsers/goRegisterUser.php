@@ -1,6 +1,7 @@
 <?php
     session_start();
     require("../config.php");
+    require("../goFunctions.php");
     $db = new Database();
 
     $name = $_REQUEST['name'];
@@ -41,6 +42,19 @@
                 "roles" => json_encode([])
             );
             $data = $db->insert("users", $data);
+
+            $query = 'select email from users where admin > 0';
+            $all_users = $db->query($query);
+            $subject_header = "New account created";
+            $subject = $subject_header;
+            $message = "<b>$username</b> ($name) just created an account with email $email<br><br>Go to <a href='https://presence.dev-hub.ro/'>https://presence.dev-hub.ro/</a> to authorize his account!<br><br>Thanks!";
+            if (count($all_users)) {
+                foreach ($all_users as $user) {
+                    $send_to_email = $user['email'];
+                    sendMail($subject_header, $send_to_email, $subject, $message);
+                }
+            }
+
             if ($data) {
                 $db->where("email", $email);
                 $result = $db->select("users");

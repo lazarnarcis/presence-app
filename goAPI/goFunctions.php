@@ -76,7 +76,7 @@
                 <body>
                     <div class='email-container'>
                         <div class='header'>
-                            $subject
+                            $subject || Development Hub
                         </div>
                         <div class='content'>
                             $message

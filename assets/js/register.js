@@ -44,6 +44,9 @@ $(document).ready(function() {
             });
             return;
         }
+        var $button = $(this);
+        $button.html('Registering...'); 
+        $button.attr("disabled", true);
         $.ajax({
             url: "./php/register.php",
             type: "POST",
@@ -52,6 +55,8 @@ $(document).ready(function() {
                 if (data == 1) {
                     window.location.href = "index.php";
                 } else {
+                    $button.html('Register'); 
+                    $button.attr("disabled", false);
                     data = data.replace(/"/g, '');
                     Swal.fire({
                         icon: 'error',
