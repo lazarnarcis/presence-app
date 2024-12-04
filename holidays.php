@@ -43,7 +43,6 @@
     <link rel="stylesheet" href="css/nav.css">
     <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
     <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
-    <script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<script src="js/sweetalert.js"></script>
@@ -426,8 +425,16 @@
                 }, 1000); 
             });
 
+            function formatDate(dateString) {
+                let parts = dateString.split('-');
+                let year = parts[0];
+                let month = parts[1].padStart(2, '0'); 
+                let day = parts[2].padStart(2, '0'); 
+                return `${year}-${month}-${day}`;
+            }
+
             function checkWeekendDay(date_1) {
-                let date = new Date(date_1);
+                let date = new Date(formatDate(date_1));
                 let dayOfWeek = date.getDay();
                 if (dayOfWeek === 0 || dayOfWeek === 6) {
                     return true;

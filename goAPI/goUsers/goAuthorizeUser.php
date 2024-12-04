@@ -47,7 +47,7 @@
 
     $subjcet_header = "Human Resources Team";
     $subject = "Human Resources Team";
-    $message = "<b>Account Authorize</b><br><br><b>$session_username</b> was authorized your account ($username)!<br><br>Welcome!";
+    $message = "<b>Account Authorize</b><br><br><b>$session_username</b> was authorized your account <b>$username</b>!<br>Link to presence site: <a href='https://presence.dev-hub.ro/'>https://presence.dev-hub.ro/</a>!<br><br>Welcome!";
     $send_to_email = $result2['email'];
     sendMail($subject_header, $send_to_email, $subject, $message);
 
