@@ -347,14 +347,26 @@
                 let day = padZero($(this).data("day"));
                 let type = $(this).data("type");
                 let reason = $(this).data("reason");
+                let id = $(this).data("id");
 
                 let date = new Date(`${year}-${month}-${day}`);
                 let options = { day: 'numeric', month: 'long', year: 'numeric' };
                 let formattedDate = date.toLocaleDateString('en-GB', options);
 
+                let text_reason = "";
+                if (reason) {
+                    text_reason = `Reason: ${reason}<br>`;
+                }
                 Swal.fire({
                     title: `Manage ${user}'s holiday`,
-                    html: `Type: ${type}<br>Reason: ${reason}<br>Date: <b>${formattedDate}</b>`,
+                    html: `
+                        Type: ${type}<br>
+                        ${text_reason}
+                        <div class="d-flex align-items-center w-100">
+                            <label for="dateInput" class="mr-2">Date:</label>
+                            <input type="date" class="form-control flex-grow-1" id="dateInput" value="${date.toISOString().split('T')[0]}" />
+                        </div>
+                    `,
                     showCancelButton: true,
                     confirmButtonText: 'Accept',
                     cancelButtonText: 'Reject',
@@ -362,8 +374,17 @@
                     allowOutsideClick: false,
                     customClass: {
                         cancelButton: 'btn-reject'
+                    },
+                    preConfirm: () => {
+                        let newDate = document.getElementById('dateInput').value;
+                        return newDate;  
                     }
                 }).then((result) => {
+                    let newDate = document.getElementById('dateInput').value;
+                    let ndate = new Date(newDate);
+                    year = ndate.getFullYear();
+                    month = ndate.getMonth() + 1; 
+                    day = ndate.getDate();
                     if (result.isConfirmed) {
                         $.ajax({
                             url: "./php/acceptDeclineHoliday.php",
@@ -372,6 +393,7 @@
                                 user_id: user_id,
                                 year: year,
                                 month: month,
+                                id: id,
                                 day: day,
                                 status: "accepted"
                             },
@@ -397,7 +419,8 @@
                                 year: year,
                                 month: month,
                                 day: day,
-                                status: "rejected"
+                                status: "rejected",
+                                id: id
                             },
                             dataType: "json",
                             success: function (data) {
@@ -492,6 +515,7 @@
                         dayElement.data("user", preSelectedDay.user);
                         dayElement.data("type", preSelectedDay.type);
                         dayElement.data("reason", preSelectedDay.reason);
+                        dayElement.data("id", preSelectedDay.id);
                         dayElement.addClass("click-pending-day");
                         dayElement.attr('data-tippy-content', `Click to manage`); 
                     } else {

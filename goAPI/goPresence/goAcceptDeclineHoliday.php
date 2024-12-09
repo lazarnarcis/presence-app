@@ -11,13 +11,17 @@
     $status = $_REQUEST['status'];
     $session_user_id = $_REQUEST['session_user_id'];
     $session_user_name = $_REQUEST['session_user_name'];
+    $id = $_REQUEST['id'];
 
     if ($status == "accepted") {
         $query = "update users set holidays_left=holidays_left-1 where id='$user_id';";
         $db->query($query);
     }
-    
-    $query = "update request_holidays set status='$status' where user_id='$user_id' and year='$year' and month='$month' and day='$day' and status='pending';";
+    if ($id) {
+        $query = "update request_holidays set status='$status',year='$year', month='$month', day='$day' where id='$id' and status='pending';";
+    } else {
+        $query = "update request_holidays set status='$status' where user_id='$user_id' and year='$year' and month='$month' and day='$day' and status='pending';";
+    }
     $db->query($query);
 
     $query = "select * from users where id='$user_id'";

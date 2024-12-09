@@ -12,7 +12,7 @@
     $holidays_result = $result['data'];
     if (count($holidays_result)) {
         foreach ($holidays_result as $hr) {
-            $data[$hr['year'].'-'.$hr['month'].'-'.$hr['day']] = ['status' => $hr['status'], 'user_id' => $hr['user_id'], 'user' => $hr['name'], 'type' => $hr['type'], 'reason' => $hr['reason']];
+            $data[$hr['year'].'-'.$hr['month'].'-'.$hr['day']] = ['status' => $hr['status'],'id' => $hr['id'], 'user_id' => $hr['user_id'], 'user' => $hr['name'], 'type' => $hr['type'], 'reason' => $hr['reason']];
         }
     }
 

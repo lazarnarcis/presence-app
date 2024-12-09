@@ -8,9 +8,10 @@
     $month = isset($_POST['month']) ? $_POST['month'] : $_GET['month'];
     $day = isset($_POST['day']) ? $_POST['day'] : $_GET['day'];
     $status = isset($_POST['status']) ? $_POST['status'] : $_GET['status'];
+    $id = isset($_POST['id']) ? $_POST['id'] : $_GET['id'];
 
     $session_user_info = $api->getUserInfo($_SESSION['user_id']);
-    $result = $api->acceptDeclineHoliday($user_id, $year, $month, $day, $status, $_SESSION['user_id'], $session_user_info['name']);
+    $result = $api->acceptDeclineHoliday($user_id, $year, $month, $day, $status, $_SESSION['user_id'], $session_user_info['name'], $id);
 
     if (isset($_POST['user_id'])) {
         echo json_encode($result);

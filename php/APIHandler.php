@@ -173,7 +173,7 @@
             return $this->API_Request("goPresence", $postfields);
         }
 
-        function acceptDeclineHoliday($user_id = null, $year = null, $month = null, $day = null, $status = null, $session_user_id = null, $session_user_name = null) {
+        function acceptDeclineHoliday($user_id = null, $year = null, $month = null, $day = null, $status = null, $session_user_id = null, $session_user_name = null, $id = null) {
             $postfields = array(
                 "goAction" => "goAcceptDeclineHoliday",
                 "user_id" => $user_id,
@@ -183,6 +183,7 @@
                 "status" => $status,
                 "session_user_id" => $session_user_id,
                 "session_user_name" => $session_user_name,
+                "id" => $id
             );
             return $this->API_Request("goPresence", $postfields);
         }
