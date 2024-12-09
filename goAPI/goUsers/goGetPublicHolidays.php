@@ -2,7 +2,9 @@
     require("../config.php");
     $db = new Database();
 
-    $query = "select * from public_holidays;";
+    $year = $_REQUEST['year'];
+
+    $query = "select * from public_holidays where date like '$year%';";
     $users = $db->query($query);
 
     $data = [];

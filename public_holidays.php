@@ -74,6 +74,12 @@
         <div class="container">
             <div class="section-title text-center">
                 <h3>Public Holidays</h3>
+                <div class="d-flex align-items-center justify-content-center">
+                    <div class="d-flex align-items-center">
+                        <label for="current_year" style="margin-right: 7.5px; font-size: 1.2rem;"><b>Year</b></label>
+                        <input type="number" class="form-control w-20" min="2020" id="current_year" max="2040" step="1" value="<?php echo date("Y"); ?>" />
+                    </div>
+                </div>
                 <div style="overflow-x: auto;">
                     <table id="public-holidays" class="table table-striped" style="width:100%">
                         <thead>

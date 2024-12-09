@@ -31,9 +31,10 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
-        function getPublicHolidays() {
+        function getPublicHolidays($year = NULL) {
             $postfields = array(
-                "goAction" => "goGetPublicHolidays"
+                "goAction" => "goGetPublicHolidays",
+                'year' => $year
             );
             return $this->API_Request("goUsers", $postfields);
         }

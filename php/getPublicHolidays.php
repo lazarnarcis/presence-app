@@ -4,8 +4,9 @@
     require("functions.php");
     $api = new APIHandler();
     $functions = new Functions();
+    $year = $_POST['year'];
 
-    $public_holidays = $api->getPublicHolidays();
+    $public_holidays = $api->getPublicHolidays($year);
     $data = [];
     if (count($public_holidays)) {
         for ($i = 0; $i < count($public_holidays['id']); $i++) {
