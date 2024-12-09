@@ -82,7 +82,7 @@
                             $message
                         </div>
                         <div class='footer'>
-                            <p>Development Hub &copy; ".date("Y").". All rights reserved.</p>
+                            <p>Development Hub &copy; 2024 - ".date("Y")." All rights reserved.</p>
                         </div>
                     </div>
                 </body>

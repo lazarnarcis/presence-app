@@ -77,7 +77,7 @@
                                     <a href="news.php">News</a>
                                     <a href="logout.php">Logout</a>
                                 </p>
-                                <p class="footer-company-name">All Rights Reserved. &copy; '.date("Y").' - Presence v'.$version.'</p>
+                                <p class="footer-company-name">All Rights Reserved. &copy; 2024 - '.date("Y").' - Presence v'.$version.'</p>
                             </div>
                         </div>
                     </div><!-- end container -->
