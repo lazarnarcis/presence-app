@@ -18,6 +18,7 @@ $(document).ready(function() {
     }
     $(document).on("click", "#save-news-data", function() {
         let val = $("#edit-news-input").val();
+        if (val == "") return;
         let el = $(this);
         el.attr("disabled", true);
         el.val("Wait to send emails to all :>");

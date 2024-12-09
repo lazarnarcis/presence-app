@@ -20,7 +20,7 @@
         $click_user = "<a href='profile.php?id=".$daily_presence['id'][$i]."'>".$daily_presence['name'][$i]."</a>";
         array_push($presence, $click_user);
         array_push($presence, $functions->dateName($daily_presence['date'][$i]));
-        array_push($presence, $seconds_used);
+        array_push($presence, "<b>".$seconds_used."</b>");
         $total_seconds = 8 * 60 * 60;
         $current_seconds = time();
         $tc = $current_seconds + $total_seconds - $daily_presence['seconds'][$i];

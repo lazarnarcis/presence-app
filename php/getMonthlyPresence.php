@@ -21,7 +21,7 @@
         $click_user = "<a href='profile.php?id=".$monthly_presence['id'][$i]."'>".$monthly_presence['name'][$i]."</a>";
         array_push($presence, $click_user);
         array_push($presence, $functions->transformDate($monthly_presence['date'][$i]));
-        array_push($presence, $seconds_used);
+        array_push($presence, "<b>".$seconds_used."</b>");
 
         array_push($data, $presence);
     }
