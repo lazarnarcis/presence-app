@@ -31,6 +31,13 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function getPublicHolidays() {
+            $postfields = array(
+                "goAction" => "goGetPublicHolidays"
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function authorizeUser($user_id = NULL, $session_user_id = NULL, $discord_user_id = NULL) {
             $postfields = array(
                 "goAction" => "goAuthorizeUser",
