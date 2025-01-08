@@ -84,7 +84,6 @@
                     <table id="public-holidays" class="table table-striped" style="width:100%">
                         <thead>
                             <tr>
-                                <th>ID</th>
                                 <th>Name</th>
                                 <th>Date</th>
                             </tr>

@@ -11,7 +11,6 @@
     if (count($public_holidays)) {
         for ($i = 0; $i < count($public_holidays['id']); $i++) {
             $name = [];
-            array_push($name, $public_holidays['id'][$i]);
             array_push($name, $public_holidays['name'][$i]);
             array_push($name, $functions->dateName($public_holidays['date'][$i]));
             array_push($data, $name);
