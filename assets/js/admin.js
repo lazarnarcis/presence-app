@@ -42,19 +42,24 @@ $(document).ready(function() {
                 <p><small>Select the Discord user that matches.</small></p> 
               `,
               didOpen: () => {
-                new SlimSelect({
-                    select: '#discord-users'
+                const slimSelect = new SlimSelect({
+                  select: '#discord-users'
                 });
         
                 const swalActions = document.querySelector('.swal2-actions');
                 const slimSelectDropdown = document.querySelector('.ss-main');
+                const selectElement = document.querySelector('#discord-users');
         
                 slimSelectDropdown.addEventListener('click', () => {
                     swalActions.style.display = 'none';
                 });
         
+                selectElement.addEventListener('change', () => {
+                    swalActions.style.display = 'flex';
+                });
+        
                 document.addEventListener('click', (event) => {
-                    if (!slimSelectDropdown.contains(event.target)) {
+                    if (!slimSelectDropdown.contains(event.target) && event.target !== selectElement) {
                         swalActions.style.display = 'flex';
                     }
                 });
