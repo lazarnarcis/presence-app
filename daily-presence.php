@@ -45,8 +45,8 @@
     <link rel="stylesheet" href="./assets/css/select2.css?v=<?php echo time(); ?>">
     <script src="./assets/js/select2.js?v=<?php echo time(); ?>"></script>
     <script src="./assets/js/daily-presence.js?v=<?php echo time(); ?>"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
+    <link href="./css/slimselect.css" rel="stylesheet">
+    <script src="./js/slimselect.js"></script>
     <style>
         #start_date, #end_date {
             -webkit-appearance: none;

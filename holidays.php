@@ -48,8 +48,8 @@
 	<script src="js/sweetalert.js"></script>
     <link rel="stylesheet" href="./assets/css/holidays.css?v=<?=time();?>">
     <link rel="stylesheet" href="./assets/css/tippy.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
+    <link href="./css/slimselect.css" rel="stylesheet">
+    <script src="./js/slimselect.js"></script>
     <style>
         @media (max-width: 768px) {
             #calendar {

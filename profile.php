@@ -56,6 +56,8 @@ if ($user_info == 1) {
     <script src="./assets/js/jquery.js"></script>
     <script src="./assets/js/bootstrap.js"></script>
     <script src="./assets/js/profile.js?v=<?php echo time(); ?>"></script>
+    <link href="./css/slimselect.css" rel="stylesheet">
+    <script src="./js/slimselect.js"></script>
     <style>
     .profile-container {
         max-width: 800px;
@@ -316,10 +318,6 @@ if( $_SESSION['user_id'] != $user_info['id']) {
     <script src="js/custom.js"></script>
     <script src="js/jquery.vide.js"></script>
     <script src="./assets/js/datatables.js"></script>
-
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.css" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/slim-select/1.27.0/slimselect.min.js"></script>
-
     <script> 
         if ($("#discord_member").length > 0)
         {
