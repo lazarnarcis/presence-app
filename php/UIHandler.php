@@ -60,6 +60,17 @@
             </nav>';
         }
         function getFooter() {
+            $admin_links = NULL;
+            $user_info = $GLOBALS['api']->getUserInfo($_SESSION['user_id']);
+            $admin = $user_info['admin'];
+            $curr_file = basename($_SERVER["SCRIPT_FILENAME"], '.php');
+
+            if ($admin > 0) {
+                $admin_links .= '
+                    <a href="admin.php">Admin</a>
+                ';
+            }
+
             $my_user_id = $_SESSION['user_id'];
             $version = $_ENV["VERSION"];
             echo '<div class="copyrights">
@@ -74,6 +85,7 @@
                                     <a href="holidays.php">Holidays</a>
                                     <a href="public_holidays.php">Public Holidays</a>
                                     <a href="profile.php?id='.$my_user_id.'">Profile</a>
+                                    '.$admin_links.'
                                     <a href="news.php">News</a>
                                     <a href="logout.php">Logout</a>
                                 </p>

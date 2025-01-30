@@ -52,7 +52,8 @@
 	
 	<section id="home" class="main-banner parallaxie" style="background: url('uploads/banner-01.jpg')">
 		<div class="heading">
-			<h1 id="text-news"></h1>			
+      <h1>Welcome to Development Hub Presence App</h1>
+			<p id="text-news"></p>			
 			<h3 class="cd-headline clip is-full-width">
 				<div class="btn-ber">
 					<a class="get_btn hvr-bounce-to-top" href="daily-presence.php">See the presence</a>

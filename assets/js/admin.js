@@ -41,7 +41,26 @@ $(document).ready(function() {
                 </select>
                 <p><small>Select the Discord user that matches.</small></p> 
               `,
+              didOpen: () => {
+                new SlimSelect({
+                    select: '#discord-users'
+                });
+        
+                const swalActions = document.querySelector('.swal2-actions');
+                const slimSelectDropdown = document.querySelector('.ss-main');
+        
+                slimSelectDropdown.addEventListener('click', () => {
+                    swalActions.style.display = 'none';
+                });
+        
+                document.addEventListener('click', (event) => {
+                    if (!slimSelectDropdown.contains(event.target)) {
+                        swalActions.style.display = 'flex';
+                    }
+                });
+              },
               preConfirm: () => {
+               
                 const selectedUser = document.getElementById('discord-users').value;
                 if (!selectedUser) {
                   Swal.showValidationMessage('You must select a user.');

@@ -169,34 +169,34 @@
                         </div>
                     <?php } ?>
                     <div class="legend">
-                        <h5>Legend</h5>
+                        <h5 style="text-align: left;">Legend</h5>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #007bff; border-radius: 3px; margin-right: 5px;"></span>
                             Selected Days
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #007bff; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #28a745; border-radius: 3px; margin-right: 5px;"></span>
                             Accepted
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #28a745; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #dc3545; border-radius: 3px; margin-right: 5px;"></span>
                             Rejected
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #dc3545; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #ffc107; border-radius: 3px; margin-right: 5px;"></span>
                             Pending
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #ffc107; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: purple; border-radius: 3px; margin-right: 5px;"></span>
                             Holiday
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: purple; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #6c757d; border-radius: 3px; margin-right: 5px;"></span>
                             Current Day
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #6c757d; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                         <div>
-                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #cdcdcd; border-radius: 3px; margin-right: 5px;"></span>
                             Weekend
+                            <span style="display: inline-block; width: 15px; height: 15px; background-color: #cdcdcd; border-radius: 3px; margin-right: 5px;"></span>
                         </div>
                     </div>
                     <div>
