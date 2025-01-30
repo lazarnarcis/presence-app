@@ -237,22 +237,27 @@ if( $_SESSION['user_id'] != $user_info['id']) {
                 <?php if ($session_user_info['admin'] == 2) { ?> 
                     <div class="form-group">
                         <label for="discord_member">Discord Member</label>
-                        <select type="discord_member" name="discord_member" id="discord_member">
-                            <option value="" disabled selected>Select member</option>
-                            <?php
-                                if (count($discord_members)) {
-                                    foreach ($discord_members as $dr) {
-                                        $val = $dr['user_id'];
-                                        $selected = NULL;
-                                        $user = $dr['username'];
-                                        if ($user_info['discord_user_id'] == $dr['user_id']) {
-                                            $selected = "selected";
+                        <div style="display: flex;">
+                            <select type="discord_member" name="discord_member" id="discord_member">
+                                <option value="" disabled selected>Select member</option>
+                                <?php
+                                    if (count($discord_members)) {
+                                        foreach ($discord_members as $dr) {
+                                            $val = $dr['user_id'];
+                                            $selected = NULL;
+                                            $user = $dr['username'];
+                                            if ($user_info['discord_user_id'] == $dr['user_id']) {
+                                                $selected = "selected";
+                                            }
+                                            echo "<option value='".$val."' $selected>".$user."</option>";
                                         }
-                                        echo "<option value='".$val."' $selected>".$user."</option>";
                                     }
-                                }
-                            ?>
-                        </select>
+                                ?>
+                            </select>
+                            <?php if (isset($user_info['discord_user_id']) && !empty($user_info['discord_user_id'])) { ?>
+                                <button type="button" target="_blank" style="margin-left: 10px;border-radius: 12.5px;height: 30px;" class="btn btn-info open_discord">Open Discord</button>
+                            <?php } ?>
+                        </div>
                     </div> 
                 <?php } ?>
                 <?php if ($session_user_info['admin'] > 0 || $_GET['id'] == $_SESSION['user_id']) { ?>

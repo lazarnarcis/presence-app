@@ -215,4 +215,10 @@ $(document).ready(function() {
             $('.div_form_password').hide();
         }
     });
+    $(document).on("click", ".open_discord", function() {
+      let discord_user_id = $("#discord_member").val();
+      let url = 'https://discord.com/users/'+discord_user_id;
+      window.open(url, "_blank");
+      Swal.fire("Warning", "Don't forget to save the new discord member by clicking the 'Save Changes' button.", "warning");
+    });
 });
