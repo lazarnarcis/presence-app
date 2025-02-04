@@ -8,7 +8,8 @@
                 users.username,
                 users.date AS date,
                 users.account_confirm,
-                users.roles
+                users.roles,
+                users.admin
             FROM
                 users
             ORDER BY users.date DESC;";
@@ -23,6 +24,7 @@
             $dataDate[] = $user['date'];
             $dataAccountConfirmation[] = $user['account_confirm'];
             $dataRoles[] = $user['roles'];
+            $dataAdmin[] = $user['admin'];
         }
 
         $data = array(
@@ -32,6 +34,7 @@
             "date" => $dataDate,
             "account_confirm" => $dataAccountConfirmation,
             "roles" => $dataRoles,
+            "admin" => $dataAdmin
         );
     }
 

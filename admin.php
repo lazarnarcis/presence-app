@@ -74,6 +74,9 @@
                                 <th>Role</th>
                                 <th>Register Date</th>
                                 <th>Action</th>
+                                <?php if ($session_user_info['admin'] == 2) { ?>
+                                    <th>Delete</th>
+                                <?php } ?>
                             </tr>
                         </thead>
                     </table>

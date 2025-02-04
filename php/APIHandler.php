@@ -49,6 +49,15 @@
             return $this->API_Request("goUsers", $postfields);
         }
 
+        function deleteUser($user_id = NULL, $session_user_id = NULL) {
+            $postfields = array(
+                "goAction" => "goDeleteUser",
+                "user_id" => $user_id,
+                "session_user_id" => $session_user_id,
+            );
+            return $this->API_Request("goUsers", $postfields);
+        }
+
         function unauthorizeUser($user_id = NULL, $session_user_id = NULL) {
             $postfields = array(
                 "goAction" => "goUnauthorizeUser",

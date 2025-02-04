@@ -113,6 +113,46 @@ $(document).ready(function() {
           }
         });
     });
+    $(document).on("click", ".delete_user", function() {
+      var $button = $(this);
+      let user_id = $(this).data("user-id");
+      let user_name = $(this).data("user-name");
+      Swal.fire({
+        title: "Are you sure you want to delete user "+user_name+"?",
+        text: "This change cannot be reversed!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes!", 
+      }).then((result) => {
+          if (result.isConfirmed) {
+            $button.html('Deleting '+user_name+'...'); 
+            $button.attr("disabled", true);
+            $.ajax({
+              url: "./php/deleteUser.php",
+              type: "POST",
+              data: {
+                  user_id: user_id
+              },
+              success: function (data) {
+                Swal.fire({
+                  title: "Success",
+                  text: "User has been deleted!",
+                  icon: "success",
+                  showCancelButton: false,
+                  confirmButtonColor: "#33cc33",
+                  confirmButtonText: "OK!",
+                }).then((result) => {
+                  if (result.isConfirmed) { 
+                    window.location.reload();
+                  }
+                });
+              }
+          });
+        }
+      }); 
+    });
     $(document).on("click", ".unauthorize_user", function() {
       var $button = $(this);
       let user_id = $(this).data("user-id");
