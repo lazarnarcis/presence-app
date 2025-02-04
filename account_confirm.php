@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="assets/css/login.css?v=<?php echo time(); ?>">
     <link rel="stylesheet" type="text/css" href="css/sweetalert.css">
 	<script src="js/sweetalert.js"></script>
+    <script src="./assets/js/jquery.js"></script>
 </head> 
 <body id="page-top" class="politics_version">
     <div class="container">
@@ -37,18 +38,26 @@
             <div class="col-md-6 mx-auto">
                 <div class="d-flex align-items-center justify-content-center" style="min-height: 100vh;">
                     <div class="text-center">
-                            <div class="card" style="max-width: 100vw !important;">
-                                <div>
-                                    <h1>Contact site Administrator</h1>
-                                    <hr>
-                                    <h3>Please contact site Administrator to authorize your account :></h3>
-                                    <div class="mt-3"> <a href="index.php" class="btn btn-dark w-100">Reload page</a> </div>
-                                </div>
+                        <div class="card" style="max-width: 100vw !important;">
+                            <div>
+                                <h1>Contact site Administrator</h1>
+                                <hr>
+                                <h3>Please contact site Administrator to authorize your account :></h3>
+                                <div class="mb-3"> <a href="index.php" class="btn btn-dark w-100">Reload page</a> </div>
+                                <div class="mb-3"> <button type="button" class="btn w-100 btn_logout">Logout</button> </div>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        $(document).ready(function() {
+            $(document).on("click", ".btn_logout", function() {
+                window.location.href="logout.php";
+            });
+        });
+    </script>
 </body>
 </html>
