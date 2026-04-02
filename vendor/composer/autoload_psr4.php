@@ -29,7 +29,7 @@ return array(
     'Ratchet\\Client\\' => array($vendorDir . '/ratchet/pawl/src'),
     'Psr\\SimpleCache\\' => array($vendorDir . '/psr/simple-cache/src'),
     'Psr\\Log\\' => array($vendorDir . '/psr/log/src'),
-    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-message/src', $vendorDir . '/psr/http-factory/src'),
+    'Psr\\Http\\Message\\' => array($vendorDir . '/psr/http-factory/src', $vendorDir . '/psr/http-message/src'),
     'Psr\\Clock\\' => array($vendorDir . '/psr/clock/src'),
     'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src/PhpOption'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
@@ -39,7 +39,7 @@ return array(
     'Evenement\\' => array($vendorDir . '/evenement/evenement/src'),
     'Dotenv\\' => array($vendorDir . '/vlucas/phpdotenv/src'),
     'Discord\\Http\\' => array($vendorDir . '/discord-php/http/src/Discord'),
-    'Discord\\' => array($vendorDir . '/discord/interactions/discord', $vendorDir . '/team-reflex/discord-php/src/Discord'),
+    'Discord\\' => array($vendorDir . '/team-reflex/discord-php/src/Discord', $vendorDir . '/discord/interactions/discord'),
     'Carbon\\Doctrine\\' => array($vendorDir . '/carbonphp/carbon-doctrine-types/src/Carbon/Doctrine'),
     'Carbon\\' => array($vendorDir . '/nesbot/carbon/src/Carbon'),
 );

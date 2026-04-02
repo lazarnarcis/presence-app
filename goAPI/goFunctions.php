@@ -76,13 +76,13 @@
                 <body>
                     <div class='email-container'>
                         <div class='header'>
-                            $subject || Development Hub
+                            $subject || Infranetix
                         </div>
                         <div class='content'>
                             $message
                         </div>
                         <div class='footer'>
-                            <p>Development Hub &copy; 2024 - ".date("Y")." All rights reserved.</p>
+                            <p>Infranetix &copy; ".date("Y")." Infranetix. All rights reserved.</p>
                         </div>
                     </div>
                 </body>
